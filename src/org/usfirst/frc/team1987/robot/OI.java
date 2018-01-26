@@ -8,6 +8,9 @@
 package org.usfirst.frc.team1987.robot;
 
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
+import org.usfirst.frc.team1987.robot.commands.elevator.GoToAbsolutePosition;
+import org.usfirst.frc.team1987.robot.commands.elevator.GoToRelativePosition;
+import org.usfirst.frc.team1987.robot.commands.elevator.SetZeroHome;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +26,9 @@ public class OI {
 	public OI()
 	{
 		SmartDashboard.putData("Drive Straight", new DriveStraightForDistance(6));
+		SmartDashboard.putData("Elevator relative: 3", new GoToRelativePosition(3));
+		SmartDashboard.putData("Set Home", new SetZeroHome());
+//		SmartDashboard.putData("Elevator absolute: 5", new GoToAbsolutePosition(5));
 	}
 	
 	public XboxController getXbox()
