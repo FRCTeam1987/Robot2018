@@ -25,8 +25,8 @@ public class OI {
 	
 	public OI()
 	{
-		SmartDashboard.putData("Drive Straight", new DriveStraightForDistance(6));
-		SmartDashboard.putData("Elevator relative: 3", new GoToRelativePosition(3));
+		SmartDashboard.putData("Drive Straight 6", new DriveStraightForDistance(6));
+		SmartDashboard.putData("Elevator relative: 8", new GoToRelativePosition(8));
 		SmartDashboard.putData("Set Home", new SetZeroHome());
 //		SmartDashboard.putData("Elevator absolute: 5", new GoToAbsolutePosition(5));
 	}

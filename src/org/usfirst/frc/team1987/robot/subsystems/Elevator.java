@@ -37,8 +37,8 @@ public class Elevator extends Subsystem {
     	elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
     	
     	elevator.selectProfileSlot(0, 0);	//param 1 = "profile slot to select" - Example used 0 - why?
-		elevator.config_kF(0, 0.15, 10);
-		elevator.config_kP(0, 0.2, 10);
+		elevator.config_kF(0, 0.05, 10);
+		elevator.config_kP(0, 0.1, 10);
 		elevator.config_kI(0, 0, 10);
 		elevator.config_kD(0, 0, 10);
 //		elevator.configMotionAcceleration(40, 10); 	//param 1 = sensorUnitsPer100msPerSec - need to calc?
@@ -51,6 +51,10 @@ public class Elevator extends Subsystem {
 	
 	public void zeroElevatorEncoder()
 	{
+//		int absolutePosition = elevator.getSensorCollection().getPulseWidthPosition();
+//		
+//		absolutePosition &= 0xFFF;
+		
 		elevator.setSelectedSensorPosition(0, 0, 10);
 	}
 	
@@ -86,6 +90,7 @@ public class Elevator extends Subsystem {
 		
 		SmartDashboard.putNumber("ticks absolute before motor set" , ticksAbsolute);
 		SmartDashboard.putNumber("inches absolute before motor set", ticksToInches(ticksAbsolute));
+		SmartDashboard.putNumber("initial position", elevator.getSelectedSensorPosition(0));
 		
 		elevator.set(ControlMode.Position, ticksAbsolute);	
 		

@@ -28,7 +28,7 @@ public class RobotMap {
     public static double drivePathV = 1 / maxVelocity;
     public static double drivePathA = 0.0;
     public static int ctreMagEncoderTicksPerRevolution = 4096;
-    public static int elevatorID = 7;	//shooter id on prac bot(black)
+    public static int elevatorID = 5;	//turrret id on comp bot (purple)
     public static int leftMasterID = 1;
     public static int leftSlaveID = 3;
     public static int rightMasterID = 2;
