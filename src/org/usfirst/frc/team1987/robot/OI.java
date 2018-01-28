@@ -7,6 +7,14 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.claw.CollectCubeNarrow;
+import org.usfirst.frc.team1987.robot.commands.claw.CollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
+//import org.usfirst.frc.team1987.robot.commands.CollectCubeNarrow;
+//import org.usfirst.frc.team1987.robot.commands.CollectCubeWide;
+//import org.usfirst.frc.team1987.robot.commands.EjectCube;
+//import org.usfirst.frc.team1987.robot.commands.SetClawActuator;
+//import org.usfirst.frc.team1987.robot.commands.SetClawWheelSpeed;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToAbsolutePosition;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToRelativePosition;
@@ -29,6 +37,17 @@ public class OI {
 		SmartDashboard.putData("Elevator relative: 8", new GoToRelativePosition(8));
 		SmartDashboard.putData("Set Home", new SetZeroHome());
 //		SmartDashboard.putData("Elevator absolute: 5", new GoToAbsolutePosition(5));
+		
+		// claw
+//		SmartDashboard.putData("Set wheel motor to 90 %", new SetClawWheelSpeed(.9));
+//		SmartDashboard.putData("Set wheel motor to -50 %", new SetClawWheelSpeed(-0.5));
+//		SmartDashboard.putData("Set wheel motor to 0 %", new SetClawWheelSpeed(0.0));
+//		SmartDashboard.putData("Set cylinders out", new SetClawActuator(true));
+//		SmartDashboard.putData("Set cylinders in", new SetClawActuator(false));
+//		
+		SmartDashboard.putData("Collect cube wide", new CollectCubeWide());
+		SmartDashboard.putData("Collect cube narrow", new CollectCubeNarrow());
+		SmartDashboard.putData("spit", new EjectCube());
 	}
 	
 	public XboxController getXbox()

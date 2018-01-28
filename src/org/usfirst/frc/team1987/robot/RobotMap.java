@@ -34,6 +34,14 @@ public class RobotMap {
     public static int rightMasterID = 2;
     public static int rightSlaveID = 4;
     
+    //Claw
+    public static int clawMasterID = 4;	//these ids need to be changed
+	public static int clawSlaveID = 3;
+	public static int clawExtendPCMID = 0;
+	public static int clawRetractPCMID = 1;
+	public static int farCubeSensorDIOID = 0;
+	public static int closeCubeSensorDIOID = 1;
+    
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
