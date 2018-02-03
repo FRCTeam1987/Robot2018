@@ -3,6 +3,7 @@ package org.usfirst.frc.team1987.robot.subsystems;
 import org.usfirst.frc.team1987.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -30,8 +31,19 @@ public class Drive extends Subsystem {
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		leftMaster.configPeakOutputForward(1, 0);
+		leftMaster.configPeakOutputReverse(-1, 0);
+		leftMaster.configNominalOutputForward(0.0, 0);
+		leftMaster.configNominalOutputReverse(0.0, 0);
+		leftMaster.setNeutralMode(NeutralMode.Brake);
 		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rightMaster.setSensorPhase(true);
+		rightMaster.configPeakOutputForward(1, 0);
+		rightMaster.configPeakOutputReverse(-1, 0);
+		rightMaster.configNominalOutputForward(0.0, 0);
+		rightMaster.configNominalOutputReverse(0.0, 0);
+		rightMaster.setNeutralMode(NeutralMode.Brake);
 
 		leftSlave1.follow(leftMaster);
 		leftSlave2.follow(leftMaster);
