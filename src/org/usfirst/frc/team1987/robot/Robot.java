@@ -59,6 +59,9 @@ public class Robot extends TimedRobot {
 		
 		m_chooser.addObject("center-left-switch",  new DrivePath("/home/lvuser/paths/left-left.csv", "/home/lvuser/paths/left-right.csv"));
 		m_chooser.addObject("center-right-switch",  new DrivePath("/home/lvuser/paths/right-left.csv", "/home/lvuser/paths/right-right.csv"));
+		
+		m_chooser.addObject("fast-center-left-switch",  new DrivePath("/home/lvuser/paths/left-left-fast.csv", "/home/lvuser/paths/left-right-fast.csv"));
+		m_chooser.addObject("fast-center-right-switch",  new DrivePath("/home/lvuser/paths/right-left-fast.csv", "/home/lvuser/paths/right-right-fast.csv"));
 
 		
 		SmartDashboard.putData("Auto mode", m_chooser);
