@@ -32,16 +32,16 @@ public class Drive extends Subsystem {
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
 		robotDrive = new DifferentialDrive(leftMaster, rightMaster); 
 		
-		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+//		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+//		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		leftMaster.configPeakOutputForward(1, 0);
 		leftMaster.configPeakOutputReverse(-1, 0);
 		leftMaster.configNominalOutputForward(0.0, 0);
 		leftMaster.configNominalOutputReverse(0.0, 0);
 		leftMaster.setNeutralMode(NeutralMode.Brake);
-		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightMaster.setSensorPhase(true);
+//		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
+//		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+//		rightMaster.setSensorPhase(true);
 		rightMaster.configPeakOutputForward(1, 0);
 		rightMaster.configPeakOutputReverse(-1, 0);
 		rightMaster.configNominalOutputForward(0.0, 0);
