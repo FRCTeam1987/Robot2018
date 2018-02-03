@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Sendable;
@@ -47,16 +48,16 @@ public class Drive extends Subsystem {
     	leftSlave.follow(leftMaster);
     	leftMaster.configPeakOutputForward(1, 0);
     	leftMaster.configPeakOutputReverse(-1, 0);
-    	leftMaster.configNominalOutputForward(0, 0);
-    	leftMaster.configNominalOutputReverse(0, 0);
+    	leftMaster.configNominalOutputForward(0.0, 0);
+    	leftMaster.configNominalOutputReverse(0.0, 0);
     	
     	robotDrive = new DifferentialDrive(leftMaster, rightMaster);
     	robotDrive.setSafetyEnabled(false);
     	
     	leftMaster.setNeutralMode(NeutralMode.Brake);
     	
-    	leftMaster.setInverted(true);
-    	leftSlave.setInverted(true);
+//    	leftMaster.setInverted(true);
+//    	leftSlave.setInverted(true);
     	
     	leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
     	leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -65,13 +66,13 @@ public class Drive extends Subsystem {
     	rightSlave.follow(rightMaster);
     	rightMaster.configPeakOutputForward(1, 0);
     	rightMaster.configPeakOutputReverse(-1, 0);
-    	rightMaster.configNominalOutputForward(0, 0);
-    	rightMaster.configNominalOutputReverse(0, 0);
+    	rightMaster.configNominalOutputForward(0.0, 0);
+    	rightMaster.configNominalOutputReverse(0.0, 0);
     	
     	rightMaster.setNeutralMode(NeutralMode.Brake);
     	
-    	rightMaster.setInverted(true);
-    	rightSlave.setInverted(true);
+//    	rightMaster.setInverted(true);
+//    	rightSlave.setInverted(true);
     	
     	rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
     	rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -92,6 +93,10 @@ public class Drive extends Subsystem {
     public double getAngle()
     {
     	return ahrs.getAngle();
+    }
+    
+    public double getHeading() {
+    	return 360.0 - ahrs.getFusedHeading();
     }
     
     public void xboxDrive(XboxController xbox)
@@ -167,8 +172,7 @@ public class Drive extends Subsystem {
     	SmartDashboard.putNumber("Right inches", getRightEncoderDistance());
     	SmartDashboard.putNumber("Yaw", getYaw());
     	SmartDashboard.putNumber("Angle", getAngle());
-    	SmartDashboard.putNumber("Value", 1.52);
-    	SmartDashboard.putNumber("Angle", ahrs.getAngle());
+    	SmartDashboard.putNumber("heading", getHeading());
     	
     	SmartDashboard.putNumber("Leftmaster voltage", Robot.drive.leftMaster.getMotorOutputVoltage());
     	SmartDashboard.putNumber("Rightmaster voltage", Robot.drive.rightMaster.getMotorOutputVoltage());

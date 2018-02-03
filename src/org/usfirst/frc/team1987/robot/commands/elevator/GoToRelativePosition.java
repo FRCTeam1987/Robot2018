@@ -3,6 +3,7 @@ package org.usfirst.frc.team1987.robot.commands.elevator;
 import org.usfirst.frc.team1987.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -30,6 +31,7 @@ public class GoToRelativePosition extends Command {
     }
 
     protected void end() {
+
     }
 
     

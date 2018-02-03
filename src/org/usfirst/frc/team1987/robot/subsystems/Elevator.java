@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
+import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -37,10 +38,10 @@ public class Elevator extends Subsystem {
     	elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
     	
     	elevator.selectProfileSlot(0, 0);	//param 1 = "profile slot to select" - Example used 0 - why?
-		elevator.config_kF(0, 0.05, 10);
-		elevator.config_kP(0, 0.1, 10);
-		elevator.config_kI(0, 0, 10);
-		elevator.config_kD(0, 0, 10);
+		elevator.config_kF(0, 0.0, 10);	//was .05
+		elevator.config_kP(0, 0.3, 10);
+		elevator.config_kI(0, 0.0, 10);
+		elevator.config_kD(0, 0.0, 10);
 //		elevator.configMotionAcceleration(40, 10); 	//param 1 = sensorUnitsPer100msPerSec - need to calc?
 //		elevator.configMotionCruiseVelocity(20, 10);	//param 1 = sensorUnitsPer10ms - need to calc?
 		elevator.configAllowableClosedloopError(0, inchesToTicks(0.25), 10);
@@ -94,7 +95,8 @@ public class Elevator extends Subsystem {
 		
 		elevator.set(ControlMode.Position, ticksAbsolute);	
 		
-		SmartDashboard.putNumber("Closed loop error", elevator.getClosedLoopError(0));
+//		SmartDashboard.putNumber("Target position after set", elevator.ge)
+//		SmartDashboard.putNumber("Closed loop error", elevator.getClosedLoopError(0));
 		SmartDashboard.putString("Elevator Status", "Acceptable Position");
 	}
 		
@@ -131,12 +133,15 @@ public class Elevator extends Subsystem {
 	{
 		return (int) (inchesToRotations(inches) * 4096);		
 	}
-		
+		 
+	
 	public void periodic()
 	{
 		SmartDashboard.putNumber("Current Inches", getElevatorDistance());
 		SmartDashboard.putNumber("Current ticks", inchesToTicks(getElevatorDistance()));
 		SmartDashboard.putNumber("Current rotations", getRotations());
+		SmartDashboard.putNumber("Closed loop error 2.0", elevator.getClosedLoopError(0));
+
 	}
 	
 	

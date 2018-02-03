@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,6 +26,7 @@ import org.usfirst.frc.team1987.robot.subsystems.ExampleSubsystem;
 
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
+	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static final Drive drive = new Drive();
 	public static final Elevator elevator = new Elevator();
 	public static final Claw claw = new Claw();
@@ -41,10 +43,24 @@ public class Robot extends TimedRobot {
 		int a = 0;
 		System.out.println(a);
 //		m_chooser.addObject("trajectory", new DrivePath(new Waypoint[] {
-//				new Waypoint(-4, 3, 0.0),	//x, y, degrees
-//				new Waypoint(0.15, 2, Pathfinder.d2r(15)),
-//				new Waypoint(0, 0, 0)
+//				new Waypoint(-3, -2, 0.0),	//x, y, degrees
+//				new Waypoint(0, -1, 0.0),
+//				new Waypoint(0, 0, Pathfinder.d2r(-45))
 //		}));
+//		try {
+//		m_chooser.addObject("trajectory", new DrivePath(new Waypoint[] {
+//				new Waypoint(2, -2, 0.0),	//x, y, degrees
+////				new Waypoint(1, 1, Pathfinder.d2r(45)),
+//				new Waypoint(0, 0, Pathfinder.d2r(90))
+//		}));
+//		} catch(Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+		
+		m_chooser.addObject("center-left-switch",  new DrivePath("/home/lvuser/paths/left-left.csv", "/home/lvuser/paths/left-right.csv"));
+		m_chooser.addObject("center-right-switch",  new DrivePath("/home/lvuser/paths/right-left.csv", "/home/lvuser/paths/right-right.csv"));
+
+		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 

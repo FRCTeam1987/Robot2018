@@ -16,17 +16,17 @@ package org.usfirst.frc.team1987.robot;
  */
 public class RobotMap {
 	
-    public static double wheelDiameter = 3.975;
-    public static double driveWheelbaseWidth = 25.5 * 0.0254; //meters
-    public static double period = .005;
-    public static double maxVelocity = 1.7;
-    public static double maxAcceleration = 2.0;
-    public static double maxJerk = 50;
-    public static double drivePathP = 1.0;
+    public static double wheelDiameter = 4.0;
+    public static double driveWheelbaseWidth = 25.5 / 12; //feets
+    public static double period = .05;
+    public static double maxVelocity = 5.0;
+    public static double maxAcceleration = 3.0;
+    public static double maxJerk = 60.0;
+    public static double drivePathP = 1.2;
     public static double drivePathI = 0.0;
-    public static double drivePathD = 0.0;
+    public static double drivePathD = 2.5;
     public static double drivePathV = 1 / maxVelocity;
-    public static double drivePathA = 0.0;
+    public static double drivePathA = 0.9;
     public static int ctreMagEncoderTicksPerRevolution = 4096;
     public static int elevatorID = 5;	//turrret id on comp bot (purple)
     public static int leftMasterID = 1;

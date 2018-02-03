@@ -11,7 +11,7 @@ public class CollectCubeNarrow extends CommandGroup {
 
     public CollectCubeNarrow() {
     	
-    	addSequential(new SetClawActuator(false));
+    	addSequential(new SetClawActuator(SetClawActuator.POSITION.CLOSED));
     	addSequential(new WaitForHasCubeFar(8.0));
     	addSequential(new SetClawWheelSpeed(0.7));
     	addSequential(new WaitForHasCubeClose(8.0));

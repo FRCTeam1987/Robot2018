@@ -33,10 +33,13 @@ public class OI {
 	
 	public OI()
 	{
-		SmartDashboard.putData("Drive Straight 6", new DriveStraightForDistance(6));
+		SmartDashboard.putData("Elevator relative: 5", new GoToRelativePosition(5));
 		SmartDashboard.putData("Elevator relative: 8", new GoToRelativePosition(8));
 		SmartDashboard.putData("Set Home", new SetZeroHome());
 //		SmartDashboard.putData("Elevator absolute: 5", new GoToAbsolutePosition(5));
+		
+		// drive
+//		SmartDashboard.putData("Drive Straight 6", new DriveStraightForDistance(6));
 		
 		// claw
 //		SmartDashboard.putData("Set wheel motor to 90 %", new SetClawWheelSpeed(.9));
@@ -47,7 +50,7 @@ public class OI {
 //		
 		SmartDashboard.putData("Collect cube wide", new CollectCubeWide());
 		SmartDashboard.putData("Collect cube narrow", new CollectCubeNarrow());
-		SmartDashboard.putData("spit", new EjectCube());
+//		SmartDashboard.putData("spit", new EjectCube());
 	}
 	
 	public XboxController getXbox()
