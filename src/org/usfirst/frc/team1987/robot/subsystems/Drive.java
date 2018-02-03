@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightMaster;
 	private final WPI_TalonSRX rightSlave1;
 	private final WPI_TalonSRX rightSlave2;
+	private final DifferentialDrive robotDrive;
 	
 	public Drive() {
 		leftMaster = new WPI_TalonSRX(RobotMap.leftMasterID);
@@ -28,6 +30,7 @@ public class Drive extends Subsystem {
 		rightMaster = new WPI_TalonSRX(RobotMap.rightMasterID);
 		rightSlave1 = new WPI_TalonSRX(RobotMap.rightSlave1ID);
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
+		robotDrive = new DifferentialDrive(leftMaster, rightMaster); 
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
 		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -48,7 +51,9 @@ public class Drive extends Subsystem {
 		leftSlave1.follow(leftMaster);
 		leftSlave2.follow(leftMaster);
 		rightSlave1.follow(rightMaster);
-		rightSlave2.follow(rightMaster);	
+		rightSlave2.follow(rightMaster);
+		
+		robotDrive.setSafetyEnabled(false);
 	}
 
     public void initDefaultCommand() {
