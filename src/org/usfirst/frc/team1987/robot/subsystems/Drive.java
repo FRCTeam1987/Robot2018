@@ -1,12 +1,16 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
+import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
+import org.usfirst.frc.team1987.robot.commands.XboxDrive;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -56,9 +60,18 @@ public class Drive extends Subsystem {
 		robotDrive.setSafetyEnabled(false);
 	}
 
+	public void xboxDrive(XboxController xbox) {
+		final double move = xbox.getTriggerAxis(Hand.kRight) - xbox.getTriggerAxis(Hand.kLeft);
+		final double rotate = xbox.getX(Hand.kLeft);
+		robotDrive.arcadeDrive(-move, rotate);
+	}
+	
+	public void tanksDrive(final double left, final double right) {
+		robotDrive.tankDrive(left, right);
+	}
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new XboxDrive());
     }
 }
 

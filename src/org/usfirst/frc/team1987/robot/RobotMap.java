@@ -14,11 +14,15 @@ package org.usfirst.frc.team1987.robot;
  * floating around.
  */
 public class RobotMap {
+	
+	//Drive 
 	public static int leftMasterID = 1;
 	public static int leftSlave1ID = 2;
 	public static int leftSlave2ID = 3;
 	public static int rightMasterID = 4;
 	public static int rightSlave1ID = 5;
-	public static int rightSlave2ID = 6;
+	public static int rightSlave2ID = 6;	
 	
+	//Xbox - Driver 
+	public static int xboxDriverID = 0;
 }
