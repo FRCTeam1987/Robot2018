@@ -4,6 +4,7 @@ import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.XboxDrive;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -73,25 +75,58 @@ public class Drive extends Subsystem {
 		robotDrive.tankDrive(left, right);
 	}
 	
+	public void driveDistance(final double leftInches, final double rightInches) {
+		double leftRotations = inchesToRotations(leftInches);
+		double rightRotations = inchesToRotations(rightInches);
+		
+		leftMaster.set(ControlMode.Position, leftRotations);
+		rightMaster.set(ControlMode.Position, rightRotations);
+
+	}
+	
 	public void zeroDriveEncoders() {
 		leftMaster.setSelectedSensorPosition(0, 0, 10);
 		rightMaster.setSelectedSensorPosition(0, 0, 10);
-	}
-	
-	public int getRightRawEncoderPosition() {
-		return rightMaster.getSelectedSensorPosition(0);
 	}
 	
 	public int getLeftRawEncoderPosition() {
 		return leftMaster.getSelectedSensorPosition(0);
 	}
 	
+	
+	public int getRightRawEncoderPosition() {
+		return rightMaster.getSelectedSensorPosition(0);
+	}
+	
+	public double getLeftEncoderDistance() {
+		return rotationsToInches(leftMaster.getSelectedSensorPosition(0) / 4096);
+	}
+	
+	public double getRightEncoderDistance() {
+		return rotationsToInches(rightMaster.getSelectedSensorPosition(0) / 4096);
+	}
+	
 	public double getHeading() {
 		return 360.0 - pidgey.getFusedHeading();
 	}
 	
+	private double inchesToRotations(final double inches) {
+		return inches / (Math.PI * RobotMap.wheelDiameter);
+	}
+	
+	public double rotationsToInches(final double rotations) {
+		double circumference = Math.PI * RobotMap.wheelDiameter;
+		return circumference * rotations;
+	}
+	
     public void initDefaultCommand() {
         setDefaultCommand(new XboxDrive());
+    }
+    
+    public void periodic() {
+    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
+    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
+    	SmartDashboard.putNumber("heading", getHeading());
     }
 }
 
