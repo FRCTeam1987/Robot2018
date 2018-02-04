@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,6 +26,7 @@ import org.usfirst.frc.team1987.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
+	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static final Drive drive = new Drive();
 	public static OI oi;
 
