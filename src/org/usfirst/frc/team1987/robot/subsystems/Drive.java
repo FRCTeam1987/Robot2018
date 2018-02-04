@@ -81,7 +81,6 @@ public class Drive extends Subsystem {
 		
 		leftMaster.set(ControlMode.Position, leftRotations);
 		rightMaster.set(ControlMode.Position, rightRotations);
-
 	}
 	
 	public void zeroDriveEncoders() {
@@ -108,6 +107,10 @@ public class Drive extends Subsystem {
 	
 	public double getHeading() {
 		return 360.0 - pidgey.getFusedHeading();
+	}
+	
+	public void zeroHeading() {
+		pidgey.setFusedHeading(0, 10); 	//might need to be changed
 	}
 	
 	private double inchesToRotations(final double inches) {

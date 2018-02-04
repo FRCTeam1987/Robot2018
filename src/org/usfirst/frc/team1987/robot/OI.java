@@ -7,7 +7,10 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.DriveStraightForDistance;
+
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,6 +23,8 @@ public class OI {
 	public OI()
 	{
 		xboxDriver = new XboxController(RobotMap.xboxDriverID);
+		
+		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
 	}
 	
 	public XboxController getXbox() {
