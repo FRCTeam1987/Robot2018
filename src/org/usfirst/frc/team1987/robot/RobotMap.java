@@ -37,8 +37,11 @@ public class RobotMap {
 	public static double drivePathD = 2.5;
 	public static double drivePathV = 1 / maxVelocity;
 	public static double drivePathA = 0.9;
+	
+//	public static int pidgeyID = 30;	//change this later
+//	public static int ahrsID = 58;	//change this later
+
 		
 	//Xbox - Driver 
 	public static int xboxDriverID = 0;
-	public static int pidgeyID = 0;	//change this later
 }

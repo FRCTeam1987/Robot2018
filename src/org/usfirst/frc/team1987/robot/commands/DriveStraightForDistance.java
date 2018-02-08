@@ -22,21 +22,23 @@ public class DriveStraightForDistance extends Command {
 
     protected void initialize() {
     	Robot.drive.zeroDriveEncoders();
-    	Robot.drive.zeroHeading();
+//    	Robot.drive.zeroHeading();
     }
 
     protected void execute() {
-    	if (mTargetDistance > 0)
-    		Robot.drive.tankDrive(0.8, 0.8);
-    	else if (mTargetDistance < 0)
-    		Robot.drive.tankDrive(-0.8, -0.8);
+//    	if (mTargetDistance > 0)
+//    		Robot.drive.tankDrive(0.8, 0.8);
+//    	else if (mTargetDistance < 0)
+//    		Robot.drive.tankDrive(-0.8, -0.8);
+//    	
+//    	mCurrentHeading = Robot.drive.getHeading();
+//    	
+//    	if (mCurrentHeading - mTargetHeading > 1)
+//    		Robot.drive.tankDrive(.75, .9);
+//    	else if (mCurrentHeading - mTargetHeading < -1)
+//    		Robot.drive.tankDrive(.9, .75);
     	
-    	mCurrentHeading = Robot.drive.getHeading();
-    	
-    	if (mCurrentHeading - mTargetHeading > 1)
-    		Robot.drive.tankDrive(.75, .9);
-    	else if (mCurrentHeading - mTargetHeading < -1)
-    		Robot.drive.tankDrive(.9, .75);
+    	Robot.drive.tankDrive(.8, .8);
     }
 
     protected boolean isFinished() {

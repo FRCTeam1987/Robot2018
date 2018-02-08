@@ -10,12 +10,14 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  *
@@ -29,10 +31,10 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightSlave1;
 	private final WPI_TalonSRX rightSlave2;
 	private final DifferentialDrive robotDrive;
-	public final PigeonIMU pidgey;
+	public final AHRS ahrs;
 	
 	public Drive() {
-		pidgey = new PigeonIMU(RobotMap.pidgeyID);
+		ahrs = new AHRS(SPI.Port.kMXP);
 		leftMaster = new WPI_TalonSRX(RobotMap.leftMasterID);
 		leftSlave1 = new WPI_TalonSRX(RobotMap.leftSlave1ID);
 		leftSlave2 = new WPI_TalonSRX(RobotMap.leftSlave2ID);
@@ -106,11 +108,11 @@ public class Drive extends Subsystem {
 	}
 	
 	public double getHeading() {
-		return 360.0 - pidgey.getFusedHeading();
+		return 360.0 - ahrs.getFusedHeading();
 	}
 	
 	public void zeroHeading() {
-		pidgey.setFusedHeading(0, 10); 	//might need to be changed
+		ahrs.zeroYaw(); 	//might need to be changed
 	}
 	
 	private double inchesToRotations(final double inches) {
