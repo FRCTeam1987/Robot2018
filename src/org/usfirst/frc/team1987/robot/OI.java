@@ -18,17 +18,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class OI {
 
-	private final XboxController xboxDriver;
+	private final XboxController driver;
 	
 	public OI()
 	{
-		xboxDriver = new XboxController(RobotMap.xboxDriverID);
+		driver = new XboxController(RobotMap.driverID);
 		
 		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
 	}
 	
-	public XboxController getXbox() {
-		return xboxDriver;
+	public XboxController getDriver() {
+		return driver;
 	}
 	
 }

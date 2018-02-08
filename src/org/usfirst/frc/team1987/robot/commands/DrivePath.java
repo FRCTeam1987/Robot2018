@@ -34,11 +34,11 @@ public class DrivePath extends Command {
     	Robot.drive.zeroDriveEncoders();
     	
     	leftFollower.reset();
-    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), RobotMap.ctreMagEncoderTicksPerRevolution, RobotMap.wheelDiameter);
+    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
     	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
     	
     	rightFollower.reset();
-    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), RobotMap.ctreMagEncoderTicksPerRevolution, RobotMap.wheelDiameter);
+    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
     	rightFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
     }
 

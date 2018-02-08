@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
 
+import org.broncobots.util.Util;
+
 /**
  *
  */
@@ -41,17 +43,17 @@ public class Drive extends Subsystem {
 		rightMaster = new WPI_TalonSRX(RobotMap.rightMasterID);
 		rightSlave1 = new WPI_TalonSRX(RobotMap.rightSlave1ID);
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
-		robotDrive = new DifferentialDrive(leftMaster, rightMaster); 
+		robotDrive = new DifferentialDrive(leftMaster, rightMaster);
 		
-		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
+		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		leftMaster.configPeakOutputForward(1, 0);
 		leftMaster.configPeakOutputReverse(-1, 0);
 		leftMaster.configNominalOutputForward(0.0, 0);
 		leftMaster.configNominalOutputReverse(0.0, 0);
 		leftMaster.setNeutralMode(NeutralMode.Brake);
-		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10);
-		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
+		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		rightMaster.setSensorPhase(true);
 		rightMaster.configPeakOutputForward(1, 0);
 		rightMaster.configPeakOutputReverse(-1, 0);
@@ -78,16 +80,16 @@ public class Drive extends Subsystem {
 	}
 	
 	public void driveDistance(final double leftInches, final double rightInches) {
-		double leftRotations = inchesToRotations(leftInches);
-		double rightRotations = inchesToRotations(rightInches);
+		double leftRotations = Util.distanceToRotations(leftInches,  RobotMap.wheelDiameter);
+		double rightRotations = Util.distanceToRotations(rightInches, RobotMap.wheelDiameter);
 		
 		leftMaster.set(ControlMode.Position, leftRotations);
 		rightMaster.set(ControlMode.Position, rightRotations);
 	}
 	
 	public void zeroDriveEncoders() {
-		leftMaster.setSelectedSensorPosition(0, 0, 10);
-		rightMaster.setSelectedSensorPosition(0, 0, 10);
+		leftMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+		rightMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 	}
 	
 	public int getLeftRawEncoderPosition() {
@@ -100,11 +102,11 @@ public class Drive extends Subsystem {
 	}
 	
 	public double getLeftEncoderDistance() {
-		return rotationsToInches(leftMaster.getSelectedSensorPosition(0) / 4096);
+		return Util.rotationsToDistance(Util.getCtreEncoderRotations(getLeftRawEncoderPosition()), RobotMap.wheelDiameter);
 	}
 	
 	public double getRightEncoderDistance() {
-		return rotationsToInches(rightMaster.getSelectedSensorPosition(0) / 4096);
+		return Util.rotationsToDistance(Util.getCtreEncoderRotations(getRightRawEncoderPosition()), RobotMap.wheelDiameter);
 	}
 	
 	public double getHeading() {
@@ -113,15 +115,6 @@ public class Drive extends Subsystem {
 	
 	public void zeroHeading() {
 		ahrs.zeroYaw(); 	//might need to be changed
-	}
-	
-	private double inchesToRotations(final double inches) {
-		return inches / (Math.PI * RobotMap.wheelDiameter);
-	}
-	
-	public double rotationsToInches(final double rotations) {
-		double circumference = Math.PI * RobotMap.wheelDiameter;
-		return circumference * rotations;
 	}
 	
     public void initDefaultCommand() {

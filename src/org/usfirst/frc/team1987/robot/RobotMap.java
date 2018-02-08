@@ -23,7 +23,8 @@ public class RobotMap {
 	public static int rightSlave1ID = 5;
 	public static int rightSlave2ID = 6;	
 	
-	public static int ctreMagEncoderTicksPerRevolution = 4096;
+	public static int drivePIDIDX = 0;
+	public static int defaultTimeout = 10;
 	
 	public static double wheelDiameter = 4.0;		//change
 	public static double driveWheelbaseWidth = 3.0;	//change
@@ -37,11 +38,12 @@ public class RobotMap {
 	public static double drivePathD = 2.5;
 	public static double drivePathV = 1 / maxVelocity;
 	public static double drivePathA = 0.9;
+	public static double ticksPerRotation = 4096.0;
 	
 //	public static int pidgeyID = 30;	//change this later
 //	public static int ahrsID = 58;	//change this later
 
 		
 	//Xbox - Driver 
-	public static int xboxDriverID = 0;
+	public static int driverID = 0;
 }

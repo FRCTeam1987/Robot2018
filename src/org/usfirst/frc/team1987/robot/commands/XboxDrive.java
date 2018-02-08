@@ -17,7 +17,7 @@ public class XboxDrive extends Command {
     }
 
     protected void execute() {
-    	Robot.drive.xboxDrive(Robot.oi.getXbox());
+    	Robot.drive.xboxDrive(Robot.oi.getDriver());
     }
 
     protected boolean isFinished() {
