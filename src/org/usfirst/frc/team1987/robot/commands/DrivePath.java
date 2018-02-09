@@ -48,7 +48,7 @@ public class DrivePath extends Command {
     	final double currentHeading = Robot.drive.getHeading();
     	final double desiredHeading = Pathfinder.r2d(leftFollower.getHeading());
     	final double headingDifference = Pathfinder.boundHalfDegrees(desiredHeading - currentHeading);
-    	final double turn = 0.85 * (-1.0 / 70.0) * headingDifference;	//clean this up
+    	final double turn = calculateTurnEasing(headingDifference);
     	
     	final double absLeft = Math.abs(leftOutput);
     	final double leftAdjusted = Math.max(absLeft, RobotMap.minimumTrajectoryPercentage);	
@@ -71,5 +71,11 @@ public class DrivePath extends Command {
 
     protected void interrupted() {
     	Robot.drive.tankDrive(0, 0);
+    }
+    
+    private double calculateTurnEasing(final double headingDifference) {
+    	final double headingP = 0.85;
+    	final double headingScalar = -1.0 / 70.0;
+    	return headingP * headingScalar * headingDifference;
     }
 }
