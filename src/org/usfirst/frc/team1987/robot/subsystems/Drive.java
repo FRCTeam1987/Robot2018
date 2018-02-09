@@ -4,6 +4,7 @@ import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.XboxDrive;
 
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -46,14 +47,20 @@ public class Drive extends Subsystem {
 		robotDrive = new DifferentialDrive(leftMaster, rightMaster);
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
-		leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+		if (leftEncoderErrorCode != ErrorCode.OK) {
+			SmartDashboard.putString("Left Drive Encoder Status", leftEncoderErrorCode.toString());
+		}
 		leftMaster.configPeakOutputForward(1, 0);
 		leftMaster.configPeakOutputReverse(-1, 0);
 		leftMaster.configNominalOutputForward(0.0, 0);
 		leftMaster.configNominalOutputReverse(0.0, 0);
 		leftMaster.setNeutralMode(NeutralMode.Brake);
 		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
-		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+		final ErrorCode rightEncoderErrorCode = rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+		if (rightEncoderErrorCode != ErrorCode.OK) {
+			SmartDashboard.putString("Right Drive Encoder Status", rightEncoderErrorCode.toString());
+		}
 		rightMaster.setSensorPhase(true);
 		rightMaster.configPeakOutputForward(1, 0);
 		rightMaster.configPeakOutputReverse(-1, 0);
