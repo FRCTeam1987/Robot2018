@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
-import org.usfirst.frc.team1987.robot.commands.DriveStraightForDistance;
+import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
