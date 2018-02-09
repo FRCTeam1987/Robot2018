@@ -33,7 +33,7 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightSlave1;
 	private final WPI_TalonSRX rightSlave2;
 	private final DifferentialDrive robotDrive;
-	public final AHRS ahrs;
+	private final AHRS ahrs;
 	
 	public Drive() {
 		ahrs = new AHRS(SPI.Port.kMXP);
