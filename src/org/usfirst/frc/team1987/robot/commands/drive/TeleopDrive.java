@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class XboxDrive extends Command {
+public class TeleopDrive extends Command {
 
-    public XboxDrive() {
+    public TeleopDrive() {
         requires(Robot.drive);
     }
 

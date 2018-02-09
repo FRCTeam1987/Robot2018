@@ -2,7 +2,7 @@ package org.usfirst.frc.team1987.robot.subsystems;
 
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
-import org.usfirst.frc.team1987.robot.commands.drive.XboxDrive;
+import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
 import org.usfirst.frc.team1987.util.Util;
 
 import com.ctre.phoenix.ErrorCode;
@@ -124,7 +124,7 @@ public class Drive extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new XboxDrive());
+        setDefaultCommand(new TeleopDrive());
     }
     
     public void periodic() {
