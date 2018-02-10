@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,6 +25,7 @@ import org.usfirst.frc.team1987.robot.subsystems.Drive;
  */
 public class Robot extends TimedRobot {
 	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
+	public static final Compressor compressor = new Compressor();
 	public static final Drive drive = new Drive();
 	public static OI oi;
 
@@ -48,7 +50,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		compressor.setClosedLoopControl(true);
 	}
 
 	@Override

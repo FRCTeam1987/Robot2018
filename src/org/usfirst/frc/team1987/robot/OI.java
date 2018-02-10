@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
+import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -25,6 +27,9 @@ public class OI {
 		driver = new XboxController(RobotMap.driverID);
 		
 		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
+		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
+		SmartDashboard.putData("Enable compressor", new EnableCompressor());
+		SmartDashboard.putData("Disable compressor", new DisableCompressor());
 	}
 	
 	public XboxController getDriver() {
