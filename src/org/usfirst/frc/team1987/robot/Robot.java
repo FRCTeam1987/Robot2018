@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.subsystems.Claw;
+import org.usfirst.frc.team1987.robot.subsystems.Drive;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -14,7 +17,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team1987.robot.subsystems.Drive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +29,7 @@ public class Robot extends TimedRobot {
 	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static final Compressor compressor = new Compressor();
 	public static final Drive drive = new Drive();
+	public static final Claw claw = new Claw();
 	public static OI oi;
 
 	Command m_autonomousCommand;

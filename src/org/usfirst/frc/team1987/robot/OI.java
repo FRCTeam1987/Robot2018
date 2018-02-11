@@ -9,6 +9,9 @@ package org.usfirst.frc.team1987.robot;
 
 import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
 import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
+import org.usfirst.frc.team1987.robot.commands.claw.CollectCubeNarrow;
+import org.usfirst.frc.team1987.robot.commands.claw.CollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -30,6 +33,9 @@ public class OI {
 		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
 		SmartDashboard.putData("Enable compressor", new EnableCompressor());
 		SmartDashboard.putData("Disable compressor", new DisableCompressor());
+		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
+		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
+		SmartDashboard.putData("Eject Cube", new EjectCube());
 	}
 	
 	public XboxController getDriver() {

@@ -15,6 +15,9 @@ package org.usfirst.frc.team1987.robot;
  */
 public class RobotMap {
 	
+	public static int pcmDrive = 0;
+	public static int pcmOther = 1;
+	
 	//Drive 
 	public static int leftMasterID = 1;
 	public static int leftSlave1ID = 2;
@@ -43,6 +46,13 @@ public class RobotMap {
 //	public static int pidgeyID = 30;	//change this later
 //	public static int ahrsID = 58;	//change this later
 
+	// Claw
+	public static int clawMaster = 8;
+	public static int clawSlave = 9;
+	public static int clawFingersOpen = 0;
+	public static int clawFingersClosed = 1;
+	public static int clawNearCubeSensor = 3; // May need to swap with has cube
+	public static int clawHasCubeSensor = 5;
 		
 	//Xbox - Driver 
 	public static int driverID = 0;
