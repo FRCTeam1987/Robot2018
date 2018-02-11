@@ -15,8 +15,8 @@ package org.usfirst.frc.team1987.robot;
  */
 public class RobotMap {
 	
-	public static int pcmDrive = 0;
-	public static int pcmOther = 1;
+	public static int pcmDrive = 1;
+	public static int pcmOther = 0;
 	
 	//Drive 
 	public static int leftMasterID = 1;

@@ -28,6 +28,14 @@ public class Claw extends Subsystem {
 		fingers = new DoubleSolenoid(RobotMap.pcmOther, RobotMap.clawFingersOpen, RobotMap.clawFingersClosed);
 		nearCubeSensor = new DigitalInput(RobotMap.clawNearCubeSensor);
 		hasCubeSensor = new DigitalInput(RobotMap.clawHasCubeSensor);
+		
+		slave.follow(master);
+		
+		addChild(master);
+		addChild(slave);
+		addChild(fingers);
+		addChild(nearCubeSensor);
+		addChild(hasCubeSensor);
 	}
 	
 	public void setWheels(final double percent) {
@@ -51,8 +59,8 @@ public class Claw extends Subsystem {
 	}
 	
 	public void periodic() {
-		SmartDashboard.putBoolean("has cube far", isCubeNear());
-		SmartDashboard.putBoolean("has cube close", hasCube());
+		SmartDashboard.putBoolean("has cube far", hasCube());
+		SmartDashboard.putBoolean("has cube close", isCubeNear());
 		
 	}
 	
