@@ -51,9 +51,14 @@ public class RobotMap {
 	public static int clawSlave = 9;
 	public static int clawFingersOpen = 0;
 	public static int clawFingersClosed = 1;
+	public static int clawWristUp = 2;
+	public static int clawWristDown = 3;
 	public static int clawNearCubeSensor = 3; // May need to swap with has cube
 	public static int clawHasCubeSensor = 5;
 		
 	//Xbox - Driver 
 	public static int driverID = 0;
+	
+	//Elevator 
+	public static int elevatorID = 7;
 }

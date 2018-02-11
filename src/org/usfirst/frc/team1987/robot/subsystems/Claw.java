@@ -19,6 +19,7 @@ public class Claw extends Subsystem {
 	private final WPI_TalonSRX master;
 	private final WPI_TalonSRX slave;
 	private final DoubleSolenoid fingers;
+	private final DoubleSolenoid wrist;
 	private final DigitalInput nearCubeSensor;
 	private final DigitalInput hasCubeSensor;
 	
@@ -26,6 +27,7 @@ public class Claw extends Subsystem {
 		master = new WPI_TalonSRX(RobotMap.clawMaster);
 		slave = new WPI_TalonSRX(RobotMap.clawSlave);
 		fingers = new DoubleSolenoid(RobotMap.pcmOther, RobotMap.clawFingersOpen, RobotMap.clawFingersClosed);
+		wrist = new DoubleSolenoid(RobotMap.pcmOther, RobotMap.clawWristUp, RobotMap.clawWristDown);
 		nearCubeSensor = new DigitalInput(RobotMap.clawNearCubeSensor);
 		hasCubeSensor = new DigitalInput(RobotMap.clawHasCubeSensor);
 		
@@ -48,6 +50,14 @@ public class Claw extends Subsystem {
 	
 	public void close() {
 		fingers.set(Value.kReverse);
+	}
+	
+	public void wristUp() {
+		wrist.set(Value.kForward);
+	}
+	
+	public void wristDown() {
+		wrist.set(Value.kReverse);
 	}
 	
 	public boolean hasCube() {

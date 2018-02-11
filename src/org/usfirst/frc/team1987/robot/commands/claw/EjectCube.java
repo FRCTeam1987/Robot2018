@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1987.robot.commands.claw;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -8,9 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class EjectCube extends CommandGroup {
 
     public EjectCube() {
-
     	addSequential(new SetClawWheelSpeed(0.9));
-    	addSequential(new WaitForNoHasCube(6.0));
+    	addSequential(new WaitCommand(1.5));
     	addSequential(new SetClawWheelSpeed(0.0));
     }
 }
