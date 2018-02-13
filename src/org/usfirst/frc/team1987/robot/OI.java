@@ -53,15 +53,14 @@ public class OI {
 		
 		
 		Button eject = new JoystickButton(driver, 4);			//y
-		Button startCollectMotors = new JoystickButton(driver, 1);
+		Button startCollect = new JoystickButton(driver, 1);	//a
 		Button stopCollect = new JoystickButton(driver, 2);		//b
 		Button closeClaw = new JoystickButton(driver, 5);		//left bumper
 		Button openClaw = new JoystickButton(driver, 6);		//right bumper
 		Button collectWide = new JoystickButton(driver, 3);		//x
-//		Button collectNarrow = new JoystickButton(driver, 1);	//x
 		
 		eject.whenPressed(new EjectCube());
-		startCollectMotors.whenPressed(new SetClawWheelSpeed(-0.7));
+		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
 		stopCollect.whenPressed(new StopCollect());
 		closeClaw.whenPressed(new CloseClaw());
 		openClaw.whenPressed(new OpenClaw());
