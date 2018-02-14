@@ -19,6 +19,8 @@ import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
+import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
+import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -37,19 +39,22 @@ public class OI {
 	{
 		driver = new XboxController(RobotMap.driverID);
 		
-		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
-		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
-		SmartDashboard.putData("Enable compressor", new EnableCompressor());
-		SmartDashboard.putData("Disable compressor", new DisableCompressor());
-		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
-		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
-		SmartDashboard.putData("Eject Cube", new EjectCube());
-		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
-		SmartDashboard.putData("Open Claw", new OpenClaw());
-		SmartDashboard.putData("Close claw", new CloseClaw());
-		SmartDashboard.putData("Wrist Stow", new WristStow());
-		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
-		
+//		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
+//		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
+//		SmartDashboard.putData("Enable compressor", new EnableCompressor());
+//		SmartDashboard.putData("Disable compressor", new DisableCompressor());
+//		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
+//		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
+//		SmartDashboard.putData("Eject Cube", new EjectCube());
+//		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
+//		SmartDashboard.putData("Open Claw", new OpenClaw());
+//		SmartDashboard.putData("Close claw", new CloseClaw());
+//		SmartDashboard.putData("Wrist Stow", new WristStow());
+//		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
+		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
+		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
+		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
+
 		
 		
 		Button eject = new JoystickButton(driver, 4);			//y

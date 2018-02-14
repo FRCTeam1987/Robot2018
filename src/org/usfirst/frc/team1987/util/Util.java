@@ -19,11 +19,17 @@ public class Util {
 		return distance / circumference(diameter);
 	}
 	
-	public static double rotationsToTicks(final double rotations) {
-		return (int)rotations * RobotMap.ticksPerRotation;
+	public static int rotationsToTicks(final double rotations) {
+		return (int)(rotations * RobotMap.ticksPerRotation);
 	}
 	
 	public static int distanceToTicks(final double distance, final double diameter) {
 		return (int)rotationsToTicks(distanceToRotations(distance, diameter));
+	}
+	
+	public static double ticksToDistance(final int ticks, final double diameter) {
+//		return circumference(diameter) * getCtreEncoderRotations(ticks);
+		return rotationsToDistance(getCtreEncoderRotations(ticks), diameter);
+//		Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter
 	}
 }

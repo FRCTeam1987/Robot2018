@@ -61,6 +61,7 @@ public class RobotMap {
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7
-	public static int elevatorTicksPerInch = 554;
+	public static int ticksPerInch = 554;
 	public static int elevatorHomeID = 2;
+	public static double winchDiameter = 2.125;
 }
