@@ -46,12 +46,16 @@ public class OI {
 //		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
 //		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
 //		SmartDashboard.putData("Eject Cube", new EjectCube());
-//		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
-//		SmartDashboard.putData("Open Claw", new OpenClaw());
-//		SmartDashboard.putData("Close claw", new CloseClaw());
-//		SmartDashboard.putData("Wrist Stow", new WristStow());
-//		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
+		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
+		SmartDashboard.putData("Open Claw", new OpenClaw());
+		SmartDashboard.putData("Close claw", new CloseClaw());
+		SmartDashboard.putData("Wrist Stow", new WristStow());
+		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
 		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
+		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
+		SmartDashboard.putData("Set to max: 30.875", new SetElevatorHeight(30.850));
+		SmartDashboard.putData("Set to home: 0", new SetElevatorHeight(0));
+		SmartDashboard.putData("Set to 24.72", new SetElevatorHeight(24.72));
 		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
 		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
 
