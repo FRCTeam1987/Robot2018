@@ -12,6 +12,8 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -31,6 +33,7 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightSlave1;
 	private final WPI_TalonSRX rightSlave2;
 	private final DifferentialDrive robotDrive;
+	private final DoubleSolenoid shifter;
 	private final AHRS ahrs;
 	
 	public Drive() {
@@ -42,6 +45,7 @@ public class Drive extends Subsystem {
 		rightSlave1 = new WPI_TalonSRX(RobotMap.rightSlave1ID);
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
 		robotDrive = new DifferentialDrive(leftMaster, rightMaster);
+		shifter = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.shifterHigh, RobotMap.shifterLow);
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
@@ -94,6 +98,25 @@ public class Drive extends Subsystem {
 	public void zeroDriveEncoders() {
 		leftMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		rightMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+	}
+	
+	public void setHighGear() {
+		shifter.set(Value.kForward);
+	}
+	
+	public void setLowGear() {
+		shifter.set(Value.kReverse);
+	}
+	
+	private boolean isHighGear() {
+		return shifter.get() == Value.kForward;
+	}
+	
+	public void toggleShift() {
+		if(isHighGear() == true)
+			setLowGear();
+		else
+			setHighGear();
 	}
 	
 	public int getLeftRawEncoderPosition() {

@@ -28,6 +28,8 @@ public class RobotMap {
 	
 	public static int drivePIDIDX = 0;
 	public static int defaultTimeout = 10;
+	public static int shifterHigh = 0;
+	public static int shifterLow = 1;
 	
 	public static double wheelDiameter = 4.0;		//change
 	public static double driveWheelbaseWidth = 3.0;	//change

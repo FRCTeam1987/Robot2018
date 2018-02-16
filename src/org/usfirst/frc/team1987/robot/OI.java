@@ -19,6 +19,8 @@ import org.usfirst.frc.team1987.robot.commands.claw.AdjustCubeInClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
+import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
+import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
@@ -34,6 +36,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OI {
 
 	private final XboxController driver;
+	private final Button eject;
+	private final Button startCollect;
+	private final Button stopCollect;
+	private final Button closeClaw;
+	private final Button openClaw;
+	private final Button collectWide;
+
 	
 	public OI()
 	{
@@ -52,6 +61,8 @@ public class OI {
 		SmartDashboard.putData("Close claw", new CloseClaw());
 		SmartDashboard.putData("Wrist Stow", new WristStow());
 		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
+		SmartDashboard.putData("Shift high", new ShiftHigh());
+		SmartDashboard.putData("Shift low", new ShiftLow());
 //		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
 //		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
 //		SmartDashboard.putData("Set to max: 30.875", new SetElevatorHeight(30.850));
@@ -60,12 +71,14 @@ public class OI {
 //		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
 //		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
 		
-		Button eject = new JoystickButton(driver, 4);			//y
-		Button startCollect = new JoystickButton(driver, 1);	//a
-		Button stopCollect = new JoystickButton(driver, 2);		//b
-		Button closeClaw = new JoystickButton(driver, 5);		//left bumper
-		Button openClaw = new JoystickButton(driver, 6);		//right bumper
-		Button collectWide = new JoystickButton(driver, 3);		//x
+		
+		
+		eject = new JoystickButton(driver, 4);			//y
+		startCollect = new JoystickButton(driver, 1);	//a
+		stopCollect = new JoystickButton(driver, 2);		//b
+		closeClaw = new JoystickButton(driver, 5);		//left bumper
+		openClaw = new JoystickButton(driver, 6);		//right bumper
+		collectWide = new JoystickButton(driver, 3);		//x
 		
 		eject.whenPressed(new EjectCube());
 		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
