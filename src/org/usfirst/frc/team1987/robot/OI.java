@@ -39,9 +39,9 @@ public class OI {
 	private final Button eject;
 	private final Button startCollect;
 	private final Button stopCollect;
-	private final Button closeClaw;
-	private final Button openClaw;
 	private final Button collectWide;
+	private final Button wristDeploy;
+	private final Button wristStow;
 
 	
 	public OI()
@@ -63,28 +63,28 @@ public class OI {
 		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
 		SmartDashboard.putData("Shift high", new ShiftHigh());
 		SmartDashboard.putData("Shift low", new ShiftLow());
-//		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
-//		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
-//		SmartDashboard.putData("Set to max: 30.875", new SetElevatorHeight(30.850));
-//		SmartDashboard.putData("Set to home: 0", new SetElevatorHeight(0));
-//		SmartDashboard.putData("Set to 24.72", new SetElevatorHeight(24.72));
-//		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
-//		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
+		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
+		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
+		SmartDashboard.putData("Set to max: 30.875", new SetElevatorHeight(30.850));
+		SmartDashboard.putData("Set to home: 0", new SetElevatorHeight(0));
+		SmartDashboard.putData("Set to 24.72", new SetElevatorHeight(24.72));
+		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
+		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
 		
 		
 		
 		eject = new JoystickButton(driver, 4);			//y
 		startCollect = new JoystickButton(driver, 1);	//a
 		stopCollect = new JoystickButton(driver, 2);		//b
-		closeClaw = new JoystickButton(driver, 5);		//left bumper
-		openClaw = new JoystickButton(driver, 6);		//right bumper
+		wristStow = new JoystickButton(driver, 5);		//left bumper
+		wristDeploy = new JoystickButton(driver, 6);		//right bumper
 		collectWide = new JoystickButton(driver, 3);		//x
 		
 		eject.whenPressed(new EjectCube());
 		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
 		stopCollect.whenPressed(new StopCollect());
-		closeClaw.whenPressed(new CloseClaw());
-		openClaw.whenPressed(new OpenClaw());
+		wristStow.whenPressed(new WristStow());
+		wristDeploy.whenPressed(new WristDeploy());
 		collectWide.whenPressed(new CollectCubeWide());
 	}
 	

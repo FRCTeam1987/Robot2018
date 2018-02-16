@@ -3,6 +3,7 @@ package org.usfirst.frc.team1987.robot.commands.claw;
 import org.usfirst.frc.team1987.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -26,12 +27,18 @@ public class AdjustCubeInClaw extends Command {
     }
 
     protected void execute() {
-    	if (Robot.claw.getRightLimitSwitch()) {
-    		Robot.claw.setWheels(m_leftPercent, 0.0);
+    	if (Robot.claw.isCubeNear()) {
+    		Robot.claw.close();
     	}
     	
-    	if(Robot.claw.getLeftLimitSwitch()) {
-    		Robot.claw.setWheels(0.0, m_rightPercent);
+    	if (Robot.claw.getRightLimitSwitch() && !Robot.claw.getLeftLimitSwitch()) {
+    		Robot.claw.setWheels(m_leftPercent, 0.5 * -m_rightPercent);
+    	}
+    	else if(Robot.claw.getLeftLimitSwitch() && !Robot.claw.getRightLimitSwitch()) {
+    		Robot.claw.setWheels(0.5 * -m_leftPercent, m_rightPercent);
+    	}
+    	else {
+        	Robot.claw.setWheels(m_leftPercent, m_rightPercent);
     	}
     }
 
@@ -41,6 +48,7 @@ public class AdjustCubeInClaw extends Command {
 
     protected void end() {
     	Robot.claw.setWheels(0.0, 0.0);
+    	SmartDashboard.putBoolean("Command all three sensors tripped", Robot.claw.isCubeNear() && Robot.claw.getLeftLimitSwitch() && Robot.claw.getRightLimitSwitch());
     }
 
     protected void interrupted() {

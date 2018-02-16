@@ -140,6 +140,16 @@ public class Drive extends Subsystem {
 		return 360.0 - ahrs.getFusedHeading();
 	}
 	
+	public void setLeftMasterForDistance(final double leftInches) {
+		final double leftTicks = Util.distanceToRotations(leftInches, RobotMap.wheelDiameter);
+		leftMaster.set(ControlMode.Position, leftTicks);
+	}
+	
+	public void setRightMasterForDistance(final double rightInches) {
+		final double rightTicks = Util.distanceToRotations(rightInches, RobotMap.wheelDiameter);
+		rightMaster.set(ControlMode.Position, rightTicks);
+	}
+	
 	public void zeroHeading() {
 		ahrs.zeroYaw(); 	//might need to be changed
 	}
