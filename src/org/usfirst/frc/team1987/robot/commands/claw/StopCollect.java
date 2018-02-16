@@ -15,7 +15,7 @@ public class StopCollect extends InstantCommand {
     }
 
     protected void initialize() {
-    	Robot.claw.setWheels(0);
+    	Robot.claw.setWheels(0.0, 0.0);
     }
     
 }

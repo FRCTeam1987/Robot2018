@@ -9,10 +9,8 @@ public class CollectCubeWide extends CommandGroup {
 
     public CollectCubeWide() {
         addSequential(new OpenClaw());
-        addSequential(new SetClawWheelSpeed(-0.7));
-        addSequential(new WaitForHasCube(5.0));
+        addSequential(new AdjustCubeInClaw(5.0, 0.6, 0.6));
         addSequential(new CloseClaw());
-        addSequential(new WaitForIsCubeNear(5.0));
         addSequential(new SetClawWheelSpeed(0.0));
     }
 }

@@ -47,14 +47,15 @@ public class RobotMap {
 //	public static int ahrsID = 58;	//change this later
 
 	// Claw
-	public static int clawMaster = 8;
-	public static int clawSlave = 9;
+	public static int clawRight = 8;
+	public static int clawLeft = 9;
 	public static int clawFingersOpen = 0;
 	public static int clawFingersClosed = 1;
 	public static int clawWristUp = 2;
 	public static int clawWristDown = 3;
-	public static int clawNearCubeSensor = 3; // May need to swap with has cube
-	public static int clawHasCubeSensor = 5;
+	public static int clawCubeProx = 5;
+	public static int clawLeftLimitSwitch = 8;
+	public static int clawRightLimitSwitch = 7;
 		
 	//Xbox - Driver 
 	public static int driverID = 0;

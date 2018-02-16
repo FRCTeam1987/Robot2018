@@ -17,9 +17,7 @@ public class SetClawWheelSpeed extends InstantCommand {
         m_voltagePercentage = voltagePercentage;
     }
 
-    // Called once when the command executes
     protected void initialize() {
-    	Robot.claw.setWheels(m_voltagePercentage);
+    	Robot.claw.setWheels(m_voltagePercentage, m_voltagePercentage);
     }
-
 }

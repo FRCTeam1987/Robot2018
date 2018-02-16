@@ -16,34 +16,34 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Claw extends Subsystem {
 	
-	private final WPI_TalonSRX master;
-	private final WPI_TalonSRX slave;
+	private final WPI_TalonSRX right;
+	private final WPI_TalonSRX left;
 	private final DoubleSolenoid fingers;
 	private final DoubleSolenoid wrist;
-	private final DigitalInput nearCubeSensor;
-	private final DigitalInput hasCubeSensor;
+	private final DigitalInput cubeProx;
+	private final DigitalInput leftLimitSwitch;
+	private final DigitalInput rightLimitSwitch;
 	
 	public Claw() {
-		master = new WPI_TalonSRX(RobotMap.clawMaster);
-		slave = new WPI_TalonSRX(RobotMap.clawSlave);
+		right = new WPI_TalonSRX(RobotMap.clawRight);
+		left = new WPI_TalonSRX(RobotMap.clawLeft);
 		fingers = new DoubleSolenoid(RobotMap.pcmOther, RobotMap.clawFingersOpen, RobotMap.clawFingersClosed);
 		wrist = new DoubleSolenoid(RobotMap.pcmOther, RobotMap.clawWristUp, RobotMap.clawWristDown);
-		nearCubeSensor = new DigitalInput(RobotMap.clawNearCubeSensor);
-		hasCubeSensor = new DigitalInput(RobotMap.clawHasCubeSensor);
-		
-		slave.follow(master);
-		
-		addChild(master);
-		addChild(slave);
+		cubeProx = new DigitalInput(RobotMap.clawCubeProx);
+		leftLimitSwitch = new DigitalInput(RobotMap.clawLeftLimitSwitch);
+		rightLimitSwitch = new DigitalInput(RobotMap.clawRightLimitSwitch);
+				
+		addChild(right);
+		addChild(left);
 		addChild(fingers);
-		addChild(nearCubeSensor);
-		addChild(hasCubeSensor);
+		addChild(cubeProx);
 	}
 	
-	public void setWheels(final double percent) {
-		master.set(ControlMode.PercentOutput, percent);
+	public void setWheels(final double leftPercent, final double rightPercent) {
+		left.set(ControlMode.PercentOutput, leftPercent);
+		right.set(ControlMode.PercentOutput, rightPercent);
 	}
-
+	
 	public void open() {
 		fingers.set(Value.kForward);
 	}
@@ -60,24 +60,26 @@ public class Claw extends Subsystem {
 		wrist.set(Value.kReverse);
 	}
 	
-	public boolean hasCube() {
-		return !hasCubeSensor.get();
+	public boolean isCubeNear() {
+		return !cubeProx.get();
 	}
 	
-	public boolean isCubeNear() {
-		return !nearCubeSensor.get();
+	public boolean getLeftLimitSwitch() {
+		return leftLimitSwitch.get();
+	}
+	
+	public boolean getRightLimitSwitch() {
+		return rightLimitSwitch.get();
 	}
 	
 	public void periodic() {
-		SmartDashboard.putBoolean("has cube far", hasCube());
-		SmartDashboard.putBoolean("has cube close", isCubeNear());
-		
+		SmartDashboard.putBoolean("has cube far", isCubeNear());	
+		SmartDashboard.putBoolean("getLeftLimitSwitch", getLeftLimitSwitch());
+		SmartDashboard.putBoolean("getRightLimitSwitch", getRightLimitSwitch());
 	}
 	
-	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        
     }
 }
 
