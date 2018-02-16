@@ -56,8 +56,8 @@ public class RobotMap {
 	public static int clawWristUp = 2;
 	public static int clawWristDown = 3;
 	public static int clawCubeProx = 5;
-	public static int clawLeftLimitSwitch = 8;
-	public static int clawRightLimitSwitch = 7;
+	public static int clawLeftLimitSwitch = 3;
+	public static int clawRightLimitSwitch = 4;
 		
 	//Xbox - Driver 
 	public static int driverID = 0;

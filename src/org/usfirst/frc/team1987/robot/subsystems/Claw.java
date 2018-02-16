@@ -65,11 +65,11 @@ public class Claw extends Subsystem {
 	}
 	
 	public boolean getLeftLimitSwitch() {
-		return leftLimitSwitch.get();
+		return !leftLimitSwitch.get();
 	}
 	
 	public boolean getRightLimitSwitch() {
-		return rightLimitSwitch.get();
+		return !rightLimitSwitch.get();
 	}
 	
 	public void periodic() {
