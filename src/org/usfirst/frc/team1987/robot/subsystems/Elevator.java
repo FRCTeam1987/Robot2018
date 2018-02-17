@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.util.Util;
 
@@ -123,6 +124,7 @@ public class Elevator extends Subsystem {
     	SmartDashboard.putNumber("Theoretical inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
     	SmartDashboard.putBoolean("home sensor", isAtHome());
     	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
+    	SmartDashboard.putNumber("POV Status", Robot.oi.getDriver().getPOV());
     	
     	if(isAtHome() == true)
     		zeroElevatorEncoder();

@@ -54,10 +54,27 @@ public class Claw extends Subsystem {
 	
 	public void wristUp() {
 		wrist.set(Value.kForward);
+		
 	}
 	
 	public void wristDown() {
 		wrist.set(Value.kReverse);
+	}
+	
+	public boolean isWristUp() {
+		return wrist.get() == Value.kForward;
+	}
+	
+	public void toggleWrist() {
+		if (isWristUp()) {
+			wrist.set(Value.kReverse);
+			SmartDashboard.putString("Wrist Status", "Down");
+		} 
+		else {
+			wrist.set(Value.kForward);
+			SmartDashboard.putString("Wrist Status", "Up");
+		}
+		
 	}
 	
 	public boolean isCubeNear() {

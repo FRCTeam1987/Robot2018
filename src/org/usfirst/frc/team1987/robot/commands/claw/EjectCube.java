@@ -10,7 +10,7 @@ public class EjectCube extends CommandGroup {
 
     public EjectCube() {
     	addSequential(new SetClawWheelSpeed(0.5));
-    	addSequential(new WaitCommand(1.5));
+    	addSequential(new WaitCommand(1.0));
     	addSequential(new SetClawWheelSpeed(0.0));
     }
 }

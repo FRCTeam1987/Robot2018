@@ -15,6 +15,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
+import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.AdjustCubeInClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
@@ -25,6 +26,7 @@ import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -41,9 +43,11 @@ public class OI {
 	private final Button startCollect;
 	private final Button stopCollect;
 	private final Button collectWide;
-	private final Button wristDeploy;
-	private final Button wristStow;
+//	private final Button wristDeploy;
+//	private final Button wristStow;
+	private final Button toggleWrist;
 	private final Button toggleShifter;
+
 
 	
 	public OI()
@@ -72,28 +76,46 @@ public class OI {
 		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
 		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
-//		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
-//		SmartDashboard.putData("Toggle Shitter", new ToggleShifter());
+		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
+		SmartDashboard.putData("Toggle Shitter", new ToggleShifter());
 		
 		
 		
 		eject = new JoystickButton(driver, 4);			//y
-		startCollect = new JoystickButton(driver, 1);	//a
+		startCollect = new JoystickButton(driver, 3);	//a
 		stopCollect = new JoystickButton(driver, 2);		//b
-		wristStow = new JoystickButton(driver, 5);		//left bumper
-		wristDeploy = new JoystickButton(driver, 6);		//right bumper
+//		wristStow = new JoystickButton(driver, 5);		//left bumper
+//		wristDeploy = new JoystickButton(driver, 6);		//right bumper
+		toggleWrist = new JoystickButton(driver, 1);
 		collectWide = new JoystickButton(driver, 3);		//x
-//		elevatorMax = new JoystickButton(driver, );
 		toggleShifter = new JoystickButton(driver, 10);
 		
 		eject.whenPressed(new EjectCube());
 		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
 		stopCollect.whenPressed(new StopCollect());
-		wristStow.whenPressed(new WristStow());
-		wristDeploy.whenPressed(new WristDeploy());
+//		wristStow.whenPressed(new WristStow());
+//		wristDeploy.whenPressed(new WristDeploy());
+		toggleWrist.whenPressed(new ToggleWrist());
 		collectWide.whenPressed(new CollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		
+		//D-pad code (experimental)
+		
+		if (driver.getPOV() == 0) {
+			new SetElevatorHeight(30.85);
+		} 
+		else if (driver.getPOV() == 90) {
+			new SetElevatorHeight(10);
+		}
+		else if (driver.getPOV() == 180) {
+			new SetElevatorHeight(0);
+		}
+		else if (driver.getPOV() == 270) {
+			new SetElevatorHeight(20);
+		}
+			
+	
+	
 		
 		
 	}
