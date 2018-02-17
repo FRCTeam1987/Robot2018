@@ -5,7 +5,10 @@ import java.io.File;
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 
+import com.ctre.phoenix.ErrorCode;
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.followers.EncoderFollower;
@@ -21,13 +24,34 @@ public class DrivePath extends Command {
     public DrivePath(final String leftTrajectoryFileName, final String rightTrajectoryFileName) {
         requires(Robot.drive);
         
+    
         File leftTrajectoryFile = new File(leftTrajectoryFileName);
         File rightTrajectoryFile = new File(rightTrajectoryFileName);
+
+//        try {
+//        	leftTrajectoryFile.exists();
+//        }
+//        catch(Exception e) {
+////        	final ErrorCode leftTrajectoryFileNotFound = SmartDashboard.putString("Left Trajectory File Status", "File Not Found!");
+//        	SmartDashboard.putString("Left Trajectory File Status", "File Not Found!");
+//        }
+//        
+//        File rightTrajectoryFile = new File(rightTrajectoryFileName);
+//        
+//        try {
+//        	rightTrajectoryFile.exists();
+//        }
+//        catch(Exception e) {
+//        	SmartDashboard.putString("Right Trajectory File Status", "File Not Found!");
+//        }
+        
         Trajectory leftTrajectory = Pathfinder.readFromCSV(leftTrajectoryFile);
         Trajectory rightTrajectory = Pathfinder.readFromCSV(rightTrajectoryFile);
         
         leftFollower = new EncoderFollower(leftTrajectory);
         rightFollower = new EncoderFollower(rightTrajectory);
+        
+       
     }
 
     protected void initialize() {

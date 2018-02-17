@@ -2,6 +2,7 @@ package org.usfirst.frc.team1987.robot.subsystems;
 
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.util.Util;
 
 import com.ctre.phoenix.ErrorCode;
@@ -20,6 +21,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
+
+enum DriveMode {
+	PIVOT,
+	STRAIGHT,
+	TRAJECTORY
+}
 
 /**
  *
@@ -51,7 +58,11 @@ public class Drive extends Subsystem {
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		if (leftEncoderErrorCode != ErrorCode.OK) {
 			SmartDashboard.putString("Left Drive Encoder Status", leftEncoderErrorCode.toString());
+		} 
+		else if (leftEncoderErrorCode == ErrorCode.OK) {
+			SmartDashboard.putString("Left Drive Encoder Status", leftEncoderErrorCode.toString());
 		}
+		
 		leftMaster.configPeakOutputForward(1, 0);
 		leftMaster.configPeakOutputReverse(-1, 0);
 		leftMaster.configNominalOutputForward(0.0, 0);
@@ -62,6 +73,10 @@ public class Drive extends Subsystem {
 		if (rightEncoderErrorCode != ErrorCode.OK) {
 			SmartDashboard.putString("Right Drive Encoder Status", rightEncoderErrorCode.toString());
 		}
+		else if (rightEncoderErrorCode == ErrorCode.OK) {
+			SmartDashboard.putString("Right Drive Encoder Status", rightEncoderErrorCode.toString());
+		}
+		
 		rightMaster.setSensorPhase(true);
 		rightMaster.configPeakOutputForward(1, 0);
 		rightMaster.configPeakOutputReverse(-1, 0);
@@ -113,10 +128,14 @@ public class Drive extends Subsystem {
 	}
 	
 	public void toggleShift() {
-		if(isHighGear() == true)
+		if(isHighGear() == true) {
 			setLowGear();
-		else
+			SmartDashboard.putString("Shitter status", "low gear");
+		}
+		else {
 			setHighGear();
+			SmartDashboard.putString("Shitter status", "high gear");
+		}
 	}
 	
 	public int getLeftRawEncoderPosition() {
@@ -141,13 +160,53 @@ public class Drive extends Subsystem {
 	}
 	
 	public void setLeftMasterForDistance(final double leftInches) {
-		final double leftTicks = Util.distanceToRotations(leftInches, RobotMap.wheelDiameter);
+		final double leftTicks = Util.distanceToTicks(leftInches, RobotMap.wheelDiameter);
 		leftMaster.set(ControlMode.Position, leftTicks);
 	}
 	
 	public void setRightMasterForDistance(final double rightInches) {
 		final double rightTicks = Util.distanceToRotations(rightInches, RobotMap.wheelDiameter);
 		rightMaster.set(ControlMode.Position, rightTicks);
+	}
+	
+	public void setPID(DriveMode mode) {
+		double m_P;
+		double m_I;
+		double m_D;
+		switch(mode) {
+			case PIVOT: 
+				if (isHighGear()) {
+					m_P = RobotMap.drivePivotHighP;
+					m_I = RobotMap.drivePivotHighI;
+					m_D = RobotMap.drivePivotHighD;
+				} else {
+					m_P = RobotMap.drivePivotLowP;
+					m_I = RobotMap.drivePivotLowI;
+					m_D = RobotMap.drivePivotLowD;
+				}
+				break;
+			case STRAIGHT:
+				if (isHighGear()) {
+					m_P = RobotMap.driveStraightHighP;
+					m_I = RobotMap.driveStraightHighI;
+					m_D = RobotMap.driveStraightHighD;
+				} else {
+					m_P = RobotMap.driveStraightLowP;
+					m_I = RobotMap.driveStraightLowI;
+					m_D = RobotMap.driveStraightLowD;
+				}
+				break; 
+			default:
+				return;	
+		}
+		
+		leftMaster.config_kP(RobotMap.drivePIDIDX, m_P, RobotMap.defaultTimeout);
+		leftMaster.config_kI(RobotMap.drivePIDIDX, m_I, RobotMap.defaultTimeout);
+		leftMaster.config_kD(RobotMap.drivePIDIDX, m_D, RobotMap.defaultTimeout);
+		
+		rightMaster.config_kP(RobotMap.drivePIDIDX, m_P, RobotMap.defaultTimeout);
+		rightMaster.config_kI(RobotMap.drivePIDIDX, m_I, RobotMap.defaultTimeout);
+		rightMaster.config_kD(RobotMap.drivePIDIDX, m_D, RobotMap.defaultTimeout);
 	}
 	
 	public void zeroHeading() {
@@ -159,8 +218,8 @@ public class Drive extends Subsystem {
     }
     
     public void periodic() {
-    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
-    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
+//    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
+//    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
     	SmartDashboard.putNumber("heading", getHeading());
     }
 }

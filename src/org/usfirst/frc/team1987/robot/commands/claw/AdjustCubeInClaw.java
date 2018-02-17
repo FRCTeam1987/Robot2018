@@ -48,7 +48,6 @@ public class AdjustCubeInClaw extends Command {
 
     protected void end() {
     	Robot.claw.setWheels(0.0, 0.0);
-    	SmartDashboard.putBoolean("Command all three sensors tripped", Robot.claw.isCubeNear() && Robot.claw.getLeftLimitSwitch() && Robot.claw.getRightLimitSwitch());
     }
 
     protected void interrupted() {

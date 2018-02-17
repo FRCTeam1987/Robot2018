@@ -9,11 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveForDistance extends Command {
 
-	double m_leftTargetInches;
-	double m_rightTargetInches;
-	final double currentLeftInches = Robot.drive.getLeftEncoderDistance();
-	final double currentRightInches = Robot.drive.getRightEncoderDistance();
-	final double tolerance;
+	private final double m_leftTargetInches;
+	private final double m_rightTargetInches;
+	private final double tolerance;
 	
     public DriveForDistance(double leftTargetInches, double rightTargetInches) {
         requires(Robot.drive);
@@ -23,11 +21,13 @@ public class DriveForDistance extends Command {
     }
 
     protected void initialize() {
-    	m_leftTargetInches += currentLeftInches;
-    	m_rightTargetInches += currentRightInches;
+    	double currentLeftInches = Robot.drive.getLeftEncoderDistance();
+    	double currentRightInches = Robot.drive.getRightEncoderDistance();
+    	double desiredLeftInches = currentLeftInches + m_leftTargetInches;
+    	double desiredRightInches = currentRightInches + m_rightTargetInches;
     	
-    	Robot.drive.setLeftMasterForDistance(m_leftTargetInches);
-    	Robot.drive.setRightMasterForDistance(m_rightTargetInches);
+    	Robot.drive.setLeftMasterForDistance(desiredLeftInches);
+    	Robot.drive.setRightMasterForDistance(desiredRightInches);
     }
 
     protected void execute() {

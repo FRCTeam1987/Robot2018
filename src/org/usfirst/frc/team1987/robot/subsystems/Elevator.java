@@ -99,6 +99,9 @@ public class Elevator extends Subsystem {
 			SmartDashboard.putString("Elevator Status", "Request out of bounds");	
 			return;
 		}
+		else {
+			SmartDashboard.putString("Elevator Status", "Request acceptable");
+		}
 		
 		SmartDashboard.putNumber("inches absolute", Util.ticksToDistance(ticksAbsolute, RobotMap.winchDiameter));
 		winchMotor.set(ControlMode.Position, ticksAbsolute);
@@ -115,8 +118,8 @@ public class Elevator extends Subsystem {
     }
     
     public void periodic() {    	
-    	SmartDashboard.putNumber("Current ticks", getTicks());
-    	SmartDashboard.putNumber("Current inches", getDistance());
+//    	SmartDashboard.putNumber("Current ticks", getTicks());
+//    	SmartDashboard.putNumber("Current inches", getDistance());
     	SmartDashboard.putNumber("Theoretical inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
     	SmartDashboard.putBoolean("home sensor", isAtHome());
     	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));

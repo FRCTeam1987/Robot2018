@@ -21,6 +21,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
@@ -42,6 +43,7 @@ public class OI {
 	private final Button collectWide;
 	private final Button wristDeploy;
 	private final Button wristStow;
+	private final Button toggleShifter;
 
 	
 	public OI()
@@ -55,21 +57,23 @@ public class OI {
 //		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
 //		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
 //		SmartDashboard.putData("Eject Cube", new EjectCube());
-		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
-		SmartDashboard.putData("Wait for has cube", new AdjustCubeInClaw(5.0, 0.6, 0.6));
-		SmartDashboard.putData("Open Claw", new OpenClaw());
-		SmartDashboard.putData("Close claw", new CloseClaw());
-		SmartDashboard.putData("Wrist Stow", new WristStow());
-		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
-		SmartDashboard.putData("Shift high", new ShiftHigh());
-		SmartDashboard.putData("Shift low", new ShiftLow());
-		SmartDashboard.putData("Adjust elevator height +3", new AdjustElevatorHeight(3));
+//		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
+//		SmartDashboard.putData("Wait for has cube", new AdjustCubeInClaw(5.0, 0.6, 0.6));
+//		SmartDashboard.putData("Open Claw", new OpenClaw());
+//		SmartDashboard.putData("Close claw", new CloseClaw());
+//		SmartDashboard.putData("Wrist Stow", new WristStow());
+//		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
+//		SmartDashboard.putData("Shift high", new ShiftHigh());
+//		SmartDashboard.putData("Shift low", new ShiftLow());
+		SmartDashboard.putData("Adjust elevator +3", new AdjustElevatorHeight(3));
 		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
-		SmartDashboard.putData("Set to max: 30.875", new SetElevatorHeight(30.850));
-		SmartDashboard.putData("Set to home: 0", new SetElevatorHeight(0));
-		SmartDashboard.putData("Set to 24.72", new SetElevatorHeight(24.72));
-		SmartDashboard.putData("Set elevator height to 10", new SetElevatorHeight(10));
-		SmartDashboard.putData("Set elevator height to 20", new SetElevatorHeight(20));
+		SmartDashboard.putData("Set max: 30.875", new SetElevatorHeight(30.850));
+		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
+		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
+		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
+		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
+//		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
+//		SmartDashboard.putData("Toggle Shitter", new ToggleShifter());
 		
 		
 		
@@ -79,6 +83,8 @@ public class OI {
 		wristStow = new JoystickButton(driver, 5);		//left bumper
 		wristDeploy = new JoystickButton(driver, 6);		//right bumper
 		collectWide = new JoystickButton(driver, 3);		//x
+//		elevatorMax = new JoystickButton(driver, );
+		toggleShifter = new JoystickButton(driver, 10);
 		
 		eject.whenPressed(new EjectCube());
 		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
@@ -86,6 +92,10 @@ public class OI {
 		wristStow.whenPressed(new WristStow());
 		wristDeploy.whenPressed(new WristDeploy());
 		collectWide.whenPressed(new CollectCubeWide());
+		toggleShifter.whenPressed(new ToggleShifter());
+		
+		
+		
 	}
 	
 	public XboxController getDriver() {

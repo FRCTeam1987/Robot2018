@@ -45,6 +45,21 @@ public class RobotMap {
 	public static double drivePathA = 0.9;
 	public static double ticksPerRotation = 4096.0;
 	
+	//Drive PIDs (fix these numbers)
+	public static double drivePivotHighP = 0;
+	public static double drivePivotHighI = 0;
+	public static double drivePivotHighD = 0;
+	public static double drivePivotLowP = 0;
+	public static double drivePivotLowI = 0;
+	public static double drivePivotLowD = 0;
+	
+	public static double driveStraightHighP = 0;
+	public static double driveStraightHighI = 0;
+	public static double driveStraightHighD = 0;
+	public static double driveStraightLowP = 0;
+	public static double driveStraightLowI = 0;
+	public static double driveStraightLowD = 0;
+	
 //	public static int pidgeyID = 30;	//change this later
 //	public static int ahrsID = 58;	//change this later
 

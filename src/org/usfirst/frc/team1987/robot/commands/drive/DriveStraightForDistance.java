@@ -3,25 +3,28 @@ package org.usfirst.frc.team1987.robot.commands.drive;
 import org.usfirst.frc.team1987.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveStraightForDistance extends Command {
 
-	private final double mTargetDistance;
-	private double mTargetHeading;
-	private double mCurrentHeading;
+//	private final double mTargetDistance;
+//	private double mTargetHeading;
+//	private double mCurrentHeading;
 	
     public DriveStraightForDistance(final double targetDistance) {
         requires(Robot.drive);
         setTimeout(2);
-        mTargetDistance = targetDistance;
-        mTargetHeading = 0;
+//        mTargetDistance = targetDistance;
+//        mTargetHeading = 0;
+        
     }
 
     protected void initialize() {
     	Robot.drive.zeroDriveEncoders();
+
 //    	Robot.drive.zeroHeading();
     }
 
@@ -37,13 +40,14 @@ public class DriveStraightForDistance extends Command {
 //    		Robot.drive.tankDrive(.75, .9);
 //    	else if (mCurrentHeading - mTargetHeading < -1)
 //    		Robot.drive.tankDrive(.9, .75);
-    	
+    	    
     	Robot.drive.tankDrive(.8, .8);
     }
 
     protected boolean isFinished() {
-        return Math.abs(mTargetDistance) - Math.abs(Robot.drive.getLeftEncoderDistance()) < 1
-        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1;
+//        return Math.abs(mTargetDistance) - Math.abs(Robot.drive.getLeftEncoderDistance()) < 1
+//        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1;
+    	return false;
     }
 
     protected void end() {
