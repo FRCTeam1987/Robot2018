@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
+import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
@@ -95,7 +96,7 @@ public class Drive extends Subsystem {
 	public void xboxDrive(XboxController xbox) {
 		final double move = xbox.getTriggerAxis(Hand.kRight) - xbox.getTriggerAxis(Hand.kLeft);
 		final double rotate = xbox.getX(Hand.kLeft);
-		robotDrive.arcadeDrive(-move, rotate, true);
+		robotDrive.arcadeDrive(move, rotate, true); //-move
 	}
 	
 	public void tankDrive(final double left, final double right) {

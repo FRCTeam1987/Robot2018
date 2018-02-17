@@ -76,6 +76,15 @@ public class RobotMap {
 		
 	//Xbox - Driver 
 	public static int driverID = 0;
+	public static int coDriverID = 1;
+	
+	//Xbox Buttons
+	public static int toggleWristButton = 6;
+	public static int stopCollectButton = 2;
+	public static int collectWideButton = 3;
+	public static int ejectCubeButton = 4;
+	public static int toggleShifterButton = 9;
+	
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7

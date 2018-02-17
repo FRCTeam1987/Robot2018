@@ -39,8 +39,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OI {
 
 	private final XboxController driver;
+	private final XboxController coDriver;
 	private final Button eject;
-	private final Button startCollect;
+//	private final Button startCollect;
 	private final Button stopCollect;
 	private final Button collectWide;
 //	private final Button wristDeploy;
@@ -53,6 +54,7 @@ public class OI {
 	public OI()
 	{
 		driver = new XboxController(RobotMap.driverID);
+		coDriver = new XboxController(RobotMap.coDriverID);
 		
 //		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
 //		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
@@ -81,17 +83,17 @@ public class OI {
 		
 		
 		
-		eject = new JoystickButton(driver, 4);			//y
-		startCollect = new JoystickButton(driver, 3);	//a
-		stopCollect = new JoystickButton(driver, 2);		//b
+		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
+//		startCollect = new JoystickButton(driver, 3);	//a
+		stopCollect = new JoystickButton(driver, RobotMap.stopCollectButton);		//b
 //		wristStow = new JoystickButton(driver, 5);		//left bumper
 //		wristDeploy = new JoystickButton(driver, 6);		//right bumper
-		toggleWrist = new JoystickButton(driver, 1);
-		collectWide = new JoystickButton(driver, 3);		//x
-		toggleShifter = new JoystickButton(driver, 10);
+		toggleWrist = new JoystickButton(driver, RobotMap.toggleWristButton);
+		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);		//x
+		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		
 		eject.whenPressed(new EjectCube());
-		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
+//		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
 		stopCollect.whenPressed(new StopCollect());
 //		wristStow.whenPressed(new WristStow());
 //		wristDeploy.whenPressed(new WristDeploy());
@@ -122,6 +124,10 @@ public class OI {
 	
 	public XboxController getDriver() {
 		return driver;
+	}
+	
+	public XboxController getCoDriver() {
+		return coDriver;
 	}
 	
 }
