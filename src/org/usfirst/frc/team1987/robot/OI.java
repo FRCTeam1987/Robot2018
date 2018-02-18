@@ -10,7 +10,7 @@ package org.usfirst.frc.team1987.robot;
 import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
 import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
 import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
-import org.usfirst.frc.team1987.robot.commands.claw.CollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
@@ -73,14 +73,16 @@ public class OI {
 //		SmartDashboard.putData("Shift low", new ShiftLow());
 		SmartDashboard.putData("Adjust elevator +3", new AdjustElevatorHeight(3));
 		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
-		SmartDashboard.putData("Set max: 30.875", new SetElevatorHeight(30.850));
+		SmartDashboard.putData("Set max: 30", new SetElevatorHeight(30));
+		SmartDashboard.putData("Set 2", new SetElevatorHeight(2));
 		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
 		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
 		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
 		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
-		SmartDashboard.putData("Toggle Shitter", new ToggleShifter());
-		
+		SmartDashboard.putData("Toggle Shifter", new ToggleShifter());
+		SmartDashboard.putData("elevator second cube pyramid", new SetElevatorHeight(5.25));
+		SmartDashboard.putData("elevator third cube pyramid", new SetElevatorHeight(10.5));
 		
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
@@ -98,7 +100,7 @@ public class OI {
 //		wristStow.whenPressed(new WristStow());
 //		wristDeploy.whenPressed(new WristDeploy());
 		toggleWrist.whenPressed(new ToggleWrist());
-		collectWide.whenPressed(new CollectCubeWide());
+		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		
 		//D-pad code (experimental)

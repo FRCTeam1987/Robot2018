@@ -94,8 +94,13 @@ public class Drive extends Subsystem {
 	}
 
 	public void xboxDrive(XboxController xbox) {
-		final double move = xbox.getTriggerAxis(Hand.kRight) - xbox.getTriggerAxis(Hand.kLeft);
-		final double rotate = xbox.getX(Hand.kLeft);
+		double move = xbox.getTriggerAxis(Hand.kRight) - xbox.getTriggerAxis(Hand.kLeft);
+		double rotate = xbox.getX(Hand.kLeft);
+		
+		if(Robot.elevator.getDistance() > 10) {
+			move *= .75;
+			rotate *= .75;
+		}
 		robotDrive.arcadeDrive(move, rotate, true); //-move
 	}
 	

@@ -13,9 +13,16 @@ public class SetElevatorHeight extends Command {
 
 	private double mInches;
 	
-    public SetElevatorHeight(final double inches) {
+	public SetElevatorHeight(final double inches) {
+		requires(Robot.elevator);
+		mInches = inches;
+		setTimeout(1.0);
+	}
+	
+    public SetElevatorHeight(final double inches, final double timeout) {
         requires(Robot.elevator);
         mInches = inches;
+        setTimeout(timeout);
     }
 
     protected void initialize() {
@@ -26,7 +33,7 @@ public class SetElevatorHeight extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.elevator.isWithinTolerance();
+        return Robot.elevator.isWithinTolerance() || isTimedOut();
     }
 
     protected void end() {

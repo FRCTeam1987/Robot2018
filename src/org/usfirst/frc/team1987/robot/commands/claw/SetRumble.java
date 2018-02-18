@@ -2,30 +2,31 @@ package org.usfirst.frc.team1987.robot.commands.claw;
 
 import org.usfirst.frc.team1987.robot.Robot;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class WaitForNoHasCube extends Command {
+public class SetRumble extends Command {
 
-	private double m_timeout;
+	final double m_power;
 	
-    public WaitForNoHasCube(final double timeout) {
+    public SetRumble(final double power) {
         requires(Robot.claw);
-        m_timeout = timeout;
-        setTimeout(timeout);
+        m_power = power;
     }
 
     protected void initialize() {
-    	setTimeout(m_timeout);
+    	Robot.oi.getDriver().setRumble(RumbleType.kLeftRumble, m_power);
+    	Robot.oi.getDriver().setRumble(RumbleType.kRightRumble, m_power);
     }
 
     protected void execute() {
     }
 
     protected boolean isFinished() {
-        return !Robot.claw.isCubeNear() || isTimedOut();
+        return true;
     }
 
     protected void end() {

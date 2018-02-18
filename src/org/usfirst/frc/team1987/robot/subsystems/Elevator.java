@@ -27,6 +27,7 @@ public class Elevator extends Subsystem {
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
 	private final double maxInches = 30.875;
 	private final int maxTicks = Util.distanceToTicks(maxInches, RobotMap.winchDiameter);
+	private final int tolerance = 500;
    
 	public Elevator() {
     	winchMotor = new WPI_TalonSRX(RobotMap.elevatorID); 
@@ -59,7 +60,7 @@ public class Elevator extends Subsystem {
 		winchMotor.config_kF(0, 0.0, 10);	//was .05
 		winchMotor.config_kP(0, 0.2, 10);
 		winchMotor.config_kI(0, 0.0, 10);
-		winchMotor.config_kD(0, 0.0, 10);
+		winchMotor.config_kD(0, 0.2, 10);
 //		winchMotor.configMotionAcceleration(40, 10); 	//param 1 = sensorUnitsPer100msPerSec - need to calc?
 //		winchMotor.configMotionCruiseVelocity(20, 10);	//param 1 = sensorUnitsPer10ms - need to calc?
 //		winchMotor.configAllowableClosedloopError(0, Util.distanceToTicks(0.25, 43.0), 10);
@@ -80,14 +81,15 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean isWithinTolerance() {
-		return Math.abs(winchMotor.getClosedLoopError(RobotMap.drivePIDIDX)) < 50;		//adjust tolerance
+		SmartDashboard.putNumber("current tolerance in inches", Util.ticksToDistance(tolerance, RobotMap.winchDiameter));
+		return Math.abs(winchMotor.getClosedLoopError(RobotMap.drivePIDIDX)) < tolerance;		//adjust tolerance
 	}
 		
 	private int getTicks() {
 		return winchMotor.getSelectedSensorPosition(RobotMap.drivePIDIDX);
 	}
 	
-	private double getDistance() {
+	public double getDistance() {
 		return getTicks() / (double)RobotMap.ticksPerInch;
 	}
 	
@@ -123,11 +125,13 @@ public class Elevator extends Subsystem {
 //    	SmartDashboard.putNumber("Current inches", getDistance());
     	SmartDashboard.putNumber("Theoretical inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
     	SmartDashboard.putBoolean("home sensor", isAtHome());
-    	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
-    	SmartDashboard.putNumber("POV Status", Robot.oi.getDriver().getPOV());
+//    	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
+//    	SmartDashboard.putNumber("POV Status", Robot.oi.getDriver().getPOV());
     	
-    	if(isAtHome() == true)
+    	if(isAtHome() == true && getTicks() != 0) 
     		zeroElevatorEncoder();
+    	
+    		
     		
     }
 }
