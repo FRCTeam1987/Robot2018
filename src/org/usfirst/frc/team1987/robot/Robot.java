@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
+
 public class Robot extends TimedRobot {
 	public static final PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static final Compressor compressor = new Compressor();
@@ -33,6 +34,8 @@ public class Robot extends TimedRobot {
 	public static final Claw claw = new Claw();
 	public static final Elevator elevator = new Elevator();
 	public static OI oi;
+	
+	private static ScaleOwnership scaleOwnership;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -125,5 +128,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+	}
+	
+	public static void setScaleOwnership(final ScaleOwnership newScaleOwnership) {
+		scaleOwnership = newScaleOwnership;
+	}
+	
+	public static ScaleOwnership getScaleOwnership() {
+		return scaleOwnership;
 	}
 }

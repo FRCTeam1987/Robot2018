@@ -7,26 +7,16 @@
 
 package org.usfirst.frc.team1987.robot;
 
-import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
-import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
-import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
-import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
-import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
-import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
-import org.usfirst.frc.team1987.robot.commands.claw.AdjustCubeInClaw;
-import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
-import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
-import org.usfirst.frc.team1987.robot.commands.drive.DriveStraightForDistance;
-import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
-import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
+import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,6 +38,11 @@ public class OI {
 //	private final Button wristStow;
 	private final Button toggleWrist;
 	private final Button toggleShifter;
+	private final Button goToScaleHeight;
+	private final Button disownedButton;
+	private final Button neutralButton;
+	private final Button ownedButton;
+	private final Button disownedWorstButton;
 
 
 	
@@ -93,7 +88,14 @@ public class OI {
 		toggleWrist = new JoystickButton(driver, RobotMap.toggleWristButton);
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);		//x
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
+		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
+		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
+		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
+		ownedButton = new JoystickButton(coDriver, RobotMap.ownedScaleButton);
+		disownedWorstButton = new JoystickButton(coDriver, RobotMap.disownedWorstButton);
 		
+		
+		//Driver
 		eject.whenPressed(new EjectCube());
 //		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
 		stopCollect.whenPressed(new StopCollect());
@@ -102,6 +104,16 @@ public class OI {
 		toggleWrist.whenPressed(new ToggleWrist());
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
+		goToScaleHeight.whenPressed(new GoToScaleHeight());
+		
+		//Co-driver
+		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+		neutralButton.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+		ownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
+		disownedWorstButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
+		
+		
+		
 		
 		//D-pad code (experimental)
 		

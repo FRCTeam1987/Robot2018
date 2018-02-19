@@ -14,7 +14,6 @@ package org.usfirst.frc.team1987.robot;
  * floating around.
  */
 public class RobotMap {
-	
 	public static int pcmDrive = 1;
 	public static int pcmOther = 0;
 	
@@ -84,6 +83,12 @@ public class RobotMap {
 	public static int collectWideButton = 3;
 	public static int ejectCubeButton = 4;
 	public static int toggleShifterButton = 9;
+	public static int goToScaleHeightButton = 1;
+	public static int disownedScaleButton = 1;
+	public static int neutralScaleButton = 2;
+	public static int ownedScaleButton = 4;
+	public static int disownedWorstButton = 3;
+			
 	
 	
 	//Elevator 
@@ -91,4 +96,8 @@ public class RobotMap {
 	public static int ticksPerInch = 554;
 	public static int elevatorHomeID = 2;
 	public static double winchDiameter = 2.2;
+	public static int disownedScaleHeight = 28;
+	public static int neutralScaleHeight = 20;
+	public static int ownedScaleHeight = 15;
+	public static int disownedWorstScaleHeight = 30;
 }
