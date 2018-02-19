@@ -58,9 +58,6 @@ public class RobotMap {
 	public static double driveStraightLowP = 0;
 	public static double driveStraightLowI = 0;
 	public static double driveStraightLowD = 0;
-	
-//	public static int pidgeyID = 30;	//change this later
-//	public static int ahrsID = 58;	//change this later
 
 	// Claw
 	public static int clawRight = 8;
@@ -78,24 +75,24 @@ public class RobotMap {
 	public static int coDriverID = 1;
 	
 	//Xbox Buttons
-	public static int collectWideButton = 3;
-	public static int ejectCubeButton = 4;
-	public static int toggleShifterButton = 9;
-	public static int goToScaleHeightButton = 1;
-	public static int goToHome = 2;
+	public static int collectWideButton = 3;		//x
+	public static int ejectCubeButton = 4;			//y
+	public static int toggleShifterButton = 9;		//left stick press down
+	public static int goToScaleHeightButton = 1;	//a
+	public static int goToHomeButton = 2;			//b
 	
 	//Co-driver buttons
-	public static int disownedScaleButton = 1;
-	public static int neutralScaleButton = 2;
-	public static int ownedScaleButton = 4;
-	public static int disownedWorstButton = 3;
-	public static int toggleWristButton = 10; //6
-	public static int stopCollectButton = 9;
-	public static int elevatorMiddleCubePyramidButton = 5;
-	public static int elevatorTopCubePyramidButton = 6;
-	public static int elevatorFloorCubePyramidButton = 8; //start
-	
-	
+//	public static int disownedScaleButton = ;
+//	public static int neutralScaleButton = ;
+//	public static int ownedScaleButton = ;
+//	public static int disownedWorstButton = ;
+	public static int wristToggleButton = 8; 
+	public static int stopCollectButton = 2;
+	public static int elevatorTopCubePyramidButton = 4;
+	public static int elevatorMiddleCubePyramidButton = 3;
+	public static int elevatorFloorCubePyramidButton = 1; //start
+	public static int adjustElevatorUpButton = 6;
+	public static int adjustElevatorDownButton = 5;
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7

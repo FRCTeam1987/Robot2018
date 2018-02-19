@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -84,6 +85,24 @@ public class Claw extends Subsystem {
 	public boolean getLeftLimitSwitch() {
 		return !leftLimitSwitch.get();
 	}
+	
+//	public boolean leftLimitSwitchDebounce() {
+//		boolean firstPress;
+//		boolean secondPress;
+//		double firstTimeStamp;
+//		double secondTimeStamp;
+//		
+//		if(getLeftLimitSwitch() && secondPress == false) {
+//			firstPress = true;
+//			firstTimeStamp = Timer.getFPGATimestamp();
+//			if(firstPress == true && firstTimeStamp - Timer.getFPGATimestamp() == .1 && getLeftLimitSwitch()) {
+//				secondPress = true;
+//				return true;
+//			}
+//		}
+//		
+//		
+//	}
 	
 	public boolean getRightLimitSwitch() {
 		return !rightLimitSwitch.get();

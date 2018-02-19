@@ -9,10 +9,18 @@ package org.usfirst.frc.team1987.robot;
 
 import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
+import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
+import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
+import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
+import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
+import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
+import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
+import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
@@ -32,18 +40,17 @@ public class OI {
 	private final XboxController driver;
 	private final XboxController coDriver;
 	private final Button eject;
-//	private final Button startCollect;
 	private final Button stopCollect;
 	private final Button collectWide;
-//	private final Button wristDeploy;
-//	private final Button wristStow;
-	private final Button toggleWrist;
+	private final Button adjustUp;
+	private final Button adjustDown;
+	private final Button wristToggle;
 	private final Button toggleShifter;
 	private final Button goToScaleHeight;
-	private final Button disownedButton;
-	private final Button neutralButton;
-	private final Button ownedButton;
-	private final Button disownedWorstButton;
+//	private final Button disownedButton;
+//	private final Button neutralButton;
+//	private final Button ownedButton;
+//	private final Button disownedWorstButton;
 	private final Button goToHome;
 	private final Button elevatorMiddleCubeHeight;
 	private final Button elevatorTopCubeHeight;
@@ -61,16 +68,16 @@ public class OI {
 //		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
 //		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
 //		SmartDashboard.putData("Eject Cube", new EjectCube());
-//		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
+		SmartDashboard.putData("Set Claw speed .6", new SetClawWheelSpeed(.6));
 //		SmartDashboard.putData("Wait for has cube", new AdjustCubeInClaw(5.0, 0.6, 0.6));
-//		SmartDashboard.putData("Open Claw", new OpenClaw());
-//		SmartDashboard.putData("Close claw", new CloseClaw());
-//		SmartDashboard.putData("Wrist Stow", new WristStow());
-//		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
-//		SmartDashboard.putData("Shift high", new ShiftHigh());
-//		SmartDashboard.putData("Shift low", new ShiftLow());
-		SmartDashboard.putData("Adjust elevator +3", new AdjustElevatorHeight(3));
-		SmartDashboard.putData("Adjust elevator -3", new AdjustElevatorHeight(-3));
+		SmartDashboard.putData("Open Claw", new OpenClaw());
+		SmartDashboard.putData("Close claw", new CloseClaw());
+		SmartDashboard.putData("Wrist Stow", new WristStow());
+		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
+		SmartDashboard.putData("Shift high", new ShiftHigh());
+		SmartDashboard.putData("Shift low", new ShiftLow());
+		SmartDashboard.putData("Adjust elevator +5", new AdjustElevatorHeight(5));
+		SmartDashboard.putData("Adjust elevator -5", new AdjustElevatorHeight(-5));
 		SmartDashboard.putData("Set max: 30", new SetElevatorHeight(30));
 		SmartDashboard.putData("Set 2", new SetElevatorHeight(2));
 		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
@@ -87,45 +94,43 @@ public class OI {
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
-		goToHome = new JoystickButton(driver, RobotMap.goToHome);
+		goToHome = new JoystickButton(driver, RobotMap.goToHomeButton);
 		
-		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
-		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
-		ownedButton = new JoystickButton(coDriver, RobotMap.ownedScaleButton);
-		disownedWorstButton = new JoystickButton(coDriver, RobotMap.disownedWorstButton);
-		toggleWrist = new JoystickButton(coDriver, RobotMap.toggleWristButton);
+//		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
+//		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
+//		ownedButton = new JoystickButton(coDriver, RobotMap.ownedScaleButton);
+//		disownedWorstButton = new JoystickButton(coDriver, RobotMap.disownedWorstButton);
 		stopCollect = new JoystickButton(coDriver, RobotMap.stopCollectButton);		//b
 		elevatorMiddleCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorMiddleCubePyramidButton);
 		elevatorTopCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorTopCubePyramidButton);
 		elevatorFloorCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorFloorCubePyramidButton);
-
-		
+		wristToggle = new JoystickButton(coDriver, RobotMap.wristToggleButton);		
+		adjustUp = new JoystickButton(coDriver, RobotMap.adjustElevatorUpButton);
+		adjustDown = new JoystickButton(coDriver, RobotMap.adjustElevatorDownButton);
 		
 		//Driver
 		eject.whenPressed(new EjectCube());
-		collectWide.whenPressed(new TeleCollectCubeWide());
+		collectWide.whenPressed(new AutoCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
-		goToHome.whenPressed(new SetElevatorHeight(0));
-		
-		
+		goToHome.whenPressed(new SetElevatorHeight(0));		
 		
 		//Co-driver
-		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-		neutralButton.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
-		ownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
-		disownedWorstButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
-		toggleWrist.whenPressed(new ToggleWrist());
+//		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+//		neutralButton.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+//		ownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
+//		disownedWorstButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
 		stopCollect.whenPressed(new StopCollect());
 		elevatorMiddleCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
 		elevatorTopCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
 		elevatorFloorCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
-		
+		wristToggle.whenPressed(new ToggleWrist());
+		adjustUp.whenPressed(new AdjustElevatorHeight(5));
+		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
 		
 		//D-pad code (experimental)
 		
 		if (driver.getPOV() == 0) {
-			new SetElevatorHeight(30.85);
 		} 
 		else if (driver.getPOV() == 90) {
 			new SetElevatorHeight(10);
