@@ -7,9 +7,12 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.auto.GoToLeftScaleAndPlace;
+import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
 import org.usfirst.frc.team1987.robot.subsystems.Elevator;
+import org.usfirst.frc.team1987.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -49,6 +52,10 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addObject("toScale", new DrivePath(AutoPaths.toScale));
+		m_chooser.addObject("toScaleSwoop", new DrivePath(AutoPaths.toScaleSwoop));
+		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
+		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
@@ -80,7 +87,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		drive.setLowGear();
+//		drive.setLowGear();
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -106,7 +113,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		drive.setLowGear();
+//		drive.setLowGear();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

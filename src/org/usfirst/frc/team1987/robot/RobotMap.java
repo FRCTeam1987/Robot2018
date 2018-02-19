@@ -86,13 +86,13 @@ public class RobotMap {
 //	public static int neutralScaleButton = ;
 //	public static int ownedScaleButton = ;
 //	public static int disownedWorstButton = ;
-	public static int wristToggleButton = 8; 
-	public static int stopCollectButton = 2;
-	public static int elevatorTopCubePyramidButton = 4;
-	public static int elevatorMiddleCubePyramidButton = 3;
-	public static int elevatorFloorCubePyramidButton = 1; //start
-	public static int adjustElevatorUpButton = 6;
-	public static int adjustElevatorDownButton = 5;
+	public static int wristToggleButton = 8; 				//start
+	public static int stopCollectButton = 2;				//b
+	public static int elevatorTopCubePyramidButton = 4;		//y
+	public static int elevatorMiddleCubePyramidButton = 3;	//x
+	public static int elevatorFloorCubePyramidButton = 1;	//a
+	public static int adjustElevatorUpButton = 6;			//right bumper
+	public static int adjustElevatorDownButton = 5;			//left bumper
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7

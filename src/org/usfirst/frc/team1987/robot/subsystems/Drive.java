@@ -96,6 +96,7 @@ public class Drive extends Subsystem {
 		rightSlave2.follow(rightMaster);
 		
 		robotDrive.setSafetyEnabled(false);
+		ahrsReset();
 	}
 
 	public void xboxDrive(XboxController xbox) {
@@ -218,7 +219,13 @@ public class Drive extends Subsystem {
                 ((angleDifference - DrivetrainProfiling.last_gyro_error) / DrivetrainProfiling.dt));
 
         DrivetrainProfiling.last_gyro_error = angleDifference;
+        
+        l = Math.copySign(Math.min(Math.abs(l * 12.0 / Robot.pdp.getVoltage()), 1.0), l); 
+        r = Math.copySign(Math.min(Math.abs(r * 12.0 / Robot.pdp.getVoltage()), 1.0), r);
 
+        SmartDashboard.putNumber("l before set", l);
+        SmartDashboard.putNumber("r before set", r);        
+        
         if(!reverse) {
         	Robot.drive.tankDrive(l + turn, r - turn);
         }
@@ -267,6 +274,10 @@ public class Drive extends Subsystem {
 		rightMaster.config_kD(RobotMap.drivePIDIDX, m_D, RobotMap.defaultTimeout);
 	}
 	
+    public void ahrsReset() {
+    	ahrs.reset();
+    }
+    
 	public void zeroHeading() {
 		ahrs.zeroYaw(); 	//might need to be changed
 	}
@@ -287,10 +298,10 @@ public class Drive extends Subsystem {
         public static double ki = 0.0;
         
         // These are used in calculating turning
-        public static double dt = 0.02;  // smaller numbers drive the robot faster through turns
+        public static double dt = 0.0225;  // smaller numbers drive the robot faster through turns
         public static double gp = 0.02;  // I don't think we want to mess with this number
         // Increasing gd more aggressively pursues the target heading
-        public static double gd = 0.0075; // 0.0025
+        public static double gd = 0.0175; // 0.0025
 
         //gyro logging
         public static double last_gyro_error = 0.0;

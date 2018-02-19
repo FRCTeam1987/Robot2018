@@ -65,7 +65,7 @@ public class DrivePath extends Command {
 
     protected void initialize() {
         Robot.drive.zeroDriveEncoders();
-    	
+    	Robot.drive.ahrsReset();
 //    	leftFollower.reset();
 //    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
 //    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);

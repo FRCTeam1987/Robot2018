@@ -82,6 +82,7 @@ public class Elevator extends Subsystem {
 	
 	public boolean isWithinTolerance() {
 		SmartDashboard.putNumber("current tolerance in inches", Util.ticksToDistance(tolerance, RobotMap.winchDiameter));
+		SmartDashboard.putNumber("isWithinTolerance closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
 		return Math.abs(winchMotor.getClosedLoopError(RobotMap.drivePIDIDX)) < tolerance;		//adjust tolerance
 	}
 		
@@ -89,6 +90,10 @@ public class Elevator extends Subsystem {
 		return winchMotor.getSelectedSensorPosition(RobotMap.drivePIDIDX);
 	}
 	
+//	private int getSetPoint() {
+//		return winchMotor.getcl
+//	}
+//	
 	public double getDistance() {
 		return getTicks() / (double)RobotMap.ticksPerInch;
 	}
