@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 
 /**
@@ -20,6 +21,14 @@ public class DrivePath extends Command {
 
 	private final EncoderFollower leftFollower;
 	private final EncoderFollower rightFollower;
+	
+	public DrivePath(final Waypoint[] path ) {
+        requires(Robot.drive);
+
+		EncoderFollower[] followers = Robot.drive.pathSetup(path);
+		this.leftFollower = followers[0];
+		this.rightFollower = followers[1];
+	}
 	
     public DrivePath(final String leftTrajectoryFileName, final String rightTrajectoryFileName) {
         requires(Robot.drive);
@@ -55,34 +64,21 @@ public class DrivePath extends Command {
     }
 
     protected void initialize() {
-    	Robot.drive.zeroDriveEncoders();
+        Robot.drive.zeroDriveEncoders();
     	
-    	leftFollower.reset();
-    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
-    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
-    	
-    	rightFollower.reset();
-    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
-    	rightFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
+//    	leftFollower.reset();
+//    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
+//    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
+//    	
+//    	rightFollower.reset();
+//    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
+//    	rightFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
+
+        Robot.drive.pathFollow(leftFollower, rightFollower, false);
     }
 
     protected void execute() {
-    	final double leftOutput = leftFollower.calculate(Robot.drive.getLeftRawEncoderPosition()) / Robot.pdp.getVoltage();
-    	final double rightOutput = leftFollower.calculate(Robot.drive.getLeftRawEncoderPosition()) / Robot.pdp.getVoltage();
-    	final double currentHeading = Robot.drive.getHeading();
-    	final double desiredHeading = Pathfinder.r2d(leftFollower.getHeading());
-    	final double headingDifference = Pathfinder.boundHalfDegrees(desiredHeading - currentHeading);
-    	final double turn = calculateTurnEasing(headingDifference);
-    	
-    	final double absLeft = Math.abs(leftOutput);
-    	final double leftAdjusted = Math.max(absLeft, RobotMap.minimumTrajectoryPercentage);	
-    	Math.copySign(leftAdjusted, leftOutput);
-    	
-    	final double absRight = Math.abs(rightOutput);
-    	final double rightAdjusted = Math.max(absRight, RobotMap.minimumTrajectoryPercentage);	
-    	Math.copySign(rightAdjusted, rightOutput);
-    	
-    	Robot.drive.tankDrive(leftAdjusted + turn, rightAdjusted - turn);
+        Robot.drive.pathFollow(leftFollower, rightFollower, false);
     }
 
     protected boolean isFinished() {
@@ -97,9 +93,9 @@ public class DrivePath extends Command {
     	Robot.drive.tankDrive(0, 0);
     }
     
-    private double calculateTurnEasing(final double headingDifference) {
-    	final double headingP = 0.85;
-    	final double headingScalar = -1.0 / 70.0;
-    	return headingP * headingScalar * headingDifference;
-    }
+//    private double calculateTurnEasing(final double headingDifference) {
+//    	final double headingP = 0.85;
+//    	final double headingScalar = -1.0 / 70.0;
+//    	return headingP * headingScalar * headingDifference;
+//    }
 }

@@ -21,6 +21,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Pathfinder;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.Waypoint;
+import jaci.pathfinder.followers.EncoderFollower;
+import jaci.pathfinder.modifiers.TankModifier;
 import edu.wpi.first.wpilibj.SPI;
 
 enum DriveMode {
@@ -175,7 +180,54 @@ public class Drive extends Subsystem {
 		rightMaster.set(ControlMode.Position, rightTicks);
 	}
 	
-	public void setPID(DriveMode mode) {
+    public EncoderFollower[] pathSetup(Waypoint[] path) {
+        EncoderFollower left = new EncoderFollower();
+        EncoderFollower right = new EncoderFollower();
+        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+                Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+        Trajectory toFollow = Pathfinder.generate(path, cfg);
+        TankModifier modifier = new TankModifier(toFollow).modify((Drive.DrivetrainProfiling.wheel_base_width));
+        DrivetrainProfiling.last_gyro_error = 0.0;
+        left = new EncoderFollower(modifier.getLeftTrajectory());
+        right = new EncoderFollower(modifier.getRightTrajectory());
+        left.configureEncoder(leftMaster.getSelectedSensorPosition(0), DrivetrainProfiling.ticks_per_rev, DrivetrainProfiling.wheel_diameter);
+        right.configureEncoder(rightMaster.getSelectedSensorPosition(0), DrivetrainProfiling.ticks_per_rev, DrivetrainProfiling.wheel_diameter);
+        left.configurePIDVA(DrivetrainProfiling.kp, DrivetrainProfiling.ki, DrivetrainProfiling.kd, DrivetrainProfiling.kv, DrivetrainProfiling.ka);
+        right.configurePIDVA(DrivetrainProfiling.kp, DrivetrainProfiling.ki, DrivetrainProfiling.kd, DrivetrainProfiling.kv, DrivetrainProfiling.ka);
+        return new EncoderFollower[] {
+                left, // 0
+                right, // 1
+        };
+    }
+	
+    public void pathFollow(EncoderFollower left, EncoderFollower right, boolean reverse) {
+        double l;
+        double r;
+        if (!reverse) {
+            l = left.calculate(-leftMaster.getSelectedSensorPosition(0));
+            r = right.calculate(-rightMaster.getSelectedSensorPosition(0));
+        } else {
+            l = left.calculate(leftMaster.getSelectedSensorPosition(0));
+            r = right.calculate(rightMaster.getSelectedSensorPosition(0));
+        }
+        double gyro_heading = ahrs.getAngle();
+        double angle_setpoint = Pathfinder.r2d(left.getHeading());
+        double angleDifference = Pathfinder.boundHalfDegrees(angle_setpoint - gyro_heading);
+
+        double turn = DrivetrainProfiling.gp * angleDifference + (DrivetrainProfiling.gd *
+                ((angleDifference - DrivetrainProfiling.last_gyro_error) / DrivetrainProfiling.dt));
+
+        DrivetrainProfiling.last_gyro_error = angleDifference;
+
+        if(!reverse) {
+        	Robot.drive.tankDrive(l + turn, r - turn);
+        }
+        else {
+        	Robot.drive.tankDrive(-l + turn, -r - turn);
+        }
+    }
+
+    public void setPID(DriveMode mode) {
 		double m_P;
 		double m_I;
 		double m_D;
@@ -227,6 +279,46 @@ public class Drive extends Subsystem {
 //    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
 //    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
     	SmartDashboard.putNumber("heading", getHeading());
+    }
+    public static class DrivetrainProfiling {
+        //TODO: TUNE CONSTANTS
+        public static double kp = 0.8; // 1.2
+        public static double kd = 0.0; // 0.35
+        public static double ki = 0.0;
+        
+        // These are used in calculating turning
+        public static double dt = 0.02;  // smaller numbers drive the robot faster through turns
+        public static double gp = 0.02;  // I don't think we want to mess with this number
+        // Increasing gd more aggressively pursues the target heading
+        public static double gd = 0.0075; // 0.0025
+
+        //gyro logging
+        public static double last_gyro_error = 0.0;
+
+        public static final double max_velocity = 4.0; // was 4.0 //4 is real
+        public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
+        public static final double max_acceleration = 1.25;  // 1.62; // Estimated #
+        public static final double ka = 0.0; //0.015
+        public static final double max_jerk = 7.62;
+        public static final double wheel_diameter = 0.12;
+        public static final double wheel_base_width = 0.616;
+        public static final int ticks_per_rev = 4096; // CTRE Mag Encoder
+
+        public static void setPIDG(double p, double i, double d, double gp, double gd) {
+            SmartDashboard.putNumber("kP", p);
+            SmartDashboard.putNumber("kI", i);
+            SmartDashboard.putNumber("kD", d);
+            SmartDashboard.putNumber("gP", gp);
+            SmartDashboard.putNumber("gD", gd);
+        }
+
+        public static void updatePIDG() {
+            kp = SmartDashboard.getNumber("kP", 0.0);
+            ki = SmartDashboard.getNumber("kI", 0.0);
+            kd = SmartDashboard.getNumber("kD", 0.0);
+            gp = SmartDashboard.getNumber("gP", 0.0);
+            gd = SmartDashboard.getNumber("gD", 0.0);
+        }
     }
 }
 
