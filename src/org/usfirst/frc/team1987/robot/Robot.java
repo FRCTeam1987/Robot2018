@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 	
 	private static ScaleOwnership scaleOwnership;
+	private static CollectorHeight collectorHeight;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -136,5 +137,13 @@ public class Robot extends TimedRobot {
 	
 	public static ScaleOwnership getScaleOwnership() {
 		return scaleOwnership;
+	}
+	
+	public static void setCollectorHeight(final CollectorHeight newCollectorHeight) {
+		collectorHeight = newCollectorHeight;
+	}
+	
+	public static CollectorHeight getCollectorHeight() {
+		return collectorHeight;
 	}
 }

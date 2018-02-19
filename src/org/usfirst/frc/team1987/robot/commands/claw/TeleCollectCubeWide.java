@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1987.robot.commands.claw;
 
+import org.usfirst.frc.team1987.robot.commands.elevator.GoToCollectorHeight;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -10,7 +12,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class TeleCollectCubeWide extends CommandGroup {
 
     public TeleCollectCubeWide() {
-        addSequential(new WristDeploy());
+        addSequential(new GoToCollectorHeight());
+    	addSequential(new WristDeploy());
     	addSequential(new OpenClaw());
         addSequential(new AdjustCubeInClaw(5.0, -0.55, -0.55));
         addSequential(new SetRumble(1.0));

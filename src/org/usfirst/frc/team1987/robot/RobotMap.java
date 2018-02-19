@@ -84,13 +84,17 @@ public class RobotMap {
 	public static int goToScaleHeightButton = 1;
 	public static int goToHome = 2;
 	
-	//Co-driver buttons ;)
+	//Co-driver buttons
 	public static int disownedScaleButton = 1;
 	public static int neutralScaleButton = 2;
 	public static int ownedScaleButton = 4;
 	public static int disownedWorstButton = 3;
-	public static int toggleWristButton = 6;
+	public static int toggleWristButton = 10; //6
 	public static int stopCollectButton = 9;
+	public static int elevatorMiddleCubePyramidButton = 5;
+	public static int elevatorTopCubePyramidButton = 6;
+	public static int elevatorFloorCubePyramidButton = 8; //start
+	
 	
 	
 	//Elevator 
@@ -102,4 +106,7 @@ public class RobotMap {
 	public static int neutralScaleHeight = 20;
 	public static int ownedScaleHeight = 15;
 	public static int disownedWorstScaleHeight = 30;
+	public static double elevatorMiddleCubePyramidHeight = 5.25;
+	public static double elevatorTopCubePyramidHeight = 10.5;
+	public static double elevatorFloorCubePyramidHeight = 0;
 }

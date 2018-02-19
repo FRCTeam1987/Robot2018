@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
@@ -44,8 +45,9 @@ public class OI {
 	private final Button ownedButton;
 	private final Button disownedWorstButton;
 	private final Button goToHome;
-
-
+	private final Button elevatorMiddleCubeHeight;
+	private final Button elevatorTopCubeHeight;
+	private final Button elevatorFloorCubeHeight;
 	
 	public OI()
 	{
@@ -93,6 +95,9 @@ public class OI {
 		disownedWorstButton = new JoystickButton(coDriver, RobotMap.disownedWorstButton);
 		toggleWrist = new JoystickButton(coDriver, RobotMap.toggleWristButton);
 		stopCollect = new JoystickButton(coDriver, RobotMap.stopCollectButton);		//b
+		elevatorMiddleCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorMiddleCubePyramidButton);
+		elevatorTopCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorTopCubePyramidButton);
+		elevatorFloorCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorFloorCubePyramidButton);
 
 		
 		
@@ -103,6 +108,8 @@ public class OI {
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
 		goToHome.whenPressed(new SetElevatorHeight(0));
 		
+		
+		
 		//Co-driver
 		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		neutralButton.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
@@ -110,6 +117,10 @@ public class OI {
 		disownedWorstButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
 		toggleWrist.whenPressed(new ToggleWrist());
 		stopCollect.whenPressed(new StopCollect());
+		elevatorMiddleCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
+		elevatorTopCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
+		elevatorFloorCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
+		
 		
 		//D-pad code (experimental)
 		
