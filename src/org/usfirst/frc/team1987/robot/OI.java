@@ -43,6 +43,7 @@ public class OI {
 	private final Button neutralButton;
 	private final Button ownedButton;
 	private final Button disownedWorstButton;
+	private final Button goToHome;
 
 
 	
@@ -81,39 +82,34 @@ public class OI {
 		
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
-//		startCollect = new JoystickButton(driver, 3);	//a
-		stopCollect = new JoystickButton(driver, RobotMap.stopCollectButton);		//b
-//		wristStow = new JoystickButton(driver, 5);		//left bumper
-//		wristDeploy = new JoystickButton(driver, 6);		//right bumper
-		toggleWrist = new JoystickButton(driver, RobotMap.toggleWristButton);
-		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);		//x
+		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
+		goToHome = new JoystickButton(driver, RobotMap.goToHome);
+		
 		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
 		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
 		ownedButton = new JoystickButton(coDriver, RobotMap.ownedScaleButton);
 		disownedWorstButton = new JoystickButton(coDriver, RobotMap.disownedWorstButton);
+		toggleWrist = new JoystickButton(coDriver, RobotMap.toggleWristButton);
+		stopCollect = new JoystickButton(coDriver, RobotMap.stopCollectButton);		//b
+
 		
 		
 		//Driver
 		eject.whenPressed(new EjectCube());
-//		startCollect.whenPressed(new SetClawWheelSpeed(-0.7));
-		stopCollect.whenPressed(new StopCollect());
-//		wristStow.whenPressed(new WristStow());
-//		wristDeploy.whenPressed(new WristDeploy());
-		toggleWrist.whenPressed(new ToggleWrist());
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
+		goToHome.whenPressed(new SetElevatorHeight(0));
 		
 		//Co-driver
 		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		neutralButton.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
 		ownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
 		disownedWorstButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
-		
-		
-		
+		toggleWrist.whenPressed(new ToggleWrist());
+		stopCollect.whenPressed(new StopCollect());
 		
 		//D-pad code (experimental)
 		
@@ -128,12 +124,7 @@ public class OI {
 		}
 		else if (driver.getPOV() == 270) {
 			new SetElevatorHeight(20);
-		}
-			
-	
-	
-		
-		
+		}	
 	}
 	
 	public XboxController getDriver() {

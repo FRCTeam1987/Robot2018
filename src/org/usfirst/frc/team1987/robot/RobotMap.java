@@ -78,17 +78,19 @@ public class RobotMap {
 	public static int coDriverID = 1;
 	
 	//Xbox Buttons
-	public static int toggleWristButton = 6;
-	public static int stopCollectButton = 2;
 	public static int collectWideButton = 3;
 	public static int ejectCubeButton = 4;
 	public static int toggleShifterButton = 9;
 	public static int goToScaleHeightButton = 1;
+	public static int goToHome = 2;
+	
+	//Co-driver buttons ;)
 	public static int disownedScaleButton = 1;
 	public static int neutralScaleButton = 2;
 	public static int ownedScaleButton = 4;
 	public static int disownedWorstButton = 3;
-			
+	public static int toggleWristButton = 6;
+	public static int stopCollectButton = 9;
 	
 	
 	//Elevator 
