@@ -47,6 +47,7 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightSlave2;
 	private final DifferentialDrive robotDrive;
 	private final DoubleSolenoid shifter;
+//	private final DoubleSolenoid PTO;
 	private final AHRS ahrs;
 	
 	public Drive() {
@@ -59,6 +60,7 @@ public class Drive extends Subsystem {
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
 		robotDrive = new DifferentialDrive(leftMaster, rightMaster);
 		shifter = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.shifterHigh, RobotMap.shifterLow);
+//		PTO = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.PTOEngaged, RobotMap.PTODisengaged);
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
@@ -135,6 +137,12 @@ public class Drive extends Subsystem {
 		shifter.set(Value.kReverse);
 	}
 	
+//	public void setPTO (boolean isEnabled) {
+//		if(isEnabled)
+//			
+//		
+//	}
+//	
 	private boolean isHighGear() {
 		return shifter.get() == Value.kForward;
 	}

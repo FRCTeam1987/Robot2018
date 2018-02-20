@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
 import org.usfirst.frc.team1987.robot.RobotMap;
+import org.usfirst.frc.team1987.util.DebouncedBoolean;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -24,6 +25,8 @@ public class Claw extends Subsystem {
 	private final DigitalInput cubeProx;
 	private final DigitalInput leftLimitSwitch;
 	private final DigitalInput rightLimitSwitch;
+	private DebouncedBoolean leftLimitSwitchDebouncer;	//make util file -> understand util file
+	private DebouncedBoolean rightLimitSwitchDebouncer;
 	
 	public Claw() {
 		right = new WPI_TalonSRX(RobotMap.clawRight);
@@ -33,6 +36,8 @@ public class Claw extends Subsystem {
 		cubeProx = new DigitalInput(RobotMap.clawCubeProx);
 		leftLimitSwitch = new DigitalInput(RobotMap.clawLeftLimitSwitch);
 		rightLimitSwitch = new DigitalInput(RobotMap.clawRightLimitSwitch);
+		leftLimitSwitchDebouncer = new DebouncedBoolean(RobotMap.debounceTime);
+		rightLimitSwitchDebouncer = new DebouncedBoolean(RobotMap.debounceTime);
 				
 		addChild(right);
 		addChild(left);
@@ -85,27 +90,27 @@ public class Claw extends Subsystem {
 	public boolean getLeftLimitSwitch() {
 		return !leftLimitSwitch.get();
 	}
-	
-//	public boolean leftLimitSwitchDebounce() {
-//		boolean firstPress;
-//		boolean secondPress;
-//		double firstTimeStamp;
-//		double secondTimeStamp;
-//		
-//		if(getLeftLimitSwitch() && secondPress == false) {
-//			firstPress = true;
-//			firstTimeStamp = Timer.getFPGATimestamp();
-//			if(firstPress == true && firstTimeStamp - Timer.getFPGATimestamp() == .1 && getLeftLimitSwitch()) {
-//				secondPress = true;
-//				return true;
-//			}
-//		}
-//		
-//		
-//	}
-	
+		
 	public boolean getRightLimitSwitch() {
 		return !rightLimitSwitch.get();
+	}
+	
+	public boolean isLeftLimitSwitchTriggered() {
+		leftLimitSwitchDebouncer.update(leftLimitSwitch.get());
+		
+		SmartDashboard.putBoolean("left limit switch w/ debounce", leftLimitSwitch.get());
+		SmartDashboard.putBoolean("left limit switch debouncer", leftLimitSwitchDebouncer.get());
+		
+		return leftLimitSwitchDebouncer.get();
+	}
+	
+	public boolean isRightLimitSwitchTriggered() {
+		rightLimitSwitchDebouncer.update(rightLimitSwitch.get());
+		
+		SmartDashboard.putBoolean("right limit switch w/ debounce", rightLimitSwitch.get());
+		SmartDashboard.putBoolean("right limit switch debouncer", rightLimitSwitchDebouncer.get());
+		
+		return rightLimitSwitchDebouncer.get();
 	}
 	
 	public void periodic() {

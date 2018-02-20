@@ -69,6 +69,7 @@ public class RobotMap {
 	public static int clawCubeProx = 5;
 	public static int clawLeftLimitSwitch = 3;
 	public static int clawRightLimitSwitch = 4;
+	public static double debounceTime = 0.5;
 		
 	//Xbox - Driver 
 	public static int driverID = 0;

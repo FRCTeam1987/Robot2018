@@ -31,10 +31,10 @@ public class AdjustCubeInClaw extends Command {
     		Robot.claw.close();
     	}
     	
-    	if (Robot.claw.getRightLimitSwitch() && !Robot.claw.getLeftLimitSwitch()) {
+    	if (Robot.claw.isRightLimitSwitchTriggered() && !Robot.claw.isLeftLimitSwitchTriggered()) {
     		Robot.claw.setWheels(m_leftPercent, 0.5 * -m_rightPercent);
     	}
-    	else if(Robot.claw.getLeftLimitSwitch() && !Robot.claw.getRightLimitSwitch()) {
+    	else if(Robot.claw.isLeftLimitSwitchTriggered() && !Robot.claw.isRightLimitSwitchTriggered()) {
     		Robot.claw.setWheels(0.5 * -m_leftPercent, m_rightPercent);
     	}
     	else {
@@ -43,7 +43,7 @@ public class AdjustCubeInClaw extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.claw.isCubeNear() && Robot.claw.getLeftLimitSwitch() && Robot.claw.getRightLimitSwitch();
+        return Robot.claw.isCubeNear() && Robot.claw.isLeftLimitSwitchTriggered() && Robot.claw.isRightLimitSwitchTriggered();	//use debounced values for isFinished?
     }
 
     protected void end() {
