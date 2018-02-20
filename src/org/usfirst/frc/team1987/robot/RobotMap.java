@@ -100,7 +100,7 @@ public class RobotMap {
 	public static int elevatorHomeID = 2;
 	public static double winchDiameter = 2.2;
 	public static int disownedScaleHeight = 28;
-	public static int neutralScaleHeight = 20;
+	public static int neutralScaleHeight = 23;
 	public static int ownedScaleHeight = 15;
 	public static int disownedWorstScaleHeight = 30;
 	public static double elevatorMiddleCubePyramidHeight = 5.25;

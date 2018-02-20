@@ -51,9 +51,13 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		setCollectorHeight(CollectorHeight.FLOOR);
+		setScaleOwnership(ScaleOwnership.NEUTRAL);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		m_chooser.addObject("toScale", new DrivePath(AutoPaths.toScale));
 		m_chooser.addObject("toScaleSwoop", new DrivePath(AutoPaths.toScaleSwoop));
+		m_chooser.addObject("to far scale", new DrivePath(AutoPaths.toFarScale));
+//		m_chooser.addObject("s path", new DrivePath(AutoPaths.sPath));
 		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
 		
 		SmartDashboard.putData("Auto mode", m_chooser);

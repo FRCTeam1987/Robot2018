@@ -47,9 +47,14 @@ public class AutoPaths {
     };
 
     public static Waypoint[] toFarScale = new Waypoint[] {
-            new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
-            new Waypoint(4.250, 0.5, Pathfinder.d2r(45.0)),
-            new Waypoint(4.500, 3.0, Pathfinder.d2r(0.0)),
+          new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+          new Waypoint(4.06, 0.0, Pathfinder.d2r(0.0)),
+          new Waypoint(5.5, 1.5, Pathfinder.d2r(90.0)),
+          new Waypoint(5.1, 5, Pathfinder.d2r(90.0)),
+
+//            new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+//            new Waypoint(4.9, 0.0, Pathfinder.d2r(45.0)),
+//            new Waypoint(4.9, 4.0, Pathfinder.d2r(90.0)),
 //            new Waypoint(6.702, 4.57, Pathfinder.d2r(0.0)),
     };
 }

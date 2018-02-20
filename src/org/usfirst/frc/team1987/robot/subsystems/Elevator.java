@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 /**
  *
@@ -44,6 +45,7 @@ public class Elevator extends Subsystem {
     	winchMotor.setInverted(false);
 //    	winchMotor.setSensorPhase(true);
     	winchMotor.setSafetyEnabled(false);
+    	winchMotor.setNeutralMode(NeutralMode.Brake);
     	
     	winchMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
     	final ErrorCode winchMotorErrorCode = winchMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);

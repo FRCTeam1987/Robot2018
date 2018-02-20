@@ -113,7 +113,7 @@ public class OI {
 		
 		//Driver
 		eject.whenPressed(new EjectCube());
-		collectWide.whenPressed(new AutoCollectCubeWide());
+		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
 		goToHome.whenPressed(new SetElevatorHeight(0));		
