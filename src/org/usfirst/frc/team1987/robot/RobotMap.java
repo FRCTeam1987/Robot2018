@@ -29,6 +29,10 @@ public class RobotMap {
 	public static int defaultTimeout = 10;
 	public static int shifterHigh = 0;
 	public static int shifterLow = 1;
+	public static int drivePTOEngaged = 2;
+	public static int drivePTODisengaged = 3;
+	public static int driveDropDownOmniBack = 4;
+	public static int driveDropDownOmniFront = 5;
 	
 	public static double wheelDiameter = 4.0;		//change
 	public static double driveWheelbaseWidth = 3.0;	//change
@@ -97,6 +101,7 @@ public class RobotMap {
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7
+	public static int elevatorRatchet = 4;
 	public static int ticksPerInch = 554;
 	public static int elevatorHomeID = 2;
 	public static double winchDiameter = 2.2;

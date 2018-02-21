@@ -3,6 +3,7 @@ package org.usfirst.frc.team1987.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +24,7 @@ public class Elevator extends Subsystem {
 
 	private final WPI_TalonSRX winchMotor;
 	private final DigitalInput homeSensor;
+	private final Solenoid ratchet;
 	private final double homeInches = 0;		//values need to changed eventually, also move to constructor
 	private final double minInches = -2.5;
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
@@ -33,6 +35,7 @@ public class Elevator extends Subsystem {
 	public Elevator() {
     	winchMotor = new WPI_TalonSRX(RobotMap.elevatorID); 
     	homeSensor = new DigitalInput(RobotMap.elevatorHomeID);
+    	ratchet = new Solenoid(RobotMap.pcmOther, RobotMap.elevatorRatchet);
     	
 //    	winchMotor.configForwardSoftLimitEnable(true, RobotMap.drivePIDIDX);
 //    	winchMotor.configReverseSoftLimitEnable(true, RobotMap.drivePIDIDX);
@@ -121,6 +124,18 @@ public class Elevator extends Subsystem {
 		final double inchesAbsolute = inchesRelative + Util.ticksToDistance(winchMotor.getSelectedSensorPosition(RobotMap.drivePIDIDX), RobotMap.winchDiameter);
 		
 		setElevatorAbsolute(inchesAbsolute);
+	}
+	
+	public void disengageRatchet() {
+		ratchet.set(false);
+	}
+	
+	public void engageRatchet() {
+		ratchet.set(true);
+	}
+	
+	public void toggleRatchet() {
+		ratchet.set(!ratchet.get());
 	}
 	
     public void initDefaultCommand() {

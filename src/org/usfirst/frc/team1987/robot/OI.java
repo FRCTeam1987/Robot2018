@@ -21,10 +21,14 @@ import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniBack;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniFront;
+import org.usfirst.frc.team1987.robot.commands.drive.TogglePto;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
+import org.usfirst.frc.team1987.robot.commands.elevator.ToggleRatchet;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -87,11 +91,15 @@ public class OI {
 //		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
 //		SmartDashboard.putData("Toggle Shifter", new ToggleShifter());
 //		SmartDashboard.putData("elevator second cube pyramid", new SetElevatorHeight(5.25));
-		SmartDashboard.putData("elevator third cube pyramid", new SetElevatorHeight(10.5));
-		SmartDashboard.putData("Scale ownership: disowned w/ cube", new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
-		SmartDashboard.putData("Scale ownership: disowned", new SetScaleOwnership(ScaleOwnership.DISOWNED));
-		SmartDashboard.putData("Scale ownership: neutral", new SetScaleOwnership(ScaleOwnership.NEUTRAL));
-		SmartDashboard.putData("Scale ownership: owned", new SetScaleOwnership(ScaleOwnership.OWNED));
+//		SmartDashboard.putData("elevator third cube pyramid", new SetElevatorHeight(10.5));
+//		SmartDashboard.putData("Scale ownership: disowned w/ cube", new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
+//		SmartDashboard.putData("Scale ownership: disowned", new SetScaleOwnership(ScaleOwnership.DISOWNED));
+//		SmartDashboard.putData("Scale ownership: neutral", new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+//		SmartDashboard.putData("Scale ownership: owned", new SetScaleOwnership(ScaleOwnership.OWNED));
+		SmartDashboard.putData("Toggle PTO", new TogglePto());
+		SmartDashboard.putData("Toggle Omni Back", new ToggleDropDownOmniBack());
+		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
+		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	

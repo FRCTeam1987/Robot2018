@@ -27,6 +27,7 @@ import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Solenoid;
 
 enum DriveMode {
 	PIVOT,
@@ -47,7 +48,9 @@ public class Drive extends Subsystem {
 	private final WPI_TalonSRX rightSlave2;
 	private final DifferentialDrive robotDrive;
 	private final DoubleSolenoid shifter;
-//	private final DoubleSolenoid PTO;
+	private final DoubleSolenoid pto;
+	private final Solenoid dropDownOmniBack;
+	private final Solenoid dropDownOmniFront;
 	private final AHRS ahrs;
 	
 	public Drive() {
@@ -60,7 +63,9 @@ public class Drive extends Subsystem {
 		rightSlave2 = new WPI_TalonSRX(RobotMap.rightSlave2ID);
 		robotDrive = new DifferentialDrive(leftMaster, rightMaster);
 		shifter = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.shifterHigh, RobotMap.shifterLow);
-//		PTO = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.PTOEngaged, RobotMap.PTODisengaged);
+		pto = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.drivePTOEngaged, RobotMap.drivePTODisengaged);
+		dropDownOmniBack = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniBack);
+		dropDownOmniFront = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniFront);
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
@@ -288,6 +293,50 @@ public class Drive extends Subsystem {
     
 	public void zeroHeading() {
 		ahrs.zeroYaw(); 	//might need to be changed
+	}
+	
+	public void ptoDisengage() {
+		pto.set(Value.kReverse);
+	}
+	
+	public void ptoEngage() {
+		pto.set(Value.kForward);
+	}
+	
+	public boolean isPtoEngaged() {
+		return pto.get() == Value.kForward;
+	}
+	
+	public void ptoToggle() {
+		if(isPtoEngaged()) {
+			ptoDisengage();
+		} else {
+			ptoEngage();
+		}
+	}
+	
+	public void dropDownOmniBackRaise() {
+		dropDownOmniBack.set(false);
+	}
+	
+	public void dropDownOmniBackLower() {
+		dropDownOmniBack.set(true);
+	}
+	
+	public void dropDownOmniBackToggle() {
+		dropDownOmniBack.set(!dropDownOmniBack.get());
+	}
+	
+	public void dropDownOmniFrontRaise() {
+		dropDownOmniFront.set(false);
+	}
+	
+	public void dropDownOmniFrontLower() {
+		dropDownOmniFront.set(true);
+	}
+	
+	public void dropDownOmniFrontToggle() {
+		dropDownOmniFront.set(!dropDownOmniFront.get());
 	}
 	
     public void initDefaultCommand() {
