@@ -27,7 +27,7 @@ public class AdjustCubeInClaw extends Command {
     }
 
     protected void execute() {
-    	if (Robot.claw.isCubeNear()) {
+    	if (Robot.claw.isCubeNear()) {	//try with open claw in else
     		Robot.claw.close();
     	}
     	
