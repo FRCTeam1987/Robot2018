@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
@@ -28,12 +29,12 @@ import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Solenoid;
-
-enum DriveMode {
-	PIVOT,
-	STRAIGHT,
-	TRAJECTORY
-}
+//
+//enum DriveMode {
+//	PIVOT,
+//	STRAIGHT,
+//	TRAJECTORY
+//}
 
 /**
  *
@@ -142,12 +143,31 @@ public class Drive extends Subsystem {
 		shifter.set(Value.kReverse);
 	}
 	
-//	public void setPTO (boolean isEnabled) {
-//		if(isEnabled)
-//			
-//		
-//	}
-//	
+	public void pivotToAngle(double targetAngleAbsolute) {
+		double currentAngle = ahrs.getAngle(); 	//gets current angle, could be negative or greater than 360
+		boolean clockwise;
+		
+		while(currentAngle > 360)	//sets current angle to co-terminal angle between 0 and 360 if negative
+			currentAngle -= 360;
+		while(currentAngle < 0)
+			currentAngle += 360;
+		
+		while(targetAngleAbsolute > 360)	//sets absolute target angle to co-terminal angle between 0 and 360 if negative
+			targetAngleAbsolute -= 360;
+		while(targetAngleAbsolute < 0)
+			targetAngleAbsolute += 360;
+		
+		if(targetAngleAbsolute - currentAngle > 180) //decided the direction of the turn, check with more senarios
+			clockwise = true;	
+		else 
+			clockwise = false;
+		
+		double targetAngleRelative = Math.abs(targetAngleAbsolute - currentAngle);	//absolute value of degrees of the turn
+		
+		//set motors to inches value of the relative angle. If clockwise, set with one motor negative, if not, set with the other motor negative (may need to switch negative)
+		//in command, set pivot to angle in init, don't zero heading, set position control mode w/ pid, stop when within angle tolerance	
+	}
+	
 	private boolean isHighGear() {
 		return shifter.get() == Value.kForward;
 	}

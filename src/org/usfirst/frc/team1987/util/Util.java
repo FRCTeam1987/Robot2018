@@ -3,7 +3,7 @@ package org.usfirst.frc.team1987.util;
 import org.usfirst.frc.team1987.robot.RobotMap;
 
 public class Util {
-	private static double circumference(final double diameter) {
+	public static double circumference(final double diameter) {
 		return Math.PI * diameter;
 	}
 	
