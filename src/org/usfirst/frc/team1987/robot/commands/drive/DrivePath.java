@@ -1,9 +1,14 @@
 package org.usfirst.frc.team1987.robot.commands.drive;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
+import org.usfirst.frc.team1987.robot.subsystems.Drive;
 
 import com.ctre.phoenix.ErrorCode;
 
@@ -22,48 +27,57 @@ public class DrivePath extends Command {
 	private final EncoderFollower leftFollower;
 	private final EncoderFollower rightFollower;
 	
-	public DrivePath(final Waypoint[] path ) {
+	public DrivePath(final Waypoint[] path) {
         requires(Robot.drive);
 
-		EncoderFollower[] followers = Robot.drive.pathSetup(path);
+		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
 		this.leftFollower = followers[0];
 		this.rightFollower = followers[1];
 	}
 	
-    public DrivePath(final String leftTrajectoryFileName, final String rightTrajectoryFileName) {
-        requires(Robot.drive);
-        
-    
-        File leftTrajectoryFile = new File(leftTrajectoryFileName);
-        File rightTrajectoryFile = new File(rightTrajectoryFileName);
+	protected Trajectory makeTrajectory(final Waypoint[] path) {
+		String hash = WaypointsHash(path);
+		File cacheFile = new File(cacheFilename(hash));
+		if (cacheFile.exists()) {
+			// load the trajectory from the cache
+			System.out.println("Reading cached trajectory");
+			return Pathfinder.readFromFile(cacheFile);
+		}
+		else {
+			// this path isn't cached - generate it first
+	        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
+	                Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+	        Trajectory toFollow = Pathfinder.generate(path, cfg);
+	        
+	        // Cache the trajectory for next time
+	        Pathfinder.writeToFile(cacheFile, toFollow);
+	        System.out.println("Saving new trajectory cache");
+	        return toFollow;
+		}
+	}
+	
+	protected static String WaypointsHash(Waypoint[] waypoints) {
+		try {
+			String str = "";
+			for (int i=0; i<waypoints.length; i++) {
+				str = str.concat(String.format("%.2f %.2f %.2f\n",
+						waypoints[i].x, waypoints[i].y, waypoints[i].angle));
+			}
 
-//        try {
-//        	leftTrajectoryFile.exists();
-//        }
-//        catch(Exception e) {
-////        	final ErrorCode leftTrajectoryFileNotFound = SmartDashboard.putString("Left Trajectory File Status", "File Not Found!");
-//        	SmartDashboard.putString("Left Trajectory File Status", "File Not Found!");
-//        }
-//        
-//        File rightTrajectoryFile = new File(rightTrajectoryFileName);
-//        
-//        try {
-//        	rightTrajectoryFile.exists();
-//        }
-//        catch(Exception e) {
-//        	SmartDashboard.putString("Right Trajectory File Status", "File Not Found!");
-//        }
-        
-        Trajectory leftTrajectory = Pathfinder.readFromCSV(leftTrajectoryFile);
-        Trajectory rightTrajectory = Pathfinder.readFromCSV(rightTrajectoryFile);
-        
-        leftFollower = new EncoderFollower(leftTrajectory);
-        rightFollower = new EncoderFollower(rightTrajectory);
-        
-       
-    }
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(str.getBytes());
+			return DatatypeConverter.printHexBinary(md.digest()).toUpperCase();
+		}
+		catch(NoSuchAlgorithmException e) {
+			return "";
+		}
+	}
+	
+	protected static String cacheFilename(final String hash) {
+		return "/home/lvuser/paths/".concat(hash);
+	}
 
-    protected void initialize() {
+	protected void initialize() {
         Robot.drive.zeroDriveEncoders();
     	Robot.drive.ahrsReset();
 //    	leftFollower.reset();

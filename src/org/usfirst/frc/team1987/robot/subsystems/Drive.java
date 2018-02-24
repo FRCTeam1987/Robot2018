@@ -143,6 +143,7 @@ public class Drive extends Subsystem {
 		shifter.set(Value.kReverse);
 	}
 	
+	/*
 	public void pivotToAngle(double targetAngleAbsolute) {
 		double currentAngle = ahrs.getAngle(); 	//gets current angle, could be negative or greater than 360
 		boolean clockwise;
@@ -167,6 +168,7 @@ public class Drive extends Subsystem {
 		//set motors to inches value of the relative angle. If clockwise, set with one motor negative, if not, set with the other motor negative (may need to switch negative)
 		//in command, set pivot to angle in init, don't zero heading, set position control mode w/ pid, stop when within angle tolerance	
 	}
+	*/
 	
 	private boolean isHighGear() {
 		return shifter.get() == Value.kForward;
@@ -214,12 +216,9 @@ public class Drive extends Subsystem {
 		rightMaster.set(ControlMode.Position, rightTicks);
 	}
 	
-    public EncoderFollower[] pathSetup(Waypoint[] path) {
+    public EncoderFollower[] pathSetup(Trajectory toFollow) {
         EncoderFollower left = new EncoderFollower();
         EncoderFollower right = new EncoderFollower();
-        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-                Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
-        Trajectory toFollow = Pathfinder.generate(path, cfg);
         TankModifier modifier = new TankModifier(toFollow).modify((Drive.DrivetrainProfiling.wheel_base_width));
         DrivetrainProfiling.last_gyro_error = 0.0;
         left = new EncoderFollower(modifier.getLeftTrajectory());
