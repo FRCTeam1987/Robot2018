@@ -5,6 +5,7 @@ import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.util.Util;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -16,6 +17,7 @@ public class AdjustElevatorHeight extends Command {
     public AdjustElevatorHeight(final double inches) {
         requires(Robot.elevator);
         mInches = inches;
+        setTimeout(1.0);
     }
 
     protected void initialize() {
@@ -26,7 +28,7 @@ public class AdjustElevatorHeight extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.elevator.isWithinTolerance();
+        return Robot.elevator.isWithinTolerance() || isTimedOut();
     }
 
     protected void end() {

@@ -38,6 +38,8 @@ public class Claw extends Subsystem {
 		rightLimitSwitch = new DigitalInput(RobotMap.clawRightLimitSwitch);
 		leftLimitSwitchDebouncer = new DigitalDebouncer(RobotMap.debounceTime);
 		rightLimitSwitchDebouncer = new DigitalDebouncer(RobotMap.debounceTime);
+		
+		wristUp();
 				
 		addChild(right);
 		addChild(left);
@@ -107,10 +109,8 @@ public class Claw extends Subsystem {
 		SmartDashboard.putBoolean("has cube far", isCubeNear());
 		leftLimitSwitchDebouncer.periodic(getLeftLimitSwitch());
 		rightLimitSwitchDebouncer.periodic(getRightLimitSwitch());
-		SmartDashboard.putBoolean("left limit switch w/ debounce", getLeftLimitSwitch());
-		SmartDashboard.putBoolean("left limit switch w/out debounce", isLeftLimitSwitchTriggered());
-		SmartDashboard.putBoolean("right limit switch w/ debounce", getRightLimitSwitch());
-		SmartDashboard.putBoolean("right limit switch w/out debounce", isRightLimitSwitchTriggered());
+		SmartDashboard.putBoolean("left limit switch w/ debounce", isLeftLimitSwitchTriggered());
+		SmartDashboard.putBoolean("right limit switch w/ debounce", isRightLimitSwitchTriggered());
 	}
 	
     public void initDefaultCommand() {

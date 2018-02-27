@@ -31,6 +31,7 @@ public class Elevator extends Subsystem {
 	private final double maxInches = 30.875;
 	private final int maxTicks = Util.distanceToTicks(maxInches, RobotMap.winchDiameter);
 	private final int tolerance = 500;
+	private int m_ticksAbsolute;
    
 	public Elevator() {
     	winchMotor = new WPI_TalonSRX(RobotMap.elevatorID); 
@@ -55,9 +56,6 @@ public class Elevator extends Subsystem {
     	
     	if(winchMotorErrorCode != ErrorCode.OK) {
     		SmartDashboard.putString("Winch motor encoder status", winchMotorErrorCode.toString());
-    	}
-    	else if(winchMotorErrorCode == ErrorCode.OK) {
-    		SmartDashboard.putString("Winch motor encoder status", "OK");
     	}
     	winchMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
     	
@@ -88,7 +86,7 @@ public class Elevator extends Subsystem {
 	public boolean isWithinTolerance() {
 		SmartDashboard.putNumber("current tolerance in inches", Util.ticksToDistance(tolerance, RobotMap.winchDiameter));
 		SmartDashboard.putNumber("isWithinTolerance closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
-		return Math.abs(winchMotor.getClosedLoopError(RobotMap.drivePIDIDX)) < tolerance;		//adjust tolerance
+		return Math.abs(m_ticksAbsolute - getTicks()) < tolerance;		//adjust tolerance
 	}
 		
 	private int getTicks() {
@@ -117,6 +115,7 @@ public class Elevator extends Subsystem {
 		}
 		
 		SmartDashboard.putNumber("inches absolute", Util.ticksToDistance(ticksAbsolute, RobotMap.winchDiameter));
+		m_ticksAbsolute = ticksAbsolute;
 		winchMotor.set(ControlMode.Position, ticksAbsolute);
 	}
 	
