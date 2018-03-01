@@ -20,7 +20,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
-import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
+//import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniBack;
@@ -104,11 +104,11 @@ public class OI {
 //		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 //		SmartDashboard.putData("Pivot 45 degrees", new PIDDrivePivot(45.0));
-		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
-		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
-		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
-		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
-		
+//		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
+//		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
+//		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
+//		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
+//		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
