@@ -32,4 +32,22 @@ public class Util {
 		return rotationsToDistance(getCtreEncoderRotations(ticks), diameter);
 //		Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter
 	}
+	
+	public static double limit(final double value, final double minimum, final double maximum){
+		if(value < minimum) {
+			return minimum;
+		}
+		if(value > maximum) {
+			return maximum;
+		}
+		return value;
+	}
+	
+	public static double limit(final double value){
+		return limit(value, -1.0, 1.0);	
+	}
+	
+	public static boolean isWithinTolerance(final double value, final double target, final double tolerance){
+		return value > target - Math.abs(tolerance) && value < target + Math.abs(tolerance);
+	}
 }

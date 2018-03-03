@@ -53,6 +53,7 @@ public class Drive extends Subsystem {
 	private final Solenoid dropDownOmniBack;
 	private final Solenoid dropDownOmniFront;
 	private final AHRS ahrs;
+	private boolean isBrake;
 	
 	public Drive() {
 		ahrs = new AHRS(SPI.Port.kMXP);
@@ -106,6 +107,7 @@ public class Drive extends Subsystem {
 		robotDrive.setSafetyEnabled(false);
 		ahrsReset();
 		zeroDriveEncoders();
+		setCoast();
 	}
 
 	public void xboxDrive(XboxController xbox) {
@@ -121,6 +123,11 @@ public class Drive extends Subsystem {
 	
 	public void tankDrive(final double left, final double right) {
 		robotDrive.tankDrive(left, right);
+	}
+	
+	public void set(final ControlMode controlMode, final double left, final double right) {
+		leftMaster.set(controlMode, left);
+		rightMaster.set(controlMode, right);
 	}
 	
 	public void driveDistance(final double leftInches, final double rightInches) {
@@ -143,33 +150,6 @@ public class Drive extends Subsystem {
 	public void setLowGear() {
 		shifter.set(Value.kReverse);
 	}
-	
-	/*
-	public void pivotToAngle(double targetAngleAbsolute) {
-		double currentAngle = ahrs.getAngle(); 	//gets current angle, could be negative or greater than 360
-		boolean clockwise;
-		
-		while(currentAngle > 360)	//sets current angle to co-terminal angle between 0 and 360 if negative
-			currentAngle -= 360;
-		while(currentAngle < 0)
-			currentAngle += 360;
-		
-		while(targetAngleAbsolute > 360)	//sets absolute target angle to co-terminal angle between 0 and 360 if negative
-			targetAngleAbsolute -= 360;
-		while(targetAngleAbsolute < 0)
-			targetAngleAbsolute += 360;
-		
-		if(targetAngleAbsolute - currentAngle > 180) //decided the direction of the turn, check with more senarios
-			clockwise = true;	
-		else 
-			clockwise = false;
-		
-		double targetAngleRelative = Math.abs(targetAngleAbsolute - currentAngle);	//absolute value of degrees of the turn
-		
-		//set motors to inches value of the relative angle. If clockwise, set with one motor negative, if not, set with the other motor negative (may need to switch negative)
-		//in command, set pivot to angle in init, don't zero heading, set position control mode w/ pid, stop when within angle tolerance	
-	}
-	*/
 	
 	private boolean isHighGear() {
 		return shifter.get() == Value.kForward;
@@ -207,6 +187,14 @@ public class Drive extends Subsystem {
 		return 360.0 - ahrs.getFusedHeading();
 	}
 	
+	public double getAngle() {
+		return ahrs.getAngle();
+	}
+	
+	public double getGyroRate() {
+		return ahrs.getRate();
+	}
+	
 	public void setLeftMasterForDistance(final double leftInches) {
 		final double leftTicks = Util.distanceToTicks(leftInches, RobotMap.wheelDiameter);
 		leftMaster.set(ControlMode.Position, leftTicks);		
@@ -220,11 +208,17 @@ public class Drive extends Subsystem {
 	public void setCoast() {
 		leftMaster.setNeutralMode(NeutralMode.Coast);
 		rightMaster.setNeutralMode(NeutralMode.Coast);
+		isBrake = false;
 	}
 	
 	public void setBrake() {
 		leftMaster.setNeutralMode(NeutralMode.Brake);
 		rightMaster.setNeutralMode(NeutralMode.Brake);
+		isBrake = true;
+	}
+	
+	public boolean isBrake() {
+		return isBrake; 
 	}
 	
     public EncoderFollower[] pathSetup(Trajectory toFollow) {
