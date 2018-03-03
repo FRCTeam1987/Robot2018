@@ -39,7 +39,7 @@ public class GoToScaleHeight extends Command {
     }
 
     protected boolean isFinished() {
-        return /*Robot.elevator.isWithinTolerance() ||*/ isTimedOut();
+        return Robot.elevator.isWithinTolerance() || isTimedOut();
     }
 
     protected void end() {

@@ -10,6 +10,7 @@ import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 import org.usfirst.frc.team1987.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -19,6 +20,7 @@ public class GoToLeftScaleAndPlace extends CommandGroup {
     public GoToLeftScaleAndPlace() {
     	addSequential(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
         addSequential(new DrivePath(AutoPaths.toScaleSwoop));
+        addSequential(new WaitCommand(2.0));
         addSequential(new GoToScaleHeight());
         addSequential(new EjectCube());
     }

@@ -38,7 +38,7 @@ public class DrivePath extends Command {
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
 		String hash = WaypointsHash(path);
 		File cacheFile = new File(cacheFilename(hash));
-		if (cacheFile.exists()) {
+		if (false)/*(cacheFile.exists())*/ {
 			// load the trajectory from the cache
 			System.out.println("Reading cached trajectory");
 			return Pathfinder.readFromFile(cacheFile);
@@ -46,7 +46,8 @@ public class DrivePath extends Command {
 		else {
 			// this path isn't cached - generate it first
 	        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-	                Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+	                RobotMap.period, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+//	        		Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
 	        Trajectory toFollow = Pathfinder.generate(path, cfg);
 	        
 	        // Cache the trajectory for next time
@@ -80,11 +81,11 @@ public class DrivePath extends Command {
 	protected void initialize() {
         Robot.drive.zeroDriveEncoders();
     	Robot.drive.ahrsReset();
-//    	leftFollower.reset();
+    	leftFollower.reset();
 //    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
 //    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
 //    	
-//    	rightFollower.reset();
+    	rightFollower.reset();
 //    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
 //    	rightFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
 

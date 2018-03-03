@@ -105,6 +105,7 @@ public class Drive extends Subsystem {
 		
 		robotDrive.setSafetyEnabled(false);
 		ahrsReset();
+		zeroDriveEncoders();
 	}
 
 	public void xboxDrive(XboxController xbox) {
@@ -208,12 +209,22 @@ public class Drive extends Subsystem {
 	
 	public void setLeftMasterForDistance(final double leftInches) {
 		final double leftTicks = Util.distanceToTicks(leftInches, RobotMap.wheelDiameter);
-		leftMaster.set(ControlMode.Position, leftTicks);
+		leftMaster.set(ControlMode.Position, leftTicks);		
 	}
 	
 	public void setRightMasterForDistance(final double rightInches) {
 		final double rightTicks = Util.distanceToRotations(rightInches, RobotMap.wheelDiameter);
-		rightMaster.set(ControlMode.Position, rightTicks);
+		rightMaster.set(ControlMode.Position, rightTicks);		
+	}
+	
+	public void setCoast() {
+		leftMaster.setNeutralMode(NeutralMode.Coast);
+		rightMaster.setNeutralMode(NeutralMode.Coast);
+	}
+	
+	public void setBrake() {
+		leftMaster.setNeutralMode(NeutralMode.Brake);
+		rightMaster.setNeutralMode(NeutralMode.Brake);
 	}
 	
     public EncoderFollower[] pathSetup(Trajectory toFollow) {
@@ -248,7 +259,7 @@ public class Drive extends Subsystem {
         double angleDifference = Pathfinder.boundHalfDegrees(angle_setpoint - gyro_heading);
 
         double turn = DrivetrainProfiling.gp * angleDifference + (DrivetrainProfiling.gd *
-                ((angleDifference - DrivetrainProfiling.last_gyro_error) / DrivetrainProfiling.dt));
+                ((angleDifference - DrivetrainProfiling.last_gyro_error) / RobotMap.period));
 
         DrivetrainProfiling.last_gyro_error = angleDifference;
         
@@ -363,32 +374,32 @@ public class Drive extends Subsystem {
     }
     
     public void periodic() {
-//    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
-//    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
+    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
+    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
     	SmartDashboard.putNumber("heading", getHeading());
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.8; // 1.2
-        public static double kd = 0.0; // 0.35
+        public static double kp = 0.9; // 1.2
+        public static double kd = 0.40; // 0.35
         public static double ki = 0.0;
         
         // These are used in calculating turning
-        public static double dt = 0.0225;  // smaller numbers drive the robot faster through turns
-        public static double gp = 0.02;  // I don't think we want to mess with this number
+        public static double dt = 0.026;  // smaller numbers drive the robot faster through turns	//.0225
+        public static double gp = 0.037;  // I don't think we want to mess with this number
         // Increasing gd more aggressively pursues the target heading
-        public static double gd = 0.0175; // 0.0025
+        public static double gd = 0.0; // 0.0025	//0.025
 
         //gyro logging
         public static double last_gyro_error = 0.0;
 
-        public static final double max_velocity = 4.0; // was 4.0 //4 is real
+        public static final double max_velocity = 3.25; // was 3.0 //4 is real
         public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 1.25;  // 1.62; // Estimated #
+        public static final double max_acceleration = 1.125;  // 1.62; // Estimated #	//try 1.15
         public static final double ka = 0.0; //0.015
         public static final double max_jerk = 7.62;
-        public static final double wheel_diameter = 0.12;
-        public static final double wheel_base_width = 0.616;
+        public static final double wheel_diameter = 0.117475; //0.117475
+        public static final double wheel_base_width = 0.61595;
         public static final int ticks_per_rev = 4096; // CTRE Mag Encoder
 
         public static void setPIDG(double p, double i, double d, double gp, double gd) {

@@ -34,11 +34,11 @@ public class RobotMap {
 	public static int driveDropDownOmniBack = 4;
 	public static int driveDropDownOmniFront = 5;
 	
-	public static double wheelDiameter = 4.0;		//change
-	public static double driveWheelbaseWidth = 3.0;	//change
-	public static double period = 0.05;
-	public static double maxVelocity = 5.0;
-	public static double maxAcceration = 3.0;
+	public static double wheelDiameter = 4.625;		//change
+	public static double driveWheelbaseWidth = 24.25;	//change
+	public static double period = 0.02;
+	public static double maxVelocity = 2.7;
+	public static double maxAcceration = 1.1725;	//STARTED AT 1.2
 	public static double maxJerk = 60.0;
 	public static double minimumTrajectoryPercentage = 0.55;
 	public static double drivePathP = 1.2;

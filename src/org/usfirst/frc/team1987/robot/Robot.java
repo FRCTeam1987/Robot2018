@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1987.robot;
 
 import org.usfirst.frc.team1987.robot.commands.auto.GoToLeftScaleAndPlace;
+import org.usfirst.frc.team1987.robot.commands.auto.GoToRightScaleAndPlace;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
@@ -50,15 +51,17 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		setPeriod(RobotMap.period);
 		oi = new OI();
 		setCollectorHeight(CollectorHeight.FLOOR);
 		setScaleOwnership(ScaleOwnership.NEUTRAL);
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		m_chooser.addObject("toScale", new DrivePath(AutoPaths.toScale));
-		m_chooser.addObject("toScaleSwoop", new DrivePath(AutoPaths.toScaleSwoop));
-		m_chooser.addObject("to far scale", new DrivePath(AutoPaths.toFarScale));
+//		m_chooser.addObject("toScale", new DrivePath(AutoPaths.toScale));
+//		m_chooser.addObject("toScaleSwoop", new DrivePath(AutoPaths.toScaleSwoop));
+//		m_chooser.addObject("to far scale", new DrivePath(AutoPaths.toFarScale));
+//		m_chooser.addObject("dope auto and place", new GoToRightScaleAndPlace());
 //		m_chooser.addObject("s path", new DrivePath(AutoPaths.sPath));
-		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
+//		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
 		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
@@ -125,6 +128,8 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
+		drive.setCoast();
 	}
 
 	/**
