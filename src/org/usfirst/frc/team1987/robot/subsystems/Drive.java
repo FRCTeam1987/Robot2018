@@ -83,6 +83,8 @@ public class Drive extends Subsystem {
 		leftMaster.configNominalOutputForward(0.0, 0);
 		leftMaster.configNominalOutputReverse(0.0, 0);
 		leftMaster.setNeutralMode(NeutralMode.Brake);
+		leftMaster.configOpenloopRamp(0.15, RobotMap.defaultTimeout);
+		
 		rightMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode rightEncoderErrorCode = rightMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		if (rightEncoderErrorCode != ErrorCode.OK) {
@@ -98,6 +100,7 @@ public class Drive extends Subsystem {
 		rightMaster.configNominalOutputForward(0.0, 0);
 		rightMaster.configNominalOutputReverse(0.0, 0);
 		rightMaster.setNeutralMode(NeutralMode.Brake);
+		rightMaster.configOpenloopRamp(0.15, RobotMap.defaultTimeout);
 
 		leftSlave1.follow(leftMaster);
 		leftSlave2.follow(leftMaster);
@@ -155,15 +158,25 @@ public class Drive extends Subsystem {
 		return shifter.get() == Value.kForward;
 	}
 	
-	public void toggleShift() {
+	public void toggleShift() {		
 		if(isHighGear() == true) {
 			setLowGear();
-			SmartDashboard.putString("Shitter status", "low gear");
+			SmartDashboard.putString("Shifter status", "low gear");
 		}
 		else {
+			dropDownOmniFrontRaise();
+			dropDownOmniBackRaise();
 			setHighGear();
-			SmartDashboard.putString("Shitter status", "high gear");
-		}
+			SmartDashboard.putString("Shifter status", "high gear");
+		}		
+	}
+	
+	private double getRightPercentOutput() {
+		return Robot.drive.rightMaster.getMotorOutputPercent();
+	}
+	
+	private double getLeftPercentOutput() {
+		return Robot.drive.leftMaster.getMotorOutputPercent();
 	}
 	
 	public int getLeftRawEncoderPosition() {
@@ -371,25 +384,27 @@ public class Drive extends Subsystem {
     	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
     	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
     	SmartDashboard.putNumber("heading", getHeading());
+    	SmartDashboard.putNumber("left-percent", leftMaster.get());
+    	SmartDashboard.putNumber("right-percent", rightMaster.get());
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.9; // 1.2
-        public static double kd = 0.40; // 0.35
+        public static double kp = 0.9; // 1.2	//like 0.8
+        public static double kd = 0.4; // 0.35	//like 0.0
         public static double ki = 0.0;
         
         // These are used in calculating turning
-        public static double dt = 0.026;  // smaller numbers drive the robot faster through turns	//.0225
-        public static double gp = 0.037;  // I don't think we want to mess with this number
+        public static double dt = 0.026;  // smaller numbers drive the robot faster through turns
+        public static double gp = 0.037;  // like 0.037 for straighterish paths	//far scale trash: 0.055
         // Increasing gd more aggressively pursues the target heading
-        public static double gd = 0.0; // 0.0025	//0.025
+        public static double gd = 0.0; // 0.0025	//0.025	//like 0.0 for straightisher paths	//far scale trash: 0.003
 
         //gyro logging
         public static double last_gyro_error = 0.0;
 
-        public static final double max_velocity = 3.25; // was 3.0 //4 is real
+        public static final double max_velocity = 3.25; // like 3.25 for straight paths	//far scale trash: 2.5
         public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 1.125;  // 1.62; // Estimated #	//try 1.15
+        public static final double max_acceleration = 1.125;  // like 1.15 for straighterish paths	//far scale trash: 0.9
         public static final double ka = 0.0; //0.015
         public static final double max_jerk = 7.62;
         public static final double wheel_diameter = 0.117475; //0.117475

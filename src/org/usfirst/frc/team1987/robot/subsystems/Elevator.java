@@ -30,7 +30,6 @@ public class Elevator extends Subsystem {
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
 	private final double maxInches = 30.875;
 	private final int maxTicks = Util.distanceToTicks(maxInches, RobotMap.winchDiameter);
-	private final int tolerance = 500;
 	private int m_ticksAbsolute;
    
 	public Elevator() {
@@ -84,9 +83,9 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean isWithinTolerance() {
-		SmartDashboard.putNumber("current tolerance in inches", Util.ticksToDistance(tolerance, RobotMap.winchDiameter));
+		SmartDashboard.putNumber("current tolerance in inches", Util.ticksToDistance(RobotMap.elevatorToleranceInTicks, RobotMap.winchDiameter));
 		SmartDashboard.putNumber("isWithinTolerance closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
-		return Math.abs(m_ticksAbsolute - getTicks()) < tolerance;		//adjust tolerance
+		return Math.abs(m_ticksAbsolute - getTicks()) < RobotMap.elevatorToleranceInTicks;		//adjust tolerance
 	}
 		
 	private int getTicks() {

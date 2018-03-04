@@ -24,17 +24,20 @@ public class DrivePivot extends Command {
 	
     public DrivePivot(final double angleOffset) {
         requires(Robot.drive);
+        
         this.angleOffset = angleOffset;
         targetAngle = 0;
         initialAngle = 0;
         wasPreviouslyBrake = false;
-        setTimeout(2.0);
+        
+//        setTimeout(2.0);
     }
 
     protected void initialize() {
     	initialAngle = Robot.drive.getAngle();
     	targetAngle = initialAngle + angleOffset;
     	wasPreviouslyBrake = Robot.drive.isBrake();
+    	
     	Robot.drive.setBrake();
     }
 
@@ -43,20 +46,23 @@ public class DrivePivot extends Command {
     	final double gyroRate = Robot.drive.getGyroRate();
     	final double deltaAngle = targetAngle - currentAngle;
     	double turn = Util.limit(kp * deltaAngle + kd * gyroRate);
+    	
     	turn = Math.copySign(Math.max(Math.abs(turn), Math.abs(0.16)),turn);
-    	if(Util.isWithinTolerance(currentAngle, targetAngle, tolerance+5)) {
-    		if(Math.abs(gyroRate) < 0.05) {
-    			turn = Math.copySign(Math.abs(turn) + 0.05, turn);
-    		} else if (Math.abs(gyroRate) > 0.2) {
-    			turn = Math.copySign(Math.abs(turn) - 0.05, turn);
+    	
+    	if(Util.isWithinTolerance(currentAngle, targetAngle, tolerance + 7)) {
+    		if(Math.abs(gyroRate) < 0.025) {
+    			turn = Math.copySign(Math.abs(turn) + 0.04, turn);
+    		} else if (Math.abs(gyroRate) > 0.15) {
+    			turn = Math.copySign(Math.abs(turn) - 0.04, turn);
     		}
        	}
+    	Robot.drive.set(ControlMode.PercentOutput, turn, turn);
     }
 
     protected boolean isFinished() {
     	return Util.isWithinTolerance(Robot.drive.getAngle(), targetAngle, tolerance) && 
-    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1) || 
-    		   isTimedOut();
+    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1); /*|| 
+    		   isTimedOut(); */
     }
 
     protected void end() {

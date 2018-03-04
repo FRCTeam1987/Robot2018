@@ -73,18 +73,22 @@ public class RobotMap {
 	public static int clawCubeProx = 5;
 	public static int clawLeftLimitSwitch = 3;
 	public static int clawRightLimitSwitch = 4;
-	public static double debounceTime = 0.25;
+	public static double debounceTime = 0.15;
+	public static double strongEject = 0.9;
+	public static double weakEject = 0.75;
 		
-	//Xbox - Driver 
+	//Xbox
 	public static int driverID = 0;
 	public static int coDriverID = 1;
 	
-	//Xbox Buttons
+	//Driver buttons
 	public static int collectWideButton = 3;		//x
 	public static int ejectCubeButton = 4;			//y
 	public static int toggleShifterButton = 9;		//left stick press down
 	public static int goToScaleHeightButton = 1;	//a
 	public static int goToHomeButton = 2;			//b
+	public static int toggleDropDownOmniFrontButton = 6;	//right bumper
+	public static int toggleDropDownOmniBackButton = 5;		//left bumper
 	
 	//Co-driver buttons
 //	public static int disownedScaleButton = ;
@@ -98,6 +102,8 @@ public class RobotMap {
 	public static int elevatorFloorCubePyramidButton = 1;	//a
 	public static int adjustElevatorUpButton = 6;			//right bumper
 	public static int adjustElevatorDownButton = 5;			//left bumper
+	public static int setStrongEjectButton = 10;
+	public static int setWeakEjectButton = 9;
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7
@@ -108,8 +114,11 @@ public class RobotMap {
 	public static int disownedScaleHeight = 28;
 	public static int neutralScaleHeight = 23;
 	public static int ownedScaleHeight = 15;
-	public static int disownedWorstScaleHeight = 30;
-	public static double elevatorMiddleCubePyramidHeight = 5.25;
+	public static double climbHeight = 27.5;
+	public static double disownedWorstScaleHeight = 30.0;
 	public static double elevatorTopCubePyramidHeight = 10.5;
+	public static double elevatorMiddleCubePyramidHeight = 4.75;	//5.25
+	public static double elevatorHoldCubeHeight = 2.0;
 	public static double elevatorFloorCubePyramidHeight = 0;
+	public static int elevatorToleranceInTicks = 500;
 }

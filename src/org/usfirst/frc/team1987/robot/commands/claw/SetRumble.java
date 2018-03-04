@@ -18,8 +18,7 @@ public class SetRumble extends Command {
     }
 
     protected void initialize() {
-    	Robot.oi.getDriver().setRumble(RumbleType.kLeftRumble, m_power);
-    	Robot.oi.getDriver().setRumble(RumbleType.kRightRumble, m_power);
+    	Robot.claw.setRumble(m_power);
     }
 
     protected void execute() {

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.subsystems;
 
+import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.util.DigitalDebouncer;
 
@@ -9,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,8 +27,9 @@ public class Claw extends Subsystem {
 	private final DigitalInput cubeProx;
 	private final DigitalInput leftLimitSwitch;
 	private final DigitalInput rightLimitSwitch;
-	private DigitalDebouncer leftLimitSwitchDebouncer;	//make util file -> understand util file
+	private DigitalDebouncer leftLimitSwitchDebouncer;	
 	private DigitalDebouncer rightLimitSwitchDebouncer;
+	private boolean isStrongEject;
 	
 	public Claw() {
 		right = new WPI_TalonSRX(RobotMap.clawRight);
@@ -52,6 +55,19 @@ public class Claw extends Subsystem {
 		right.set(ControlMode.PercentOutput, rightPercent);
 	}
 	
+	public void setRumble(final double power) {
+		Robot.oi.getDriver().setRumble(RumbleType.kLeftRumble, power);
+    	Robot.oi.getDriver().setRumble(RumbleType.kRightRumble,power);
+	}
+	
+	public void setEjectSpeed(boolean isStrongEject) {
+		this.isStrongEject = isStrongEject;
+	}
+	
+	public boolean isStrongEject() {
+		return isStrongEject;
+	}
+	
 	public void open() {
 		fingers.set(Value.kForward);
 	}
@@ -62,7 +78,6 @@ public class Claw extends Subsystem {
 	
 	public void wristUp() {
 		wrist.set(Value.kForward);
-		
 	}
 	
 	public void wristDown() {
@@ -82,7 +97,6 @@ public class Claw extends Subsystem {
 			wrist.set(Value.kForward);
 			SmartDashboard.putString("Wrist Status", "Up");
 		}
-		
 	}
 	
 	public boolean isCubeNear() {

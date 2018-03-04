@@ -11,7 +11,7 @@ public class AutoCollectCubeWide extends CommandGroup {
     public AutoCollectCubeWide() {
     	addSequential(new WristDeploy());
     	addSequential(new OpenClaw());
-        addSequential(new AdjustCubeInClaw(5.0, -0.55, -0.55));
+        addSequential(new AdjustCubeInClaw(5.0, -0.7, -0.7));
         addSequential(new CloseClaw());
         addSequential(new SetClawWheelSpeed(0.0));
         addSequential(new WristStow());

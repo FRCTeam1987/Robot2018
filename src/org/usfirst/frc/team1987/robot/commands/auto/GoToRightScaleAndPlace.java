@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GoToRightScaleAndPlace extends CommandGroup {
 
 	public GoToRightScaleAndPlace() {
-		addSequential(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+		addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		addSequential(new DrivePath(AutoPaths.toFarScale));
-		addSequential(new WaitCommand(2));
-		addSequential(new GoToScaleHeight());
-		addSequential(new EjectCube());
+//		addSequential(new WaitCommand(2));
+//		addSequential(new GoToScaleHeight());
+//		addSequential(new EjectCube());
 	}
 }

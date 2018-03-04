@@ -11,14 +11,17 @@ import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
+import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
+import org.usfirst.frc.team1987.robot.commands.claw.SetEjectStrength;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
+import org.usfirst.frc.team1987.robot.commands.claw.stuff;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -61,6 +64,10 @@ public class OI {
 	private final Button elevatorMiddleCubeHeight;
 	private final Button elevatorTopCubeHeight;
 	private final Button elevatorFloorCubeHeight;
+	private final Button toggleDropDownOmniBack;
+	private final Button toggleDropDownOmniFront;	
+	private final Button setStrongEject;
+	private final Button setWeakEject;
 	
 	public OI()
 	{
@@ -104,16 +111,19 @@ public class OI {
 //		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 //		SmartDashboard.putData("Pivot 45 degrees", new PIDDrivePivot(45.0));
-//		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
-//		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
-//		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
-//		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
+		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
+		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
+		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
+		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
+		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
 //		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
 		goToHome = new JoystickButton(driver, RobotMap.goToHomeButton);
+		toggleDropDownOmniFront = new JoystickButton(driver, RobotMap.toggleDropDownOmniFrontButton);
+		toggleDropDownOmniBack = new JoystickButton(driver, RobotMap.toggleDropDownOmniBackButton);
 		
 //		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
 //		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
@@ -126,6 +136,8 @@ public class OI {
 		wristToggle = new JoystickButton(coDriver, RobotMap.wristToggleButton);		
 		adjustUp = new JoystickButton(coDriver, RobotMap.adjustElevatorUpButton);
 		adjustDown = new JoystickButton(coDriver, RobotMap.adjustElevatorDownButton);
+		setStrongEject = new JoystickButton(coDriver, RobotMap.setStrongEjectButton);
+		setWeakEject = new JoystickButton(coDriver, RobotMap.setWeakEjectButton);
 		
 		//Driver
 		eject.whenPressed(new EjectCube());
@@ -133,6 +145,8 @@ public class OI {
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
 		goToHome.whenPressed(new SetElevatorHeight(0));		
+		toggleDropDownOmniFront.whenPressed(new ToggleDropDownOmniFront());
+		toggleDropDownOmniBack.whenPressed(new ToggleDropDownOmniBack());
 		
 		//Co-driver
 //		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
@@ -146,20 +160,22 @@ public class OI {
 		wristToggle.whenPressed(new ToggleWrist());
 		adjustUp.whenPressed(new AdjustElevatorHeight(5));
 		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
+		setStrongEject.whenPressed(new SetEjectStrength(true));
+		setWeakEject.whenPressed(new SetEjectStrength(false));
 		
 		//D-pad code (experimental)
 		
-		if (driver.getPOV() == 0) {
-		} 
-		else if (driver.getPOV() == 90) {
-			new SetElevatorHeight(10);
-		}
-		else if (driver.getPOV() == 180) {
-			new SetElevatorHeight(0);
-		}
-		else if (driver.getPOV() == 270) {
-			new SetElevatorHeight(20);
-		}	
+//		if (driver.getPOV() == 0) {
+//		} 
+//		else if (driver.getPOV() == 90) {
+//			new SetElevatorHeight(10);
+//		}
+//		else if (driver.getPOV() == 180) {
+//			new SetElevatorHeight(0);
+//		}
+//		else if (driver.getPOV() == 270) {
+//			new SetElevatorHeight(20);
+//		}	
 	}
 	
 	public XboxController getDriver() {
