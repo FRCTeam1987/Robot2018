@@ -58,7 +58,7 @@ public class AutoPaths {
           new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	//Gucci
           new Waypoint(5.25, 3.6, Pathfinder.d2r(90.0)),	//Try taking the x back(same amount for the one below)
           new Waypoint(5.2, 5.3, Pathfinder.d2r(90.0)),
-          new Waypoint(5.65, 5.8, Pathfinder.d2r(-25.0)),
+          new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	//65
 
 //            new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
 //            new Waypoint(4.9, 0.0, Pathfinder.d2r(45.0)),
@@ -73,6 +73,6 @@ public class AutoPaths {
     
     public static Waypoint[] backupAScosh = new Waypoint[] {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-    		new Waypoint(0.25, 0.0, Pathfinder.d2r(0.0))
+    		new Waypoint(-0.2, 0.0, Pathfinder.d2r(0.0))
     };
 }

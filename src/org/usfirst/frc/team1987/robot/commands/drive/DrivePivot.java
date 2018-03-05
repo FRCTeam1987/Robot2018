@@ -30,7 +30,7 @@ public class DrivePivot extends Command {
         initialAngle = 0;
         wasPreviouslyBrake = false;
         
-//        setTimeout(2.0);
+        setTimeout(2.0);
     }
 
     protected void initialize() {
@@ -61,8 +61,8 @@ public class DrivePivot extends Command {
 
     protected boolean isFinished() {
     	return Util.isWithinTolerance(Robot.drive.getAngle(), targetAngle, tolerance) && 
-    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1); /*|| 
-    		   isTimedOut(); */
+    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1) || 
+    		   isTimedOut();
     }
 
     protected void end() {

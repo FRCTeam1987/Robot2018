@@ -389,22 +389,22 @@ public class Drive extends Subsystem {
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.9; // 1.2	//like 0.8
-        public static double kd = 0.4; // 0.35	//like 0.0
+        public static double kp = 0.8; // 1.2	//like 0.8 for straighish	//like 0.9 for lot-o-turns
+        public static double kd = 0.0; // 0.35	//like 0.0 for straighish	//like 0.4 for lot-o-turns
         public static double ki = 0.0;
         
         // These are used in calculating turning
-        public static double dt = 0.026;  // smaller numbers drive the robot faster through turns
-        public static double gp = 0.037;  // like 0.037 for straighterish paths	//far scale trash: 0.055
+        public static double dt = 0.026;  
+        public static double gp = 0.037;  // like 0.037 for both straighishers and lot-o-turns
         // Increasing gd more aggressively pursues the target heading
-        public static double gd = 0.0; // 0.0025	//0.025	//like 0.0 for straightisher paths	//far scale trash: 0.003
+        public static double gd = 0.0; // 0.0025	//0.025	//like 0.0 for straightisher paths and lot-o-turns
 
         //gyro logging
         public static double last_gyro_error = 0.0;
 
-        public static final double max_velocity = 3.25; // like 3.25 for straight paths	//far scale trash: 2.5
+        public static final double max_velocity = 3.25; // like 3.25 for straight paths	and lot-o-turns
         public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 1.125;  // like 1.15 for straighterish paths	//far scale trash: 0.9
+        public static final double max_acceleration = 1.15;  // like 1.15 for straighterish paths	//like 1.125 for lot-o-turns
         public static final double ka = 0.0; //0.015
         public static final double max_jerk = 7.62;
         public static final double wheel_diameter = 0.117475; //0.117475

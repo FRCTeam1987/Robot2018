@@ -64,8 +64,8 @@ public class Robot extends TimedRobot {
 //		m_chooser.addObject("dope auto and place", new GoToRightScaleAndPlace());
 //		m_chooser.addObject("s path", new DrivePath(AutoPaths.sPath));
 //		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
-//		m_chooser.addObject("Hella", new HellaLeftNearSwitchNearScale());
-		m_chooser.addObject("dope far yo", new DopeLeftFarScale());
+		m_chooser.addObject("Hella", new HellaLeftNearSwitchNearScale());
+//		m_chooser.addObject("dope far yo", new DopeLeftFarScale());
 		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}

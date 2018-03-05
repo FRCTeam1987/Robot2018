@@ -9,23 +9,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetClimbMotors extends Command {
+public class Climb extends Command {
 
-    public SetClimbMotors() {
+    public Climb() {
         requires(Robot.drive);
         requires(Robot.elevator);
+        setTimeout(1.0);
     }
 
     protected void initialize() {
-    }
-
-    protected void execute() {
-    	Robot.drive.tankDrive(0.9, 0.9);
+    	Robot.elevator.engageRatchet();
+    	Robot.drive.ptoEngage();
     	Robot.elevator.setElevatorAbsolute(RobotMap.climbHeight);
     }
 
+    protected void execute() {
+    	Robot.drive.tankDrive(0.5, 0.5); //check values
+    }
+
     protected boolean isFinished() {
-        return Util.isWithinTolerance(Robot.elevator.getDistance(), RobotMap.climbHeight, Util.ticksToDistance(RobotMap.elevatorToleranceInTicks, RobotMap.winchDiameter));
+        return Util.isWithinTolerance(Robot.elevator.getDistance(), RobotMap.climbHeight, 2) || isTimedOut(); //put 2 in RobotMap
     }
 
     protected void end() {

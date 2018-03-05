@@ -114,7 +114,8 @@ public class RobotMap {
 	public static int disownedScaleHeight = 28;
 	public static int neutralScaleHeight = 23;
 	public static int ownedScaleHeight = 15;
-	public static double climbHeight = 27.5;
+	public static double rungHeight = 26.4;
+	public static double climbHeight = 55555.0; //find out climb height
 	public static double disownedWorstScaleHeight = 30.0;
 	public static double elevatorTopCubePyramidHeight = 10.5;
 	public static double elevatorMiddleCubePyramidHeight = 4.75;	//5.25

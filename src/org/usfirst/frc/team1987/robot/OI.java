@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.Climb;
 import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
@@ -23,6 +24,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.claw.stuff;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
+import org.usfirst.frc.team1987.robot.commands.drive.DriveAScosh;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
@@ -98,7 +100,8 @@ public class OI {
 //		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
 //		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 //		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
-//		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(23.7));
+		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(RobotMap.rungHeight));
+		SmartDashboard.putData("Climb", new Climb());
 //		SmartDashboard.putData("Toggle Shifter", new ToggleShifter());
 //		SmartDashboard.putData("elevator second cube pyramid", new SetElevatorHeight(5.25));
 //		SmartDashboard.putData("elevator third cube pyramid", new SetElevatorHeight(10.5));
@@ -106,7 +109,7 @@ public class OI {
 		SmartDashboard.putData("Scale ownership: disowned", new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		SmartDashboard.putData("Scale ownership: neutral", new SetScaleOwnership(ScaleOwnership.NEUTRAL));
 		SmartDashboard.putData("Scale ownership: owned", new SetScaleOwnership(ScaleOwnership.OWNED));
-//		SmartDashboard.putData("Toggle PTO", new TogglePto());
+		SmartDashboard.putData("Toggle PTO", new TogglePto());
 //		SmartDashboard.putData("Toggle Omni Back", new ToggleDropDownOmniBack());
 //		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
@@ -115,7 +118,10 @@ public class OI {
 		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
 		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
 		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
+		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
 		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
+		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
+
 //		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	

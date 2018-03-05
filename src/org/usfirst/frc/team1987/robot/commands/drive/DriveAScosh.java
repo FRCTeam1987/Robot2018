@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveStraightForDistance extends Command {
+public class DriveAScosh extends Command {
 
-//	private final double mTargetDistance;
+	private final double mTargetDistance;
 //	private double mTargetHeading;
 //	private double mCurrentHeading;
 	
-    public DriveStraightForDistance(final double targetDistance) {
+    public DriveAScosh(final double targetDistance) {
         requires(Robot.drive);
-        setTimeout(2);
-//        mTargetDistance = targetDistance;
+        setTimeout(0.25);
+        mTargetDistance = targetDistance;
 //        mTargetHeading = 0;
         
     }
@@ -40,14 +40,16 @@ public class DriveStraightForDistance extends Command {
 //    		Robot.drive.tankDrive(.75, .9);
 //    	else if (mCurrentHeading - mTargetHeading < -1)
 //    		Robot.drive.tankDrive(.9, .75);
-    	    
-    	Robot.drive.tankDrive(.8, .8);
+    	if (mTargetDistance > 0)
+    		Robot.drive.tankDrive(.7, .7);
+    	else
+    		Robot.drive.tankDrive(-.7, -.7);
     }
 
     protected boolean isFinished() {
-//        return Math.abs(mTargetDistance) - Math.abs(Robot.drive.getLeftEncoderDistance()) < 1
-//        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1;
-    	return false;
+        return (Math.abs(mTargetDistance) - Math.abs(Robot.drive.getLeftEncoderDistance()) < 1
+        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1) || isTimedOut();
+//    	return false;
     }
 
     protected void end() {
