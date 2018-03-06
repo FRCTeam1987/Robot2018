@@ -61,9 +61,27 @@ public class AutoPaths {
     		new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	
     };
     
+    public static Waypoint[] rightStartToLeftScale = new Waypoint[] { // this path is the inverse of toFarScale
+    		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
+    		new Waypoint(5.25, -3.6, Pathfinder.d2r(-90.0)),	
+    		new Waypoint(5.25, -5.20, Pathfinder.d2r(-90.0)),
+    		new Waypoint(5.7, -5.70, Pathfinder.d2r(25.0)),	
+    };
+    
     public static Waypoint[] straightForMeterAndSome = new Waypoint[] {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(1.35, 0.0, Pathfinder.d2r(0.0))
+    };
+    
+    public static Waypoint[] straightForMeterAndSomeMore = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(1.45, 0.0, Pathfinder.d2r(0.0))
+    };
+     
+    public static Waypoint[] straightForSkosh = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(.5, 0.0, Pathfinder.d2r(0.0))
     };
     
     public static Waypoint[] backupAScosh = new Waypoint[] {

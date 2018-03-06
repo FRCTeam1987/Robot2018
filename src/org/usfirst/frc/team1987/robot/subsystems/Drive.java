@@ -389,8 +389,8 @@ public class Drive extends Subsystem {
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.8; // 1.2	//like 0.8 for straighish	//like 0.9 for lot-o-turns
-        public static double kd = 0.0; // 0.35	//like 0.0 for straighish	//like 0.4 for lot-o-turns
+        public static double kp = 0.9; // 1.2	//like 0.8 for straighish	//like 0.9 for lot-o-turns
+        public static double kd = 0.4; // 0.35	//like 0.0 for straighish	//like 0.4 for lot-o-turns
         public static double ki = 0.0;
         
         // These are used in calculating turning
@@ -404,7 +404,7 @@ public class Drive extends Subsystem {
 
         public static final double max_velocity = 3.25; // like 3.25 for straight paths	and lot-o-turns
         public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 1.15;  // like 1.15 for straighterish paths	//like 1.125 for lot-o-turns
+        public static final double max_acceleration = 1.125;  // like 1.15 for straighterish paths	//like 1.125 for lot-o-turns
         public static final double ka = 0.0; //0.015
         public static final double max_jerk = 7.62;
         public static final double wheel_diameter = 0.117475; //0.117475
