@@ -12,6 +12,7 @@ import org.usfirst.frc.team1987.robot.commands.auto.GoToLeftScaleAndPlace;
 import org.usfirst.frc.team1987.robot.commands.auto.GoToRightScaleAndPlace;
 import org.usfirst.frc.team1987.robot.commands.auto.HellaLeftNearSwitchNearScale;
 import org.usfirst.frc.team1987.robot.commands.auto.RightStartToLeftScale;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
@@ -67,8 +68,10 @@ public class Robot extends TimedRobot {
 //		m_chooser.addObject("Go to Left Scale and Place", new GoToLeftScaleAndPlace());
 //		m_chooser.addObject("Hella", new HellaLeftNearSwitchNearScale());
 //		m_chooser.addObject("dope far yo", new DopeLeftFarScale());
-		m_chooser.addObject("rightStartToLeftScale", new DrivePath(AutoPaths.rightStartToLeftScale));
-		m_chooser.addDefault("rightStartToLeftScale", new RightStartToLeftScale());
+//		m_chooser.addObject("rightStartToLeftScale", new DrivePath(AutoPaths.rightStartToLeftScale));
+//		m_chooser.addDefault("rightStartToLeftScale", new RightStartToLeftScale());
+//		m_chooser.addDefault("middleToLeftSwitchAndPlace", new MiddleToLeftScale());
+		m_chooser.addDefault("rightToRightSwitch", new RightToRightSwitch());
 		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}

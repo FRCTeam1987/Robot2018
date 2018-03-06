@@ -98,4 +98,10 @@ public class AutoPaths {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(2.734, -3.0, Pathfinder.d2r(0.0))
     };
+    
+    public static Waypoint[] rightToRightSwitch = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(4.267, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(4.57, -1.0, Pathfinder.d2r(-135.0))
+    };
 }
