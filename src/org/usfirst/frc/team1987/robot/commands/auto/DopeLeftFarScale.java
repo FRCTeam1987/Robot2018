@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class DopeLeftFarScale extends CommandGroup {
 
-    public DopeLeftFarScale() {
+    public DopeLeftFarScale() {				//NEEDS TO BE RE-TESTED - changed cube collect command
     	addSequential(new ShiftHigh());
     	addSequential(new DisableCompressor());
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));

@@ -15,10 +15,4 @@ public class EjectCube extends CommandGroup {
     	addSequential(new WaitCommand(0.5));
     	addSequential(new SetClawWheelSpeed(0.0));
     }
-    
-//    @Override
-//	protected
-//    void interrupted() {
-//    	Robot.claw.setWheels(0, 0);
-//    }
 }

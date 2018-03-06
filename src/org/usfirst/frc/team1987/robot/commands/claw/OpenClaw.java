@@ -17,5 +17,4 @@ public class OpenClaw extends InstantCommand {
     protected void initialize() {
     	Robot.claw.open();
     }
-
 }

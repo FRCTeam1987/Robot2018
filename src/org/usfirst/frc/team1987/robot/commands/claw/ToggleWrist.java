@@ -14,9 +14,7 @@ public class ToggleWrist extends InstantCommand {
         requires(Robot.claw);
     }
 
-    // Called once when the command executes
     protected void initialize() {
     	Robot.claw.toggleWrist();
     }
-
 }

@@ -48,22 +48,17 @@ public class AutoPaths {
     };
 
     public static Waypoint[] toNearScale = new Waypoint[] {
-    	new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),	
-    	new Waypoint(5.25, 0.0, Pathfinder.d2r(0.0)),
-    	new Waypoint(6.4, 0.5, Pathfinder.d2r(60))
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),	
+    		new Waypoint(5.25, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(6.4, 0.5, Pathfinder.d2r(60))
     };
     
     public static Waypoint[] toFarScale = new Waypoint[] { // this path is tuned and works properly
-          new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
-          new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	//Gucci
-          new Waypoint(5.25, 3.6, Pathfinder.d2r(90.0)),	//Try taking the x back(same amount for the one below)
-          new Waypoint(5.2, 5.3, Pathfinder.d2r(90.0)),
-          new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	//65
-
-//            new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
-//            new Waypoint(4.9, 0.0, Pathfinder.d2r(45.0)),
-//            new Waypoint(4.9, 4.0, Pathfinder.d2r(90.0)),
-//            new Waypoint(6.702, 4.57, Pathfinder.d2r(0.0)),
+    		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
+    		new Waypoint(5.25, 3.6, Pathfinder.d2r(90.0)),	
+    		new Waypoint(5.2, 5.3, Pathfinder.d2r(90.0)),
+    		new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	
     };
     
     public static Waypoint[] straightForMeterAndSome = new Waypoint[] {
@@ -74,5 +69,15 @@ public class AutoPaths {
     public static Waypoint[] backupAScosh = new Waypoint[] {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(-0.2, 0.0, Pathfinder.d2r(0.0))
+    };
+    
+    public static Waypoint[] rightSwitchFromMiddle = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(2.734, -3.0, Pathfinder.d2r(0.0))
+    };
+    
+    public static Waypoint[] leftSwitchFromMiddle = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(2.734, -3.0, Pathfinder.d2r(0.0))
     };
 }

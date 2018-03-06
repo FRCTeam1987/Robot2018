@@ -14,9 +14,7 @@ public class ToggleDropDownOmniFront extends InstantCommand {
         requires(Robot.drive);
     }
 
-    // Called once when the command executes
     protected void initialize() {
         Robot.drive.dropDownOmniFrontToggle();
     }
-
 }

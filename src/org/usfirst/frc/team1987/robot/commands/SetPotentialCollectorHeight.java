@@ -15,12 +15,9 @@ public class SetPotentialCollectorHeight extends InstantCommand {
     public SetPotentialCollectorHeight(CollectorHeight collectorHeight) {
         super();
         m_collectorHeight = collectorHeight;
-        
     }
 
-    // Called once when the command executes
     protected void initialize() {
     	Robot.setCollectorHeight(m_collectorHeight);
     }
-
 }

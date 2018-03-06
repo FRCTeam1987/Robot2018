@@ -122,7 +122,7 @@ public class OI {
 		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
 		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
 
-//		
+		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);

@@ -17,5 +17,4 @@ public class ShiftLow extends InstantCommand {
     protected void initialize() {
     	Robot.drive.setLowGear();
     }
-
 }

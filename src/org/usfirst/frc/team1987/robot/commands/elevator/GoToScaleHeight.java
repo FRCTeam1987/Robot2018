@@ -13,7 +13,7 @@ public class GoToScaleHeight extends Command {
 
     public GoToScaleHeight() {
         requires(Robot.elevator);
-        setTimeout(1.0);	//1.0
+        setTimeout(1.0);	
     }
 
     protected void initialize() {

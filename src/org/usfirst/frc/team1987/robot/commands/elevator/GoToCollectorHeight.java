@@ -16,7 +16,6 @@ public class GoToCollectorHeight extends Command {
         setTimeout(1.0);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     	final CollectorHeight collectorHeight = Robot.getCollectorHeight();
     	switch(collectorHeight) {
