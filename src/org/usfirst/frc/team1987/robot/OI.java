@@ -39,6 +39,7 @@ import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.ToggleRatchet;
+import org.usfirst.frc.team1987.util.XboxDPad;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -73,6 +74,9 @@ public class OI {
 	private final Button toggleDropDownOmniFront;	
 	private final Button setStrongEject;
 	private final Button setWeakEject;
+	private final XboxDPad setScaleDisowned;
+	private final XboxDPad setScaleNeutral;
+	private final XboxDPad setScaleOwned;
 	
 	public OI()
 	{
@@ -147,6 +151,9 @@ public class OI {
 		adjustDown = new JoystickButton(coDriver, RobotMap.adjustElevatorDownButton);
 		setStrongEject = new JoystickButton(coDriver, RobotMap.setStrongEjectButton);
 		setWeakEject = new JoystickButton(coDriver, RobotMap.setWeakEjectButton);
+		setScaleDisowned = new XboxDPad(coDriver, XboxDPad.Direction.Up);
+		setScaleNeutral = new XboxDPad(coDriver, XboxDPad.Direction.Right);
+		setScaleOwned = new XboxDPad(coDriver, XboxDPad.Direction.Down);
 		
 		//Driver
 		eject.whenPressed(new EjectCube());
@@ -171,6 +178,9 @@ public class OI {
 		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
 		setStrongEject.whenPressed(new SetEjectStrength(true));
 		setWeakEject.whenPressed(new SetEjectStrength(false));
+		setScaleDisowned.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+		setScaleNeutral.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+		setScaleOwned.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
 		
 		//D-pad code (experimental)
 		
