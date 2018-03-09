@@ -17,7 +17,7 @@ public class LeftToLeftScale extends CommandGroup {
 
     public LeftToLeftScale() {
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-    	addSequential(new DrivePath(AutoPaths.toNearScale));
+    	addSequential(new DrivePath(AutoPaths.leftToLeftScale));
     	addSequential(new GoToScaleHeight());
         addSequential(new EjectAndJiggle());
         addSequential(new SetElevatorHeight(0));

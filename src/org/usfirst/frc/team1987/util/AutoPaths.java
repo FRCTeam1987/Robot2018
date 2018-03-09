@@ -47,13 +47,13 @@ public class AutoPaths {
     		new Waypoint(6.4, 1.4, Pathfinder.d2r(0))
     };
 
-    public static Waypoint[] toNearScale = new Waypoint[] {
+    public static Waypoint[] leftToLeftScale = new Waypoint[] {		//was toNearScale
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),	
     		new Waypoint(5.25, 0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(6.4, 0.5, Pathfinder.d2r(60))
     };
     
-    public static Waypoint[] toFarScale = new Waypoint[] { // this path is tuned and works properly
+    public static Waypoint[] leftToRightScale = new Waypoint[] { // this path is tuned and works properly		//was toFarScale
     		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
     		new Waypoint(5.25, 3.6, Pathfinder.d2r(90.0)),	
@@ -61,7 +61,7 @@ public class AutoPaths {
     		new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	
     };
     
-    public static Waypoint[] rightStartToLeftScale = new Waypoint[] { // this path is the inverse of toFarScale
+    public static Waypoint[] rightToLeftScale = new Waypoint[] { // this path is the inverse of toFarScale	//was rightStartToLeftScale
     		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
     		new Waypoint(5.25, -3.6, Pathfinder.d2r(-90.0)),	

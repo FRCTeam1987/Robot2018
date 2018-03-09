@@ -20,7 +20,7 @@ public class RightToLeftScale extends CommandGroup {
     	addSequential(new ShiftHigh());
     	addSequential(new DisableCompressor());
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-    	addSequential(new DrivePath(AutoPaths.rightStartToLeftScale));
+    	addSequential(new DrivePath(AutoPaths.rightToLeftScale));
     	addSequential(new GoToScaleHeight());
     	addSequential(new EjectAndJiggle());
     }
