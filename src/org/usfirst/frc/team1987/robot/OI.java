@@ -74,6 +74,7 @@ public class OI {
 	private final Button toggleDropDownOmniFront;	
 	private final Button setStrongEject;
 	private final Button setWeakEject;
+	private final XboxDPad setScaleDisownedWorst;
 	private final XboxDPad setScaleDisowned;
 	private final XboxDPad setScaleNeutral;
 	private final XboxDPad setScaleOwned;
@@ -153,6 +154,7 @@ public class OI {
 		setWeakEject = new JoystickButton(coDriver, RobotMap.setWeakEjectButton);
 		setScaleDisowned = new XboxDPad(coDriver, XboxDPad.Direction.Up);
 		setScaleNeutral = new XboxDPad(coDriver, XboxDPad.Direction.Right);
+		setScaleDisownedWorst = new XboxDPad(coDriver, XboxDPad.Direction.Left);
 		setScaleOwned = new XboxDPad(coDriver, XboxDPad.Direction.Down);
 		
 		//Driver
@@ -178,23 +180,10 @@ public class OI {
 		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
 		setStrongEject.whenPressed(new SetEjectStrength(true));
 		setWeakEject.whenPressed(new SetEjectStrength(false));
+		setScaleDisownedWorst.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
 		setScaleDisowned.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		setScaleNeutral.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
 		setScaleOwned.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
-		
-		//D-pad code (experimental)
-		
-//		if (driver.getPOV() == 0) {
-//		} 
-//		else if (driver.getPOV() == 90) {
-//			new SetElevatorHeight(10);
-//		}
-//		else if (driver.getPOV() == 180) {
-//			new SetElevatorHeight(0);
-//		}
-//		else if (driver.getPOV() == 270) {
-//			new SetElevatorHeight(20);
-//		}	
 	}
 	
 	public XboxController getDriver() {

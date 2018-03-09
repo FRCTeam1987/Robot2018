@@ -75,7 +75,7 @@ public class RobotMap {
 	public static int clawRightLimitSwitch = 4;
 	public static double debounceTime = 0.15;
 	public static double strongEject = 0.9;
-	public static double weakEject = 0.75;
+	public static double weakEject = 0.6;
 		
 	//Xbox
 	public static int driverID = 0;
@@ -102,8 +102,8 @@ public class RobotMap {
 	public static int elevatorFloorCubePyramidButton = 1;	//a
 	public static int adjustElevatorUpButton = 6;			//right bumper
 	public static int adjustElevatorDownButton = 5;			//left bumper
-	public static int setStrongEjectButton = 10;
-	public static int setWeakEjectButton = 9;
+	public static int setStrongEjectButton = 10;			//right stick press down
+	public static int setWeakEjectButton = 9;				//left stick press down
 	
 	//Elevator 
 	public static int elevatorID = 7;	///was 7
