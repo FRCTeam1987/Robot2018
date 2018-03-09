@@ -7,11 +7,11 @@
 
 package org.usfirst.frc.team1987.robot;
 
-import org.usfirst.frc.team1987.robot.commands.auto.DopeLeftFarScale;
+import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScaleRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.GoToLeftScaleAndPlace;
-import org.usfirst.frc.team1987.robot.commands.auto.GoToRightScaleAndPlace;
-import org.usfirst.frc.team1987.robot.commands.auto.HellaLeftNearSwitchNearScale;
-import org.usfirst.frc.team1987.robot.commands.auto.RightStartToLeftScale;
+import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScale;
+import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScale;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleLeftSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;

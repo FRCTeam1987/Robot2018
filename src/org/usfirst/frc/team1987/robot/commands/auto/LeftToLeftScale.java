@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class HellaLeftNearSwitchNearScale extends CommandGroup {
+public class LeftToLeftScale extends CommandGroup {
 
-    public HellaLeftNearSwitchNearScale() {
+    public LeftToLeftScale() {
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
     	addSequential(new DrivePath(AutoPaths.toNearScale));
     	addSequential(new GoToScaleHeight());

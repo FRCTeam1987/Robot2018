@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class GoToRightScaleAndPlace extends CommandGroup {
+public class LeftToRightScale extends CommandGroup {
 
-	public GoToRightScaleAndPlace() {
+	public LeftToRightScale() {
 		addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		addSequential(new DrivePath(AutoPaths.toFarScale));
 //		addSequential(new WaitCommand(2));

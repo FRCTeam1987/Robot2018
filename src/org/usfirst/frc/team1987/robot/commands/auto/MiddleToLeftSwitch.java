@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class MiddleToRightSwitchAndPlace extends CommandGroup {
+public class MiddleToLeftSwitch extends CommandGroup {
 
-    public MiddleToRightSwitchAndPlace() {
-    	addSequential(new DisableCompressor());
-    	addSequential(new DrivePath(AutoPaths.rightSwitchFromMiddle));
-    	addSequential(new EjectCube());
-    	addSequential(new EnableCompressor());
+    public MiddleToLeftSwitch() {
+//    	addSequential(new DisableCompressor());
+    	addSequential(new DrivePath(AutoPaths.leftSwitchFromMiddle));
+//    	addSequential(new EjectCube());
+//    	addSequential(new EnableCompressor());
     }
 }
