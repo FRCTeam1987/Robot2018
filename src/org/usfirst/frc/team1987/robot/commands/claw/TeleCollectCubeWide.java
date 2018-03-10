@@ -19,7 +19,7 @@ public class TeleCollectCubeWide extends CommandGroup {
     public TeleCollectCubeWide() {
         addSequential(new GoToCollectorHeight());
     	addSequential(new WristDeploy());
-        addSequential(new AdjustCubeInClaw(5.0, -0.7, -0.7));
+        addSequential(new AdjustCubeInClaw(5.0, -1.0, -1.0));
         addSequential(new SetRumble(1.0));
         addSequential(new CloseClaw());
         addSequential(new SetClawWheelSpeed(0.0));

@@ -21,6 +21,8 @@ import org.usfirst.frc.team1987.robot.commands.claw.SetClawWheelSpeed;
 import org.usfirst.frc.team1987.robot.commands.claw.SetEjectStrength;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleEjectCube;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleopEjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
@@ -158,7 +160,7 @@ public class OI {
 		setScaleOwned = new XboxDPad(coDriver, XboxDPad.Direction.Down);
 		
 		//Driver
-		eject.whenPressed(new EjectCube());
+		eject.whenPressed(new TeleopEjectCube());
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());

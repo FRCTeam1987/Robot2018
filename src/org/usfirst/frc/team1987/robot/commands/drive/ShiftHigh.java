@@ -15,6 +15,8 @@ public class ShiftHigh extends InstantCommand {
     }
 
     protected void initialize() {
+    	Robot.drive.dropDownOmniBackRaise();
+    	Robot.drive.dropDownOmniFrontRaise();
     	Robot.drive.setHighGear();
     }
 
