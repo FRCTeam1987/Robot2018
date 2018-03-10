@@ -402,9 +402,9 @@ public class Drive extends Subsystem {
         //gyro logging
         public static double last_gyro_error = 0.0;
 
-        public static final double max_velocity = 3.4; // like 3.25 for straight paths	and lot-o-turns
+        public static final double max_velocity = 3.4; // like 3.4 for straight paths	and lot-o-turns
         public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 1.4;  // like 1.15 for straighterish paths	//like 1.125 or 1.2(double check) for lot-o-turns
+        public static final double max_acceleration = 1.4;  // like 1.4 for straighterish paths	//like 1.125 or 1.2(double check) for lot-o-turns
         public static final double ka = 0.0; //0.015
         public static final double max_jerk = 7.62;
         public static final double wheel_diameter = 0.117475; //0.117475
