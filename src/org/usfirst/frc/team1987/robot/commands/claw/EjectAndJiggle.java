@@ -29,7 +29,7 @@ public class EjectAndJiggle extends Command {
     protected void execute() {
     	if(hasStartedEjecting == false && Timer.getFPGATimestamp() - initialTime > startEjectWait) {
     		hasStartedEjecting = true;
-    		Robot.claw.setWheels(0.9, 0.9);
+    		Robot.claw.setWheels(0.8, 0.8);
     	}
     }
 

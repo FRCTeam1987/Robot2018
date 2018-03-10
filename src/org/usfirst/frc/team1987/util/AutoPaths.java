@@ -66,7 +66,7 @@ public class AutoPaths {
     		new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
     		new Waypoint(5.25, -3.6, Pathfinder.d2r(-90.0)),	
     		new Waypoint(5.25, -5.20, Pathfinder.d2r(-90.0)),
-    		new Waypoint(5.7, -5.70, Pathfinder.d2r(25.0)),	
+    		new Waypoint(5.7, -5.675, Pathfinder.d2r(25.0)),	
     };
     
     public static Waypoint[] straightForMeterAndSome = new Waypoint[] {
@@ -82,6 +82,11 @@ public class AutoPaths {
     public static Waypoint[] straightForSkosh = new Waypoint[] {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
     		new Waypoint(.5, 0.0, Pathfinder.d2r(0.0))
+    };
+    
+    public static Waypoint[] straightForLessThanSkosh = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(.3, 0.0, Pathfinder.d2r(0.0))
     };
     
     public static Waypoint[] backupAScosh = new Waypoint[] {

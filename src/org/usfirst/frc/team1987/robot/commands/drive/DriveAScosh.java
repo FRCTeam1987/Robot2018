@@ -16,7 +16,7 @@ public class DriveAScosh extends Command {
 	
     public DriveAScosh(final double targetDistance) {
         requires(Robot.drive);
-        setTimeout(0.25);
+        setTimeout(0.15);		//was .25
         mTargetDistance = targetDistance;
 //        mTargetHeading = 0;
         

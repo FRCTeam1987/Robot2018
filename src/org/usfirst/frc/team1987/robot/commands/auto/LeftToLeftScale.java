@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
+import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
+import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
@@ -16,10 +18,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftToLeftScale extends CommandGroup {
 
     public LeftToLeftScale() {
+    	addSequential(new DisableCompressor());
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
     	addSequential(new DrivePath(AutoPaths.leftToLeftScale));
     	addSequential(new GoToScaleHeight());
         addSequential(new EjectAndJiggle());
         addSequential(new SetElevatorHeight(0));
+        addSequential(new EnableCompressor());
     }
 }

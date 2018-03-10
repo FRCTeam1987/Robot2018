@@ -12,8 +12,10 @@ import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniBack;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
+import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeightInstant;
 import org.usfirst.frc.team1987.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -30,15 +32,15 @@ public class RightToLeftScaleLeftSwitch extends CommandGroup {
 		addSequential(new DrivePath(AutoPaths.rightToLeftScale));
 		addSequential(new GoToScaleHeight());
 		addSequential(new EjectAndJiggle());
-        addSequential(new SetElevatorHeight(0));
+		addSequential(new SetElevatorHeightInstant(0));			
         addSequential(new ShiftLow());
         addSequential(new DrivePivot(132));
         addSequential(new ShiftHigh());
         addParallel(new AutoCollectCubeWide());
         addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore));
-        addSequential(new DriveAScosh(-10));
-        addParallel(new DrivePath(AutoPaths.straightForSkosh));
+        addParallel(new DriveAScosh(-10));						
         addSequential(new SetElevatorHeight(12.0));
+        addSequential(new DriveAScosh(10));						//TODO: change to a drive straight for a distance
         addSequential(new EjectCube());
         addSequential(new EnableCompressor());
     }
