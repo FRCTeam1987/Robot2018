@@ -29,6 +29,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.claw.stuff;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveAScosh;
+import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -88,8 +89,8 @@ public class OI {
 		
 //		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
 //		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
-		SmartDashboard.putData("Enable compressor", new EnableCompressor());
-		SmartDashboard.putData("Disable compressor", new DisableCompressor());
+//		SmartDashboard.putData("Enable compressor", new EnableCompressor());
+//		SmartDashboard.putData("Disable compressor", new DisableCompressor());
 //		SmartDashboard.putData("Collect Cube Narrow", new CollectCubeNarrow());
 //		SmartDashboard.putData("Collect Cube Wide", new CollectCubeWide());
 //		SmartDashboard.putData("Eject Cube", new EjectCube());
@@ -124,14 +125,20 @@ public class OI {
 //		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 //		SmartDashboard.putData("Pivot 45 degrees", new PIDDrivePivot(45.0));
-		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
-		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
-		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
-		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
-		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
-		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
-		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
-		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
+//		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
+//		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
+//		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
+//		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
+//		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
+//		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
+//		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
+//		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
+//		SmartDashboard.putData("drive distance 24", new DriveDistance(24));
+//		SmartDashboard.putData("drive distance 12", new DriveDistance(12));
+		SmartDashboard.putData("drive distance 6", new DriveDistance(6));
+		SmartDashboard.putData("drive distance -10", new DriveDistance(-10));
+//		SmartDashboard.putData("drive distance -24", new DriveDistance(-24));
+		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
 
 		
 

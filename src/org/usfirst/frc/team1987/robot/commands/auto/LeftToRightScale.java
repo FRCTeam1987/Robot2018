@@ -18,7 +18,7 @@ public class LeftToRightScale extends CommandGroup {
 		addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		addSequential(new DrivePath(AutoPaths.leftToRightScale));
 //		addSequential(new WaitCommand(2));
-//		addSequential(new GoToScaleHeight());
-//		addSequential(new EjectCube());
+		addSequential(new GoToScaleHeight());
+		addSequential(new EjectCube());
 	}
 }

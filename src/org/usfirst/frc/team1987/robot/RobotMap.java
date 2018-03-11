@@ -56,10 +56,10 @@ public class RobotMap {
 	public static double drivePivotLowI = 0.0;
 	public static double drivePivotLowD = 0.0;
 	
-	public static double driveStraightHighP = 0.0;
+	public static double driveStraightHighP = 1.0;
 	public static double driveStraightHighI = 0.0;
 	public static double driveStraightHighD = 0.0;
-	public static double driveStraightLowP = 0.0;
+	public static double driveStraightLowP = 0.7;
 	public static double driveStraightLowI = 0.0;
 	public static double driveStraightLowD = 0.0;
 

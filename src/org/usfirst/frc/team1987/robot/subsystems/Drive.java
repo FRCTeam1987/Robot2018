@@ -154,7 +154,7 @@ public class Drive extends Subsystem {
 		shifter.set(Value.kReverse);
 	}
 	
-	private boolean isHighGear() {
+	public boolean isHighGear() {
 		return shifter.get() == Value.kForward;
 	}
 	
@@ -302,10 +302,12 @@ public class Drive extends Subsystem {
 				break;
 			case STRAIGHT:
 				if (isHighGear()) {
+					System.out.println("setting high pid values");
 					m_P = RobotMap.driveStraightHighP;
 					m_I = RobotMap.driveStraightHighI;
 					m_D = RobotMap.driveStraightHighD;
 				} else {
+					System.out.println("setting low pid values");
 					m_P = RobotMap.driveStraightLowP;
 					m_I = RobotMap.driveStraightLowI;
 					m_D = RobotMap.driveStraightLowD;
@@ -315,6 +317,7 @@ public class Drive extends Subsystem {
 				return;	
 		}
 		
+		System.out.println("setting pid");
 		leftMaster.config_kP(RobotMap.drivePIDIDX, m_P, RobotMap.defaultTimeout);
 		leftMaster.config_kI(RobotMap.drivePIDIDX, m_I, RobotMap.defaultTimeout);
 		leftMaster.config_kD(RobotMap.drivePIDIDX, m_D, RobotMap.defaultTimeout);

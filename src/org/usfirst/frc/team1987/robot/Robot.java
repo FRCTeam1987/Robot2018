@@ -17,6 +17,7 @@ import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleLeftSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleLeftSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
+import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
@@ -81,11 +82,11 @@ public class Robot extends TimedRobot {
 //		m_chooser.addDefault("left to right scale and switch", new LeftToRightScaleRightSwitch());
 //		m_chooser.addDefault("left to left scale and place", new LeftToLeftScale());
 //		m_chooser.addDefault("left 2 left scale and place", new GoToLeftScaleAndPlace());
-//		m_chooser.addDefault("left to left scale left switch", new LeftToLeftScaleLeftSwitch());
+		m_chooser.addDefault("left to left scale left switch", new LeftToLeftScaleLeftSwitch());
 //		m_chooser.addDefault("Middle to Left Switch", new MiddleToLeftSwitch());
 //		m_chooser.addDefault("Middle to Right Switch", new MiddleToRightSwitch());
 //		m_chooser.addDefault("left scale to right switch", new DrivePath(AutoPaths.leftScaleToRightSwitch));
-		m_chooser.addDefault("left to left scale to right switch", new LeftToLeftScaleRightSwitch());
+//		m_chooser.addDefault("left to left scale to right switch", new LeftToLeftScaleRightSwitch());
 		
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}

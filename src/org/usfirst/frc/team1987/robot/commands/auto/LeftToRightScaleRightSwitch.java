@@ -9,6 +9,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveAScosh;
+import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -39,9 +40,9 @@ public class LeftToRightScaleRightSwitch extends CommandGroup {
         addSequential(new ShiftHigh());
         addParallel(new AutoCollectCubeWide());
         addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore));
-        addParallel(new DriveAScosh(-10));						
+        addParallel(new DriveDistance(-10));						
         addSequential(new SetElevatorHeight(12.0));				
-        addSequential(new DriveAScosh(10));						//TODO: Change to a drive straight for a distance
+        addSequential(new DriveDistance(10));						//TODO: Change to a drive straight for a distance
         addSequential(new EjectCube());
         addSequential(new EnableCompressor());
     }

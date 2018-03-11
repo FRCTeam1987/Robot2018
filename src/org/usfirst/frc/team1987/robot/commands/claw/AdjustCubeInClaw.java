@@ -31,10 +31,10 @@ public class AdjustCubeInClaw extends Command {
 		}
 		
 		if (Robot.claw.isRightLimitSwitchTriggered() && !Robot.claw.isLeftLimitSwitchTriggered()) {
-			Robot.claw.setWheels(m_leftPercent, 0.25 * -m_rightPercent);
+			Robot.claw.setWheels(m_leftPercent, 0.1 * -m_rightPercent);
 		}
 		else if(Robot.claw.isLeftLimitSwitchTriggered() && !Robot.claw.isRightLimitSwitchTriggered()) {
-			Robot.claw.setWheels(0.25 * -m_leftPercent, m_rightPercent);
+			Robot.claw.setWheels(0.1 * -m_leftPercent, m_rightPercent);
 		}
 		else {
 	    	Robot.claw.setWheels(m_leftPercent, m_rightPercent);

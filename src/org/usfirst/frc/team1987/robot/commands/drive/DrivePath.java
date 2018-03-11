@@ -26,10 +26,15 @@ public class DrivePath extends Command {
 
 	private final EncoderFollower leftFollower;
 	private final EncoderFollower rightFollower;
+	private boolean isBrake;
+	private boolean isHighGear;
 	
 	public DrivePath(final Waypoint[] path) {
         requires(Robot.drive);
 
+        isBrake = false;
+        isHighGear = true;       
+        
 		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
 		this.leftFollower = followers[0];
 		this.rightFollower = followers[1];
@@ -81,6 +86,7 @@ public class DrivePath extends Command {
 	protected void initialize() {
         Robot.drive.zeroDriveEncoders();
     	Robot.drive.ahrsReset();
+    	
     	leftFollower.reset();
 //    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
 //    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
@@ -102,10 +108,16 @@ public class DrivePath extends Command {
 
     protected void end() {
     	Robot.drive.tankDrive(0, 0);
+    	
+    	if(!isBrake)
+    		Robot.drive.setCoast();
+    	
+    	if(isHighGear)
+    		Robot.drive.setHighGear();
     }
 
     protected void interrupted() {
-    	Robot.drive.tankDrive(0, 0);
+    	end();
     }
     
 //    private double calculateTurnEasing(final double headingDifference) {
