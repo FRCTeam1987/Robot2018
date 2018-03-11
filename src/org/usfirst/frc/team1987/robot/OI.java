@@ -110,16 +110,16 @@ public class OI {
 //		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
 //		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 //		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
-		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(RobotMap.rungHeight));
-		SmartDashboard.putData("Climb", new Climb());
+//		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(RobotMap.rungHeight));
+//		SmartDashboard.putData("Climb", new Climb());
 //		SmartDashboard.putData("Toggle Shifter", new ToggleShifter());
 //		SmartDashboard.putData("elevator second cube pyramid", new SetElevatorHeight(5.25));
 //		SmartDashboard.putData("elevator third cube pyramid", new SetElevatorHeight(10.5));
-		SmartDashboard.putData("Scale ownership: disowned w/ cube", new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
-		SmartDashboard.putData("Scale ownership: disowned", new SetScaleOwnership(ScaleOwnership.DISOWNED));
-		SmartDashboard.putData("Scale ownership: neutral", new SetScaleOwnership(ScaleOwnership.NEUTRAL));
-		SmartDashboard.putData("Scale ownership: owned", new SetScaleOwnership(ScaleOwnership.OWNED));
-		SmartDashboard.putData("Toggle PTO", new TogglePto());
+//		SmartDashboard.putData("Scale ownership: disowned w/ cube", new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
+//		SmartDashboard.putData("Scale ownership: disowned", new SetScaleOwnership(ScaleOwnership.DISOWNED));
+//		SmartDashboard.putData("Scale ownership: neutral", new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+//		SmartDashboard.putData("Scale ownership: owned", new SetScaleOwnership(ScaleOwnership.OWNED));
+//		SmartDashboard.putData("Toggle PTO", new TogglePto());
 //		SmartDashboard.putData("Toggle Omni Back", new ToggleDropDownOmniBack());
 //		SmartDashboard.putData("Toggle Omni Front", new ToggleDropDownOmniFront());
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
@@ -129,8 +129,11 @@ public class OI {
 		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
 		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
 		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
+		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
 		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
 		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
+
+		
 
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y

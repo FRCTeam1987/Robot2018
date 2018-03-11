@@ -10,35 +10,34 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AdjustCubeInClaw extends Command {
 	
-	private double m_timeout;
 	private double m_rightPercent;
 	private double m_leftPercent;
 	
     public AdjustCubeInClaw(final double timeout, final double rightPercent, final double leftPercent) {
        requires(Robot.claw);
-       m_timeout = timeout;
+//       setTimeout(timeout);
        m_rightPercent = rightPercent;
        m_leftPercent = leftPercent;
     }
 
     protected void initialize() {
-    	setTimeout(m_timeout);
     	Robot.claw.setWheels(m_leftPercent, m_rightPercent);
     }
 
     protected void execute() {
-    	if (Robot.claw.isCubeNear()) {	//try with open claw in else
-    		Robot.claw.close();
-    	}
-    	
-    	if (Robot.claw.isRightLimitSwitchTriggered() && !Robot.claw.isLeftLimitSwitchTriggered()) {
-    		Robot.claw.setWheels(m_leftPercent, 0.5 * -m_rightPercent);
-    	}
-    	else if(Robot.claw.isLeftLimitSwitchTriggered() && !Robot.claw.isRightLimitSwitchTriggered()) {
-    		Robot.claw.setWheels(0.5 * -m_leftPercent, m_rightPercent);
-    	}
-    	else {
-        	Robot.claw.setWheels(m_leftPercent, m_rightPercent);
+		if (Robot.claw.isCubeNear()) {	//try with open claw in else
+			Robot.claw.close();
+			System.out.println("Fingers Closed");
+		}
+		
+		if (Robot.claw.isRightLimitSwitchTriggered() && !Robot.claw.isLeftLimitSwitchTriggered()) {
+			Robot.claw.setWheels(m_leftPercent, 0.25 * -m_rightPercent);
+		}
+		else if(Robot.claw.isLeftLimitSwitchTriggered() && !Robot.claw.isRightLimitSwitchTriggered()) {
+			Robot.claw.setWheels(0.25 * -m_leftPercent, m_rightPercent);
+		}
+		else {
+	    	Robot.claw.setWheels(m_leftPercent, m_rightPercent);
     	}
     }
 
@@ -48,9 +47,11 @@ public class AdjustCubeInClaw extends Command {
 
     protected void end() {
     	Robot.claw.setWheels(0.0, 0.0);
+    	Robot.claw.close();
     }
 
     protected void interrupted() {
-    	Robot.claw.setWheels(0.0, 0.0);
+    	System.out.println("Interrupted!");
+    	end();
     }
 }

@@ -2,6 +2,8 @@ package org.usfirst.frc.team1987.robot.commands.drive;
 
 import org.usfirst.frc.team1987.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,7 +18,7 @@ public class DriveAScosh extends Command {
 	
     public DriveAScosh(final double targetDistance) {
         requires(Robot.drive);
-        setTimeout(0.15);		//was .25
+//        setTimeout(0.15);		//was .25
         mTargetDistance = targetDistance;
 //        mTargetHeading = 0;
         
@@ -41,14 +43,16 @@ public class DriveAScosh extends Command {
 //    	else if (mCurrentHeading - mTargetHeading < -1)
 //    		Robot.drive.tankDrive(.9, .75);
     	if (mTargetDistance > 0)
-    		Robot.drive.tankDrive(.7, .7);
+    		Robot.drive.set(ControlMode.PercentOutput, 0.7, -0.7);
+//    		Robot.drive.tankDrive(.7, .7);
     	else
-    		Robot.drive.tankDrive(-.7, -.7);
+    		Robot.drive.set(ControlMode.PercentOutput, -0.7, 0.7);
+//    		Robot.drive.tankDrive(-.7, -.7);
     }
 
     protected boolean isFinished() {
         return (Math.abs(mTargetDistance) - Math.abs(Robot.drive.getLeftEncoderDistance()) < 1
-        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1) || isTimedOut();
+        		&& Math.abs(mTargetDistance) - Math.abs(Robot.drive.getRightEncoderDistance()) < 1); // || isTimedOut();
 //    	return false;
     }
 
