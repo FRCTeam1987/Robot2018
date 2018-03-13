@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -120,11 +119,11 @@ public class Claw extends Subsystem {
 	}
 	
 	public void periodic() {
-		SmartDashboard.putBoolean("has cube far", isCubeNear());
+		SmartDashboard.putBoolean("Claw - near", isCubeNear());
 		leftLimitSwitchDebouncer.periodic(getLeftLimitSwitch());
 		rightLimitSwitchDebouncer.periodic(getRightLimitSwitch());
-		SmartDashboard.putBoolean("left limit switch w/ debounce", isLeftLimitSwitchTriggered());
-		SmartDashboard.putBoolean("right limit switch w/ debounce", isRightLimitSwitchTriggered());
+		SmartDashboard.putBoolean("Claw - left", isLeftLimitSwitchTriggered());
+		SmartDashboard.putBoolean("Claw - right", isRightLimitSwitchTriggered());
 	}
 	
     public void initDefaultCommand() {

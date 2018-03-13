@@ -3,7 +3,6 @@ package org.usfirst.frc.team1987.robot.commands.claw;
 import org.usfirst.frc.team1987.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,7 +14,6 @@ public class AdjustCubeInClaw extends Command {
 	
     public AdjustCubeInClaw(final double timeout, final double rightPercent, final double leftPercent) {
        requires(Robot.claw);
-//       setTimeout(timeout);
        m_rightPercent = rightPercent;
        m_leftPercent = leftPercent;
     }

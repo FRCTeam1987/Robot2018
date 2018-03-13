@@ -4,7 +4,6 @@ import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
-import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.util.Util;
 
 import com.ctre.phoenix.ErrorCode;
@@ -24,17 +23,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
-import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Solenoid;
-//
-//enum DriveMode {
-//	PIVOT,
-//	STRAIGHT,
-//	TRAJECTORY
-//}
 
 /**
  *
@@ -171,11 +163,11 @@ public class Drive extends Subsystem {
 		}		
 	}
 	
-	private double getRightPercentOutput() {
+	public double getRightPercentOutput() {
 		return Robot.drive.rightMaster.getMotorOutputPercent();
 	}
 	
-	private double getLeftPercentOutput() {
+	public double getLeftPercentOutput() {
 		return Robot.drive.leftMaster.getMotorOutputPercent();
 	}
 	
@@ -384,11 +376,11 @@ public class Drive extends Subsystem {
     }
     
     public void periodic() {
-    	SmartDashboard.putNumber("left inches", getLeftEncoderDistance());
-    	SmartDashboard.putNumber("right inches", getRightEncoderDistance());  	
-    	SmartDashboard.putNumber("heading", getHeading());
-    	SmartDashboard.putNumber("left-percent", leftMaster.get());
-    	SmartDashboard.putNumber("right-percent", rightMaster.get());
+    	SmartDashboard.putNumber("Drive - left", getLeftEncoderDistance());
+    	SmartDashboard.putNumber("Drive - right", getRightEncoderDistance());  	
+    	SmartDashboard.putNumber("Drive - Heading", getHeading());
+//    	SmartDashboard.putNumber("left-percent", leftMaster.get());
+//    	SmartDashboard.putNumber("right-percent", rightMaster.get());
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS

@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftToLeftScale extends CommandGroup {
+public class RightToRightScale extends CommandGroup { // UNTESTED
 
-    public LeftToLeftScale() {
-    	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-    	addSequential(new DrivePath(AutoPaths.leftToLeftScale));
-    	addSequential(new GoToScaleHeight());
+    public RightToRightScale() {
+        addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+        addSequential(new DrivePath(AutoPaths.rightToRightScale));
+        addSequential(new GoToScaleHeight());
         addSequential(new EjectAndJiggle());
         addSequential(new SetElevatorHeight(0));
     }

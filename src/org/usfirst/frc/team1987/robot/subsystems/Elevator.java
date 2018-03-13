@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.util.Util;
 
@@ -25,7 +24,6 @@ public class Elevator extends Subsystem {
 	private final WPI_TalonSRX winchMotor;
 	private final DigitalInput homeSensor;
 	private final Solenoid ratchet;
-	private final double homeInches = 0;		//values need to changed eventually, also move to constructor
 	private final double minInches = -2.5;
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
 	private final double maxInches = 30.875;
@@ -143,8 +141,8 @@ public class Elevator extends Subsystem {
     public void periodic() {    	
 //    	SmartDashboard.putNumber("Current ticks", getTicks());
 //    	SmartDashboard.putNumber("Current inches", getDistance());
-    	SmartDashboard.putNumber("Theoretical inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
-    	SmartDashboard.putBoolean("home sensor", isAtHome());
+    	SmartDashboard.putNumber("Elevator - Inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
+    	SmartDashboard.putBoolean("Elevator - Home", isAtHome());
 //    	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
 //    	SmartDashboard.putNumber("POV Status", Robot.oi.getDriver().getPOV());
     	

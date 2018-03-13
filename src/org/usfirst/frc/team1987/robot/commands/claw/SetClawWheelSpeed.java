@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.claw;
 
 import org.usfirst.frc.team1987.robot.Robot;
-import org.usfirst.frc.team1987.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 

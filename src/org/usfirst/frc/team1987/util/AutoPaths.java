@@ -3,11 +3,9 @@ package org.usfirst.frc.team1987.util;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Waypoint;
 
-import java.nio.file.Path;
-
 public class AutoPaths {
 
-    private static final double drivetrainLength = 0.79375;
+//    private static final double drivetrainLength = 0.79375;
 
     public static Waypoint[] toSwitch = new Waypoint[] {
     		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
@@ -53,6 +51,13 @@ public class AutoPaths {
 			new Waypoint(6.4, 0.5, Pathfinder.d2r(60))
     };
     
+    public static Waypoint[] leftToLeftSwitch = new Waypoint[] {
+			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(2.0, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(3.0, 1.1, Pathfinder.d2r(90.0)),
+			new Waypoint(3.0, 1.25, Pathfinder.d2r(90.0))
+    };
+    
     public static Waypoint[] leftScaleToRightSwitch = new Waypoint[] {
 			new Waypoint(0.0 ,0.0,Pathfinder.d2r(0.0)),
 			new Waypoint(0.95, 0.0,Pathfinder.d2r(0.0)),
@@ -67,6 +72,22 @@ public class AutoPaths {
 			new Waypoint(5.2, 5.3, Pathfinder.d2r(90.0)),
 			new Waypoint(5.59, 5.8, Pathfinder.d2r(-25.0)),	
     };
+    
+//    public static Waypoint[] leftToRightSwitch = new Waypoint[] { // TODO: make this path
+//			new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+//			new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
+//			new Waypoint(5.25, 3.1, Pathfinder.d2r(90.0)),	
+////			new Waypoint(4.7, 3.6, Pathfinder.d2r(135.0)),
+////			new Waypoint(4.8, 3.7, Pathfinder.d2r(135.0)),	
+//    };
+    
+//    public static Waypoint[] rightToLeftSwitch = new Waypoint[] { // TODO: make this path
+//			new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+//			new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
+//			new Waypoint(5.25, 3.1, Pathfinder.d2r(-90.0)),	
+////			new Waypoint(4.7, 3.6, Pathfinder.d2r(-135.0)),
+////			new Waypoint(4.8, 3.7, Pathfinder.d2r(-135.0)),	
+//    };
     
     public static Waypoint[] rightToLeftScale = new Waypoint[] { // this path is the inverse of toFarScale	//was rightStartToLeftScale
     		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
@@ -113,7 +134,13 @@ public class AutoPaths {
     
     public static Waypoint[] rightToRightSwitch = new Waypoint[] {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-			new Waypoint(4.267, 0.0, Pathfinder.d2r(0.0)),
-			new Waypoint(4.57, -1.0, Pathfinder.d2r(-135.0))
+			new Waypoint(2.0, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(3.0, -1.25, Pathfinder.d2r(-70.0))
+    };
+    
+    public static Waypoint[] rightToRightScale = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),	
+			new Waypoint(5.25, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(6.3, -0.5, Pathfinder.d2r(-60))
     };
 }

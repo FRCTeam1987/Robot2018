@@ -1,10 +1,8 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
 import org.usfirst.frc.team1987.robot.RobotMap;
-import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
+import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
-import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
-import org.usfirst.frc.team1987.robot.commands.drive.ShiftLow;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeightInstant;
 import org.usfirst.frc.team1987.util.AutoPaths;
 
@@ -13,12 +11,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class MiddleToLeftSwitch extends CommandGroup {
+public class LeftToLeftSwitch extends CommandGroup {
 
-    public MiddleToLeftSwitch() {
-    	addSequential(new ShiftLow());
+    public LeftToLeftSwitch() {
     	addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));
-    	addSequential(new DrivePath(AutoPaths.leftSwitchFromMiddle));
-    	addSequential(new EjectAndJiggle());
+        addSequential(new DrivePath(AutoPaths.leftToLeftSwitch));
+        addSequential(new EjectCube());
     }
 }

@@ -1,8 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.drive;
 
-import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.Robot;
-import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.util.Util;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;

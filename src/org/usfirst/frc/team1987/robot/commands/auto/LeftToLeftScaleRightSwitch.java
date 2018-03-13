@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
-import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -20,6 +19,5 @@ public class LeftToLeftScaleRightSwitch extends CommandGroup {
        addSequential(new DrivePivot(100));
        addSequential(new ShiftHigh());
        addSequential(new DrivePath(AutoPaths.leftScaleToRightSwitch));
-       addSequential(new DisableCompressor());
     }
 }

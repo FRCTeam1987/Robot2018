@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1987.util;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DigitalDebouncer {
 

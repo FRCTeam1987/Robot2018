@@ -7,22 +7,22 @@
 
 package org.usfirst.frc.team1987.robot;
 
-import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScaleRightSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.MiddleToLeftSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScale;
-import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScale;
-import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScale;
-import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleLeftSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleRightSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleLeftSwitch;
-import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
-import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
-import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
+//import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScaleRightSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.MiddleToLeftSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScale;
+//import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScale;
+//import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScale;
+//import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleLeftSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.LeftToLeftScaleRightSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleLeftSwitch;
+//import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
+//import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
+//import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.subsystems.Claw;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
 import org.usfirst.frc.team1987.robot.subsystems.Elevator;
-import org.usfirst.frc.team1987.util.AutoPaths;
+//import org.usfirst.frc.team1987.util.AutoPaths;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,6 +47,7 @@ public class Robot extends TimedRobot {
 	public static final Claw claw = new Claw();
 	public static final Elevator elevator = new Elevator();
 	public static OI oi;
+	public static final AutonomousChooser autonomousChooser = new AutonomousChooser();
 	
 	private static ScaleOwnership scaleOwnership;
 	private static CollectorHeight collectorHeight;
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		setCollectorHeight(CollectorHeight.FLOOR);
 		setScaleOwnership(ScaleOwnership.NEUTRAL);
+		autonomousChooser.onRobotInit();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 //		m_chooser.addObject("toScale", new DrivePath(AutoPaths.toScale));
 //		m_chooser.addObject("toScaleSwoop", new DrivePath(AutoPaths.toScaleSwoop));
@@ -82,13 +84,13 @@ public class Robot extends TimedRobot {
 //		m_chooser.addDefault("left to right scale and switch", new LeftToRightScaleRightSwitch());
 //		m_chooser.addDefault("left to left scale and place", new LeftToLeftScale());
 //		m_chooser.addDefault("left 2 left scale and place", new GoToLeftScaleAndPlace());
-		m_chooser.addDefault("left to left scale left switch", new LeftToLeftScaleLeftSwitch());
+//		m_chooser.addDefault("left to left scale left switch", new LeftToLeftScaleLeftSwitch());
 //		m_chooser.addDefault("Middle to Left Switch", new MiddleToLeftSwitch());
 //		m_chooser.addDefault("Middle to Right Switch", new MiddleToRightSwitch());
 //		m_chooser.addDefault("left scale to right switch", new DrivePath(AutoPaths.leftScaleToRightSwitch));
 //		m_chooser.addDefault("left to left scale to right switch", new LeftToLeftScaleRightSwitch());
 		
-		SmartDashboard.putData("Auto mode", m_chooser);
+//		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
 	/**
@@ -119,8 +121,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		drive.setLowGear();
-		m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = autonomousChooser.get();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -133,6 +134,8 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
+		compressor.setClosedLoopControl(false);
+		compressor.stop();
 	}
 
 	/**
@@ -140,6 +143,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		if(m_autonomousCommand == null) {
+			m_autonomousCommand = autonomousChooser.get();
+			return;
+		}
 		Scheduler.getInstance().run();
 	}
 

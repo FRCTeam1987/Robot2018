@@ -10,10 +10,10 @@ import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
 
-import com.ctre.phoenix.ErrorCode;
+//import com.ctre.phoenix.ErrorCode;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
@@ -43,7 +43,7 @@ public class DrivePath extends Command {
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
 		String hash = WaypointsHash(path);
 		File cacheFile = new File(cacheFilename(hash));
-		if (false)/*(cacheFile.exists())*/ {
+		if(cacheFile.exists()) {
 			// load the trajectory from the cache
 			System.out.println("Reading cached trajectory");
 			return Pathfinder.readFromFile(cacheFile);
@@ -88,12 +88,7 @@ public class DrivePath extends Command {
     	Robot.drive.ahrsReset();
     	
     	leftFollower.reset();
-//    	leftFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
-//    	leftFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
-//    	
     	rightFollower.reset();
-//    	rightFollower.configureEncoder(Robot.drive.getLeftRawEncoderPosition(), (int)RobotMap.ticksPerRotation, RobotMap.wheelDiameter);
-//    	rightFollower.configurePIDVA(RobotMap.drivePathP, RobotMap.drivePathI, RobotMap.drivePathD, RobotMap.drivePathV, RobotMap.drivePathA);
 
         Robot.drive.pathFollow(leftFollower, rightFollower, false);
     }
@@ -119,10 +114,5 @@ public class DrivePath extends Command {
     protected void interrupted() {
     	end();
     }
-    
-//    private double calculateTurnEasing(final double headingDifference) {
-//    	final double headingP = 0.85;
-//    	final double headingScalar = -1.0 / 70.0;
-//    	return headingP * headingScalar * headingDifference;
-//    }
+
 }
