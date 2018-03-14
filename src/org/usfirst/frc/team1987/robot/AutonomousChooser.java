@@ -174,7 +174,7 @@ public class AutonomousChooser {
 					.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Right Switch")
+				new AutonomousContainer.Builder("Right To Right Scale Right Switch")
 					.withStartingPosition(StartingPosition.Right)
 					.withMode(AutonomousMode.Both)
 					.withSwitchPosition(OwnedSide.RIGHT)
@@ -197,7 +197,6 @@ public class AutonomousChooser {
 			possibleAutos = autonomousCommandList.stream()
 				.filter(auto -> startingPositionChooser.getSelected().equals(auto.getStartingPosition()) &&
 					startingPositionChooser.getSelected().equals(StartingPosition.Middle) == false)
-				.filter(auto -> auto.getMode() == AutonomousMode.Scale || auto.getMode() == AutonomousMode.Switch)
 				.filter(auto -> (
 					auto.getSwitchPosition() == MatchData.OwnedSide.LEFT &&
 					auto.getStartingPosition() == StartingPosition.Left
@@ -205,8 +204,8 @@ public class AutonomousChooser {
 					auto.getSwitchPosition() == MatchData.OwnedSide.RIGHT &&
 					auto.getStartingPosition() == StartingPosition.Right
 				) || (
-					auto.getSwitchPosition() == MatchData.OwnedSide.UNKNOWN &&
-					auto.getMode() != AutonomousMode.Switch
+					(auto.getStartingPosition() == StartingPosition.Left && auto.getSwitchPosition() != MatchData.OwnedSide.RIGHT) ||
+					(auto.getStartingPosition() == StartingPosition.Right && auto.getSwitchPosition() != MatchData.OwnedSide.LEFT)
 				))
 				.filter(auto -> (
 					auto.getScalePosition() == MatchData.OwnedSide.LEFT &&
@@ -215,8 +214,8 @@ public class AutonomousChooser {
 					auto.getScalePosition() == MatchData.OwnedSide.RIGHT &&
 					auto.getStartingPosition() == StartingPosition.Right
 				) || (
-					auto.getScalePosition() == MatchData.OwnedSide.UNKNOWN &&
-					auto.getMode() != AutonomousMode.Scale
+					(auto.getStartingPosition() == StartingPosition.Left && auto.getScalePosition() != MatchData.OwnedSide.RIGHT) ||
+					(auto.getStartingPosition() == StartingPosition.Right && auto.getScalePosition() != MatchData.OwnedSide.LEFT)
 				))
 				.collect(Collectors.toList());
 		} else {

@@ -136,6 +136,8 @@ public class Robot extends TimedRobot {
 		}
 		compressor.setClosedLoopControl(false);
 		compressor.stop();
+		
+//		ToggleDropDownOmniBack();
 	}
 
 	/**
@@ -145,7 +147,9 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 		if(m_autonomousCommand == null) {
 			m_autonomousCommand = autonomousChooser.get();
-			return;
+			if(m_autonomousCommand != null) {
+				m_autonomousCommand.start();
+			}
 		}
 		Scheduler.getInstance().run();
 	}

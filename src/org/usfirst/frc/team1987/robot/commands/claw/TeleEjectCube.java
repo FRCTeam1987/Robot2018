@@ -16,10 +16,14 @@ public class TeleEjectCube extends Command {
     }
 
     protected void initialize() {
-    	if(Robot.claw.isStrongEject() == false)
+    	if(Robot.claw.isStrongEject() == false) {
+    		System.out.println("weak eject");
     		Robot.claw.setWheels(RobotMap.weakEject, RobotMap.weakEject);
-    	else
+    	}
+    	else {
+    		System.out.println("strong eject");
     		Robot.claw.setWheels(RobotMap.strongEject, RobotMap.strongEject);
+    	}
     }
     
     protected void execute() {

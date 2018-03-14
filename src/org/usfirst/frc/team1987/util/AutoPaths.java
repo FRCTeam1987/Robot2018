@@ -106,6 +106,11 @@ public class AutoPaths {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
 			new Waypoint(1.45, 0.0, Pathfinder.d2r(0.0))
     };
+    
+    public static Waypoint[] straightForMeterAndASkosh = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(1.2, 0.0, Pathfinder.d2r(0.0))
+    };
      
     public static Waypoint[] straightForSkosh = new Waypoint[] {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
@@ -124,12 +129,12 @@ public class AutoPaths {
     
     public static Waypoint[] rightSwitchFromMiddle = new Waypoint[] {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-			new Waypoint(2.6, 1.4, Pathfinder.d2r(0.0))
+			new Waypoint(2.8, 1.4, Pathfinder.d2r(0.0))	//was 2.6
     };
     
     public static Waypoint[] leftSwitchFromMiddle = new Waypoint[] {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-			new Waypoint(2.6, -1.5, Pathfinder.d2r(0.0))
+			new Waypoint(2.9, -1.5, Pathfinder.d2r(0.0))	//was 2.6
     };
     
     public static Waypoint[] rightToRightSwitch = new Waypoint[] {

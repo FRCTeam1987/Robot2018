@@ -119,7 +119,7 @@ public class RobotMap {
 	public static double disownedWorstScaleHeight = 30.0;
 	public static double elevatorTopCubePyramidHeight = 10.5;
 	public static double elevatorMiddleCubePyramidHeight = 4.75;	//5.25
-	public static double elevatorHoldCubeHeight = 2.0;
+	public static double elevatorHoldCubeHeight = 4.0;
 	public static double elevatorFloorCubePyramidHeight = 0;
 	public static int elevatorToleranceInTicks = 500;
 }

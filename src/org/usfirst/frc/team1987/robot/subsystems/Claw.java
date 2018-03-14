@@ -124,6 +124,7 @@ public class Claw extends Subsystem {
 		rightLimitSwitchDebouncer.periodic(getRightLimitSwitch());
 		SmartDashboard.putBoolean("Claw - left", isLeftLimitSwitchTriggered());
 		SmartDashboard.putBoolean("Claw - right", isRightLimitSwitchTriggered());
+		SmartDashboard.putBoolean("Eject strength", isStrongEject());
 	}
 	
     public void initDefaultCommand() {

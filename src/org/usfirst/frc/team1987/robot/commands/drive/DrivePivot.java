@@ -15,10 +15,12 @@ public class DrivePivot extends Command {
 	private final double angleOffset;
 	private double initialAngle;
 	private double targetAngle;
-	private boolean wasPreviouslyBrake;
+//	private boolean wasPreviouslyBrake;
 	private final double tolerance = 1.0;
 	private final double kp = 0.02;
 	private final double kd = 0.025;
+	private boolean isBrake;
+	private boolean isHighGear;
 	
     public DrivePivot(final double angleOffset) {
         requires(Robot.drive);
@@ -26,7 +28,9 @@ public class DrivePivot extends Command {
         this.angleOffset = angleOffset;
         targetAngle = 0;
         initialAngle = 0;
-        wasPreviouslyBrake = false;
+//        wasPreviouslyBrake = false;
+        isBrake = false;
+        isHighGear = true;
         
         setTimeout(2.0);
     }
@@ -34,9 +38,11 @@ public class DrivePivot extends Command {
     protected void initialize() {
     	initialAngle = Robot.drive.getAngle();
     	targetAngle = initialAngle + angleOffset;
-    	wasPreviouslyBrake = Robot.drive.isBrake();
+//    	wasPreviouslyBrake = Robot.drive.isBrake();
+    	isBrake = Robot.drive.isBrake();
+        isHighGear = Robot.drive.isHighGear();
     	
-    	Robot.drive.setBrake();
+//    	Robot.drive.setBrake();
     }
 
     protected void execute() {
@@ -65,9 +71,14 @@ public class DrivePivot extends Command {
 
     protected void end() {
     	Robot.drive.set(ControlMode.PercentOutput, 0.0, 0.0);
-    	if(!wasPreviouslyBrake) {
+//    	if(!wasPreviouslyBrake) {
+//    		Robot.drive.setCoast();
+//    	}
+    	if(!isBrake)
     		Robot.drive.setCoast();
-    	}
+    	
+    	if(isHighGear)
+    		Robot.drive.setHighGear();
     }
 
     protected void interrupted() {
