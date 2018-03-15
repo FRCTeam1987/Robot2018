@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
@@ -26,14 +27,14 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class RightToRightScale2x extends CommandGroup {
 
     public RightToRightScale2x() {
-    	addSequential(new ToggleDropDownOmniBack());
         addSequential(new RightToRightScale());
         addSequential(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
         addSequential(new ShiftLow());
         addSequential(new DrivePivot(-112));
         addSequential(new ShiftHigh());
         addParallel(new AutoCollectCubeWide());
-        addSequential(new DrivePath(AutoPaths.straightForMeterAndASkosh));	//changed this
+    	System.out.println("straightForMeterAndASkosh");
+        addSequential(new DrivePath(AutoPaths.straightForMeterAndASkosh, DriveMode.DRIVEPATHSTRAIGHT));	//changed this
         addSequential(new WaitCommand(0.075));
         addSequential(new DriveDistance(-3));
         addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));

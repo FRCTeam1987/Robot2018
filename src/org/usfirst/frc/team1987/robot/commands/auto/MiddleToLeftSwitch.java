@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
@@ -18,7 +19,8 @@ public class MiddleToLeftSwitch extends CommandGroup {
     public MiddleToLeftSwitch() {
     	addSequential(new ShiftLow());
     	addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));
-    	addSequential(new DrivePath(AutoPaths.leftSwitchFromMiddle));
+    	System.out.println("left switch from middle");
+    	addSequential(new DrivePath(AutoPaths.leftSwitchFromMiddle, DriveMode.DRIVEPATHLOW));
     	addSequential(new EjectAndJiggle());
     }
 }

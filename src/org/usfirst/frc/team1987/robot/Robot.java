@@ -133,6 +133,8 @@ public class Robot extends TimedRobot {
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
+		} else {
+			System.out.println("Game Data not found at autonomousInit()");
 		}
 		compressor.setClosedLoopControl(false);
 		compressor.stop();
@@ -149,6 +151,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand = autonomousChooser.get();
 			if(m_autonomousCommand != null) {
 				m_autonomousCommand.start();
+				System.out.println("Game Data found in autonomousPeriodic()");
 			}
 		}
 		Scheduler.getInstance().run();

@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.drive.MyClimb;
+import org.usfirst.frc.team1987.robot.commands.PrepClimb;
 //import org.usfirst.frc.team1987.robot.commands.Climb;
 //import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
 //import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
@@ -77,6 +79,8 @@ public class OI {
 	private final Button toggleDropDownOmniFront;	
 	private final Button setStrongEject;
 	private final Button setWeakEject;
+	private final Button myClimb;
+	private final Button prepClimb;
 	private final XboxDPad setScaleDisownedWorst;
 	private final XboxDPad setScaleDisowned;
 	private final XboxDPad setScaleNeutral;
@@ -150,6 +154,8 @@ public class OI {
 		goToHome = new JoystickButton(driver, RobotMap.goToHomeButton);
 		toggleDropDownOmniFront = new JoystickButton(driver, RobotMap.toggleDropDownOmniFrontButton);
 		toggleDropDownOmniBack = new JoystickButton(driver, RobotMap.toggleDropDownOmniBackButton);
+		myClimb = new JoystickButton(driver, RobotMap.myClimbButton);
+		prepClimb = new JoystickButton(driver, RobotMap.prepClimbButton);
 		
 //		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
 //		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
@@ -177,6 +183,8 @@ public class OI {
 		goToHome.whenPressed(new SetElevatorHeight(0));		
 		toggleDropDownOmniFront.whenPressed(new ToggleDropDownOmniFront());
 		toggleDropDownOmniBack.whenPressed(new ToggleDropDownOmniBack());
+		myClimb.whenPressed(new MyClimb());
+		prepClimb.whenPressed(new PrepClimb());
 		
 		//Co-driver
 //		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));

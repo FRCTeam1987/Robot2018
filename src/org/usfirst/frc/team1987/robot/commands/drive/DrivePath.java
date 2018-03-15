@@ -6,9 +6,11 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.xml.bind.DatatypeConverter;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.subsystems.Drive;
+import org.usfirst.frc.team1987.util.DriveProfile;
 
 //import com.ctre.phoenix.ErrorCode;
 
@@ -28,8 +30,10 @@ public class DrivePath extends Command {
 	private final EncoderFollower rightFollower;
 	private boolean isBrake;
 	private boolean isHighGear;
+	private DriveProfile driveProfile;
+	private final DriveMode driveMode;
 	
-	public DrivePath(final Waypoint[] path) {
+	public DrivePath(final Waypoint[] path, final DriveMode driveMode) {
         requires(Robot.drive);
 
         isBrake = false;
@@ -38,6 +42,15 @@ public class DrivePath extends Command {
 		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
 		this.leftFollower = followers[0];
 		this.rightFollower = followers[1];
+		
+		this.driveMode = driveMode;
+		System.out.println("=======================");
+		System.out.println("=======================");
+		System.out.println("=======================");
+		System.out.println(this.driveMode);
+		System.out.println("=======================");
+		System.out.println("=======================");
+		System.out.println("=======================");
 	}
 	
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
@@ -50,9 +63,34 @@ public class DrivePath extends Command {
 		}
 		else {
 			// this path isn't cached - generate it first
+			System.out.println("Creating new trajectory...");
+			if(this.driveMode == DriveMode.DRIVEPATHLOW) {
+				Drive.DrivetrainProfiling.setProfile(Drive.low);
+				System.out.println("drive profile low");
+			}
+			else if(this.driveMode == DriveMode.DRIVEPATHSTRAIGHT) {
+				Drive.DrivetrainProfiling.setProfile(Drive.straight);
+				System.out.println("drive profile straight");
+			}
+			else if(this.driveMode == DriveMode.DRIVEPATHTURNS) {
+				Drive.DrivetrainProfiling.setProfile(Drive.turns);
+				System.out.println("drive profile turns");
+			} //else {
+//				System.out.println("=======================");
+//				System.out.println("=======================");
+//				System.out.println("=======================");
+//				System.out.println("did not find drive profile: " + this.driveMode);
+//				System.out.println("=======================");
+//				System.out.println("=======================");
+//				System.out.println("=======================");
+//			}
+			
+			System.out.println("profile max acceleration: " + Drive.DrivetrainProfiling.max_acceleration);
+			
 	        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
-	                RobotMap.period, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
-//	        		Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+//	                RobotMap.period, driveProfile.getMaxVelocity(), driveProfile.getMaxAcceleration(), driveProfile.getMaxJerk());
+	        		Drive.DrivetrainProfiling.dt, Drive.DrivetrainProfiling.max_velocity, Drive.DrivetrainProfiling.max_acceleration, Drive.DrivetrainProfiling.max_jerk);
+	        
 	        Trajectory toFollow = Pathfinder.generate(path, cfg);
 	        
 	        // Cache the trajectory for next time
@@ -109,9 +147,12 @@ public class DrivePath extends Command {
     	
     	if(isHighGear)
     		Robot.drive.setHighGear();
+    	
+    	System.out.println("Drive Path ended!");
     }
 
     protected void interrupted() {
+    	System.out.println("Drive Path interrupted!");
     	end();
     }
 

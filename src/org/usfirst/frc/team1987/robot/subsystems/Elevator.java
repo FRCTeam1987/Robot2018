@@ -122,6 +122,18 @@ public class Elevator extends Subsystem {
 		setElevatorAbsolute(inchesAbsolute);
 	}
 	
+	public void set(final ControlMode controlMode, final double value) {
+		winchMotor.set(controlMode, value);
+	}
+	
+	public void setCoast() {
+		winchMotor.setNeutralMode(NeutralMode.Coast);
+	}
+	
+	public void setBrake() {
+		winchMotor.setNeutralMode(NeutralMode.Brake);
+	}
+	
 	public void disengageRatchet() {
 		ratchet.set(false);
 	}

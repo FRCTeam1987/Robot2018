@@ -59,9 +59,46 @@ public class RobotMap {
 	public static double driveStraightHighP = 1.0;
 	public static double driveStraightHighI = 0.0;
 	public static double driveStraightHighD = 0.0;
-	public static double driveStraightLowP = 0.7;
+	public static double driveStraightLowP = 1.0;
 	public static double driveStraightLowI = 0.0;
 	public static double driveStraightLowD = 0.0;
+	
+	public static double drivePathLowKP = 1.2;
+	public static double drivePathLowKD = 0.0;	//check this
+	public static double drivePathLowKI = 0.0;
+	public static double drivePathLowDT = RobotMap.period;
+	public static double drivePathLowGP = 0.04;
+	public static double drivePathLowGD = 0.0;
+	public static double drivePathLowMaxVelocity = 2.0;
+	public static double drivePathLowKV = 1.0 / drivePathLowMaxVelocity;
+	public static double drivePathLowMaxAcceleration = 2.0;
+	public static double drivePathLowKA = 0.0;
+	public static double drivePathLowMaxJerk = 7.62;
+	
+	public static double drivePathStraightKP = 0.8;
+	public static double drivePathStraightKD = 0.0;
+	public static double drivePathStraightKI = 0.0;
+	public static double drivePathStraightDT = RobotMap.period;
+	public static double drivePathStraightGP = 0.037;
+	public static double drivePathStraightGD = 0.0;
+	public static double drivePathStraightMaxVelocity = 3.4;
+	public static double drivePathStraightKV = 1.0 / drivePathStraightMaxVelocity;
+	public static double drivePathStraightMaxAcceleration = 1.4;
+	public static double drivePathStraightKA = 0.0;
+	public static double drivePathStraightMaxJerk = 7.62;
+	
+	public static double drivePathTurnsKP = 0.9;
+	public static double drivePathTurnsKD = 0.4;
+	public static double drivePathTurnsKI = 0.0;
+	public static double drivePathTurnsDT = RobotMap.period;
+	public static double drivePathTurnsGP = 0.037;
+	public static double drivePathTurnsGD = 0.0;
+	public static double drivePathTurnsMaxVelocity = 3.4;
+	public static double drivePathTurnsKV = 1.0 / drivePathTurnsMaxVelocity;
+	public static double drivePathTurnsMaxAcceleration = 1.2;
+	public static double drivePathTurnsKA = 0.0;
+	public static double drivePathTurnsMaxJerk = 7.62;
+
 
 	// Claw
 	public static int clawRight = 8;
@@ -89,6 +126,8 @@ public class RobotMap {
 	public static int goToHomeButton = 2;			//b
 	public static int toggleDropDownOmniFrontButton = 6;	//right bumper
 	public static int toggleDropDownOmniBackButton = 5;		//left bumper
+	public static int myClimbButton = 8;			//start
+	public static int prepClimbButton = 7;			//back
 	
 	//Co-driver buttons
 //	public static int disownedScaleButton = ;
@@ -114,7 +153,7 @@ public class RobotMap {
 	public static int disownedScaleHeight = 28;
 	public static int neutralScaleHeight = 23;
 	public static int ownedScaleHeight = 15;
-	public static double rungHeight = 26.4;
+	public static double rungHeight = 26.0;
 	public static double climbHeight = 55555.0; //find out climb height
 	public static double disownedWorstScaleHeight = 30.0;
 	public static double elevatorTopCubePyramidHeight = 10.5;

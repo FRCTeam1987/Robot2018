@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
@@ -20,7 +21,8 @@ public class RightToLeftScale extends CommandGroup {
     public RightToLeftScale() {
     	addSequential(new ShiftHigh());
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-    	addSequential(new DrivePath(AutoPaths.rightToLeftScale));
+    	System.out.println("Right To Left Scale");
+    	addSequential(new DrivePath(AutoPaths.rightToLeftScale, DriveMode.DRIVEPATHTURNS));
     	addSequential(new GoToScaleHeight());
     	addSequential(new EjectAndJiggle());
     	addSequential(new SetElevatorHeightInstant(0));

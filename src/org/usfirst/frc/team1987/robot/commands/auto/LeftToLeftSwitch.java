@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
@@ -15,7 +16,8 @@ public class LeftToLeftSwitch extends CommandGroup {
 
     public LeftToLeftSwitch() {
     	addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));
-        addSequential(new DrivePath(AutoPaths.leftToLeftSwitch));
+    	System.out.println("left to left scale");
+        addSequential(new DrivePath(AutoPaths.leftToLeftSwitch, DriveMode.DRIVEPATHSTRAIGHT));
         addSequential(new EjectCube());
     }
 }

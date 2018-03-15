@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
@@ -25,7 +26,8 @@ public class LeftToRightScaleRightSwitch extends CommandGroup {
     public LeftToRightScaleRightSwitch() {			
     	addSequential(new ShiftHigh());
     	addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-		addSequential(new DrivePath(AutoPaths.leftToRightScale));
+    	System.out.println("left to right scale");
+		addSequential(new DrivePath(AutoPaths.leftToRightScale, DriveMode.DRIVEPATHTURNS));
 		addSequential(new GoToScaleHeight());
 		addSequential(new EjectAndJiggle());
 		addSequential(new SetElevatorHeightInstant(0));			
@@ -33,7 +35,8 @@ public class LeftToRightScaleRightSwitch extends CommandGroup {
         addSequential(new DrivePivot(-127));		
         addSequential(new ShiftHigh());
         addParallel(new AutoCollectCubeWide());
-        addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore));
+    	System.out.println("straightForMeterAndSomeMore");
+        addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));
         addParallel(new DriveDistance(-10));						
         addSequential(new SetElevatorHeight(12.0));				
         addSequential(new DriveDistance(10));

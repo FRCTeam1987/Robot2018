@@ -2,6 +2,8 @@ package org.usfirst.frc.team1987.robot.commands;
 
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniBack;
+import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniFront;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

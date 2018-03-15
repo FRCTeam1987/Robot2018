@@ -4,6 +4,7 @@ import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.Robot;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.drive.TeleopDrive;
+import org.usfirst.frc.team1987.util.DriveProfile;
 import org.usfirst.frc.team1987.util.Util;
 
 import com.ctre.phoenix.ErrorCode;
@@ -46,6 +47,9 @@ public class Drive extends Subsystem {
 	private final Solenoid dropDownOmniFront;
 	private final AHRS ahrs;
 	private boolean isBrake;
+	public static DriveProfile low = new DriveProfile(RobotMap.drivePathLowKP, RobotMap.drivePathLowKD, RobotMap.drivePathLowKI, RobotMap.drivePathLowDT, RobotMap.drivePathLowGP, RobotMap.drivePathLowGD, RobotMap.drivePathLowMaxVelocity, RobotMap.drivePathLowKV, RobotMap.drivePathLowMaxAcceleration, RobotMap.drivePathLowKA, RobotMap.drivePathLowMaxJerk);;
+	public static DriveProfile straight = new DriveProfile(RobotMap.drivePathStraightKP, RobotMap.drivePathStraightKD, RobotMap.drivePathStraightKI, RobotMap.drivePathStraightDT, RobotMap.drivePathStraightGP, RobotMap.drivePathStraightGD, RobotMap.drivePathStraightMaxVelocity, RobotMap.drivePathStraightKV, RobotMap.drivePathStraightMaxAcceleration, RobotMap.drivePathStraightKA, RobotMap.drivePathStraightMaxJerk);
+	public static DriveProfile turns = new DriveProfile(RobotMap.drivePathTurnsKP, RobotMap.drivePathTurnsKD, RobotMap.drivePathTurnsKI, RobotMap.drivePathTurnsDT, RobotMap.drivePathTurnsGP, RobotMap.drivePathTurnsGD, RobotMap.drivePathTurnsMaxVelocity, RobotMap.drivePathTurnsKV, RobotMap.drivePathTurnsMaxAcceleration, RobotMap.drivePathTurnsKA, RobotMap.drivePathTurnsMaxJerk);
 	
 	public Drive() {
 		ahrs = new AHRS(SPI.Port.kMXP);
@@ -384,27 +388,27 @@ public class Drive extends Subsystem {
     }
     public static class DrivetrainProfiling {
         //TODO: TUNE CONSTANTS
-        public static double kp = 0.8;	//low gear autos are 1.2	//like 0.8 for straighish	//like 0.9 for lot-o-turns
-        public static double kd = 0.0; //low gear autos are	// 0.35	//like 0.0 for straighish and low gear	//like 0.4 for lot-o-turns
+        public static double kp = 0.9;	//low gear autos are 1.2	//like 0.8 for straighish	//like 0.9 for lot-o-turns
+        public static double kd = 0.4; //low gear autos are	// 0.35	//like 0.0 for straighish and low gear	//like 0.4 for lot-o-turns
         public static double ki = 0.0;
         
         // These are used in calculating turning
-        public static double dt = 0.026;  
-        public static double gp = 0.04;	//low gear is .04	// like 0.037 for both straighishers and lot-o-turns
+        public static double dt = RobotMap.period;  
+        public static double gp = 0.037;	//low gear is .04	// like 0.037 for both straighishers and lot-o-turns
         // Increasing gd more aggressively pursues the target heading
         public static double gd = 0.0;	//low gear is 0.0	// 0.0025	//0.025	//like 0.0 for straightisher paths and lot-o-turns
 
         //gyro logging
         public static double last_gyro_error = 0.0;
 
-        public static final double max_velocity = 2.0;	//low gear is 2.0	// like 3.4 for straight paths	and lot-o-turns
-        public static final double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
-        public static final double max_acceleration = 2.0;	//low gear is 2.0	// like 1.4 for straighterish paths	//1.2 for lot-o-turns
-        public static final double ka = 0.0; //0.015
-        public static final double max_jerk = 7.62;
-        public static final double wheel_diameter = 0.117475; //0.117475
-        public static final double wheel_base_width = 0.61595;
-        public static final int ticks_per_rev = 4096; // CTRE Mag Encoder
+        public static double max_velocity = 3.4;	//low gear is 2.0	// like 3.4 for straight paths	and lot-o-turns
+        public static double kv = 1.0 / max_velocity; // Calculated for test Drivetrain
+        public static double max_acceleration = 1.2;	//low gear is 2.0	// like 1.4 for straighterish paths	//1.2 for lot-o-turns
+        public static double ka = 0.0; //0.015
+        public static double max_jerk = 7.62;
+        public final static double wheel_diameter = 0.117475; //0.117475
+        public final static double wheel_base_width = 0.61595;
+        public final static int ticks_per_rev = 4096; // CTRE Mag Encoder
 
         public static void setPIDG(double p, double i, double d, double gp, double gd) {
             SmartDashboard.putNumber("kP", p);
@@ -412,6 +416,19 @@ public class Drive extends Subsystem {
             SmartDashboard.putNumber("kD", d);
             SmartDashboard.putNumber("gP", gp);
             SmartDashboard.putNumber("gD", gd);
+        }
+        
+        public static void setProfile(final DriveProfile driveProfile) {
+        	kp = driveProfile.getKP();
+            kd = driveProfile.getKD();
+            ki = driveProfile.getKI();
+            dt = driveProfile.getDT();
+            gp = driveProfile.getGP();
+            gd = driveProfile.getGD();
+            max_velocity = driveProfile.getMaxVelocity();
+            kv = driveProfile.getKV();
+            max_acceleration = driveProfile.getMaxAcceleration();
+            ka = driveProfile.getKA();            
         }
 
         public static void updatePIDG() {

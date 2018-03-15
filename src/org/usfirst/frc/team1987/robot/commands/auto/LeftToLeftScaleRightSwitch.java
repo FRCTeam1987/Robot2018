@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -18,6 +19,7 @@ public class LeftToLeftScaleRightSwitch extends CommandGroup {
        addSequential(new ShiftLow());
        addSequential(new DrivePivot(100));
        addSequential(new ShiftHigh());
-       addSequential(new DrivePath(AutoPaths.leftScaleToRightSwitch));
+   	   System.out.println("left scale to right switch");
+       addSequential(new DrivePath(AutoPaths.leftScaleToRightSwitch, DriveMode.DRIVEPATHTURNS));
     }
 }

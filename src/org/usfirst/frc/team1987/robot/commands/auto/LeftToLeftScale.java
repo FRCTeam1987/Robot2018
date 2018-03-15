@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
+import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
@@ -19,7 +20,8 @@ public class LeftToLeftScale extends CommandGroup {
 
     public LeftToLeftScale() {
         addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-        addParallel(new DrivePath(AutoPaths.leftToLeftScale));
+    	System.out.println("Left to left scale");
+        addParallel(new DrivePath(AutoPaths.leftToLeftScale, DriveMode.DRIVEPATHSTRAIGHT));
         addSequential(new DelayGoToScaleHeight(3.2));
         // Experimenting... change parallel back to sequential and use regular go to scale height if you want
 //    	addSequential(new GoToScaleHeight());
