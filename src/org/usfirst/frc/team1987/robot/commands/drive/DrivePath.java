@@ -39,10 +39,6 @@ public class DrivePath extends Command {
         isBrake = false;
         isHighGear = true;       
         
-		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
-		this.leftFollower = followers[0];
-		this.rightFollower = followers[1];
-		
 		this.driveMode = driveMode;
 		System.out.println("=======================");
 		System.out.println("=======================");
@@ -51,6 +47,10 @@ public class DrivePath extends Command {
 		System.out.println("=======================");
 		System.out.println("=======================");
 		System.out.println("=======================");
+        
+		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
+		this.leftFollower = followers[0];
+		this.rightFollower = followers[1];
 	}
 	
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
@@ -75,15 +75,15 @@ public class DrivePath extends Command {
 			else if(this.driveMode == DriveMode.DRIVEPATHTURNS) {
 				Drive.DrivetrainProfiling.setProfile(Drive.turns);
 				System.out.println("drive profile turns");
-			} //else {
-//				System.out.println("=======================");
-//				System.out.println("=======================");
-//				System.out.println("=======================");
-//				System.out.println("did not find drive profile: " + this.driveMode);
-//				System.out.println("=======================");
-//				System.out.println("=======================");
-//				System.out.println("=======================");
-//			}
+			} else {
+				System.out.println("=======================");
+				System.out.println("=======================");
+				System.out.println("=======================");
+				System.out.println("did not find drive profile: " + this.driveMode);
+				System.out.println("=======================");
+				System.out.println("=======================");
+				System.out.println("=======================");
+			}
 			
 			System.out.println("profile max acceleration: " + Drive.DrivetrainProfiling.max_acceleration);
 			
@@ -155,5 +155,4 @@ public class DrivePath extends Command {
     	System.out.println("Drive Path interrupted!");
     	end();
     }
-
 }

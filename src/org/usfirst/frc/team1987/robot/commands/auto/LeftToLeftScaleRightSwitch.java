@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftToLeftScaleRightSwitch extends CommandGroup {
 
     public LeftToLeftScaleRightSwitch() {
+       addSequential(new ShiftHigh());
        addSequential(new LeftToLeftScale());
        addSequential(new ShiftLow());
        addSequential(new DrivePivot(100));

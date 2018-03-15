@@ -16,5 +16,6 @@ public class PrepClimb extends CommandGroup {
     public PrepClimb() {
         addSequential(new OpenClaw());
         addSequential(new SetElevatorHeight(RobotMap.rungHeight));
+        addSequential(new DropPlatforms());
     }
 }

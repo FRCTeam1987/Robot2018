@@ -41,7 +41,8 @@ public class DrivePivot extends Command {
 //    	wasPreviouslyBrake = Robot.drive.isBrake();
     	isBrake = Robot.drive.isBrake();
         isHighGear = Robot.drive.isHighGear();
-    	
+    	Robot.drive.setLowGear();
+        
 //    	Robot.drive.setBrake();
     }
 

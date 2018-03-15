@@ -45,6 +45,7 @@ public class Drive extends Subsystem {
 	private final DoubleSolenoid pto;
 	private final Solenoid dropDownOmniBack;
 	private final Solenoid dropDownOmniFront;
+	private final Solenoid platforms;
 	private final AHRS ahrs;
 	private boolean isBrake;
 	public static DriveProfile low = new DriveProfile(RobotMap.drivePathLowKP, RobotMap.drivePathLowKD, RobotMap.drivePathLowKI, RobotMap.drivePathLowDT, RobotMap.drivePathLowGP, RobotMap.drivePathLowGD, RobotMap.drivePathLowMaxVelocity, RobotMap.drivePathLowKV, RobotMap.drivePathLowMaxAcceleration, RobotMap.drivePathLowKA, RobotMap.drivePathLowMaxJerk);;
@@ -64,6 +65,7 @@ public class Drive extends Subsystem {
 		pto = new DoubleSolenoid(RobotMap.pcmDrive, RobotMap.drivePTOEngaged, RobotMap.drivePTODisengaged);
 		dropDownOmniBack = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniBack);
 		dropDownOmniFront = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniFront);
+		platforms = new Solenoid(RobotMap.pcmOther, RobotMap.platforms);
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
@@ -140,6 +142,14 @@ public class Drive extends Subsystem {
 	public void zeroDriveEncoders() {
 		leftMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
 		rightMaster.setSelectedSensorPosition(0, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
+	}
+	
+	public void dropPlatforms() {
+		platforms.set(true);
+	}
+	
+	public void retractPlatforms() {
+		platforms.set(false);
 	}
 	
 	public void setHighGear() {

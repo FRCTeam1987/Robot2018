@@ -7,7 +7,8 @@
 
 package org.usfirst.frc.team1987.robot;
 
-import org.usfirst.frc.team1987.robot.commands.drive.MyClimb;
+import org.usfirst.frc.team1987.robot.commands.DropPlatforms;
+import org.usfirst.frc.team1987.robot.commands.MyClimb;
 import org.usfirst.frc.team1987.robot.commands.PrepClimb;
 //import org.usfirst.frc.team1987.robot.commands.Climb;
 //import org.usfirst.frc.team1987.robot.commands.DisableCompressor;
@@ -32,6 +33,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 //import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.DriveAScosh;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
+import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -106,14 +108,14 @@ public class OI {
 //		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
 //		SmartDashboard.putData("Shift high", new ShiftHigh());
 //		SmartDashboard.putData("Shift low", new ShiftLow());
-//		SmartDashboard.putData("Adjust elevator +5", new AdjustElevatorHeight(5));
-//		SmartDashboard.putData("Adjust elevator -5", new AdjustElevatorHeight(-5));
-//		SmartDashboard.putData("Set max: 29.5", new SetElevatorHeight(29.5));
+		SmartDashboard.putData("Adjust elevator +5", new AdjustElevatorHeight(5));
+		SmartDashboard.putData("Adjust elevator -5", new AdjustElevatorHeight(-5));
+		SmartDashboard.putData("Set max: 29.5", new SetElevatorHeight(29.5));
 //		SmartDashboard.putData("Set 35", new SetElevatorHeight(35));
 //		SmartDashboard.putData("Set 2", new SetElevatorHeight(2));
-//		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
+		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
 //		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
-//		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
+		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 //		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
 //		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(RobotMap.rungHeight));
 //		SmartDashboard.putData("Climb", new Climb());
@@ -130,22 +132,24 @@ public class OI {
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 //		SmartDashboard.putData("Pivot 45 degrees", new PIDDrivePivot(45.0));
 //		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
-//		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
-//		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
+		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
+		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
 //		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
 //		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
-//		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
+		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
 //		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
 //		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
 //		SmartDashboard.putData("drive distance 24", new DriveDistance(24));
 //		SmartDashboard.putData("drive distance 12", new DriveDistance(12));
-		SmartDashboard.putData("drive distance 6", new DriveDistance(6));
-		SmartDashboard.putData("drive distance -10", new DriveDistance(-10));
-//		SmartDashboard.putData("drive distance -24", new DriveDistance(-24));
-		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
-
+//		SmartDashboard.putData("drive distance 6", new DriveDistance(6));
+//		SmartDashboard.putData("drive distance -10", new DriveDistance(-10));
+		SmartDashboard.putData("drive distance 24", new DriveDistance(24));
 		
-
+//		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
+		SmartDashboard.putData("toggle shifter", new ToggleShifter());
+		SmartDashboard.putData("drop platforms", new DropPlatforms());
+		SmartDashboard.putData("tele collect", new TeleCollectCubeWide());
+		
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	

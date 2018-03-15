@@ -33,6 +33,7 @@ public class RobotMap {
 	public static int drivePTODisengaged = 3;
 	public static int driveDropDownOmniBack = 4;
 	public static int driveDropDownOmniFront = 5;
+	public static int platforms = 5;		//CHANGE THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 	
 	public static double wheelDiameter = 4.625;		//change
 	public static double driveWheelbaseWidth = 24.25;	//change
@@ -79,7 +80,7 @@ public class RobotMap {
 	public static double drivePathStraightKD = 0.0;
 	public static double drivePathStraightKI = 0.0;
 	public static double drivePathStraightDT = RobotMap.period;
-	public static double drivePathStraightGP = 0.037;
+	public static double drivePathStraightGP = 0.039;
 	public static double drivePathStraightGD = 0.0;
 	public static double drivePathStraightMaxVelocity = 3.4;
 	public static double drivePathStraightKV = 1.0 / drivePathStraightMaxVelocity;
@@ -91,7 +92,7 @@ public class RobotMap {
 	public static double drivePathTurnsKD = 0.4;
 	public static double drivePathTurnsKI = 0.0;
 	public static double drivePathTurnsDT = RobotMap.period;
-	public static double drivePathTurnsGP = 0.037;
+	public static double drivePathTurnsGP = 0.039;
 	public static double drivePathTurnsGD = 0.0;
 	public static double drivePathTurnsMaxVelocity = 3.4;
 	public static double drivePathTurnsKV = 1.0 / drivePathTurnsMaxVelocity;
@@ -153,7 +154,7 @@ public class RobotMap {
 	public static int disownedScaleHeight = 28;
 	public static int neutralScaleHeight = 23;
 	public static int ownedScaleHeight = 15;
-	public static double rungHeight = 26.0;
+	public static double rungHeight = 26.75;
 	public static double climbHeight = 55555.0; //find out climb height
 	public static double disownedWorstScaleHeight = 30.0;
 	public static double elevatorTopCubePyramidHeight = 10.5;

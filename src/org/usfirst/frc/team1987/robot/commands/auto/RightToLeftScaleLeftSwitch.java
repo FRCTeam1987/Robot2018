@@ -26,9 +26,9 @@ public class RightToLeftScaleLeftSwitch extends CommandGroup {
         addParallel(new AutoCollectCubeWide());
     	System.out.println("straightForMeterAndSomeMore");
         addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));
-        addParallel(new DriveDistance(-10));						
+        addParallel(new DriveDistance(-2));				//needs tuning				
         addSequential(new SetElevatorHeight(12.0));
-        addSequential(new DriveDistance(10));
+        addSequential(new DriveDistance(5));			//needs tuning
         addSequential(new EjectCube());
     }
 }
