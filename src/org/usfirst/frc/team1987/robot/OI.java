@@ -132,20 +132,19 @@ public class OI {
 //		SmartDashboard.putData("Toggle Ratchet", new ToggleRatchet());
 //		SmartDashboard.putData("Pivot 45 degrees", new PIDDrivePivot(45.0));
 //		SmartDashboard.putData("Drive pivot 0", new DrivePivot(0.0));
-		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
-		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
+//		SmartDashboard.putData("Drive pivot 45", new DrivePivot(45.0));
+//		SmartDashboard.putData("Drive pivot 90", new DrivePivot(90.0));
 //		SmartDashboard.putData("Drive pivot 180", new DrivePivot(180.0));
 //		SmartDashboard.putData("Drive pivot -132", new DrivePivot(-132));
-		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
+//		SmartDashboard.putData("Drive Pivot 132", new DrivePivot(132));
 //		SmartDashboard.putData("EjectAndJiggle", new EjectAndJiggle());
 //		SmartDashboard.putData("Drive back a skosh", new DriveAScosh(-15.0));
 //		SmartDashboard.putData("drive distance 24", new DriveDistance(24));
 //		SmartDashboard.putData("drive distance 12", new DriveDistance(12));
 //		SmartDashboard.putData("drive distance 6", new DriveDistance(6));
 //		SmartDashboard.putData("drive distance -10", new DriveDistance(-10));
-		SmartDashboard.putData("drive distance 24", new DriveDistance(24));
-		
-//		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
+//		SmartDashboard.putData("drive distance 24", new DriveDistance(24));		
+		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
 		SmartDashboard.putData("toggle shifter", new ToggleShifter());
 		SmartDashboard.putData("drop platforms", new DropPlatforms());
 		SmartDashboard.putData("tele collect", new TeleCollectCubeWide());
