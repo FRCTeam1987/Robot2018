@@ -18,7 +18,7 @@ public class Climb extends Command {
     }
 
     protected void initialize() {
-    	Robot.elevator.engageRatchet();
+//    	Robot.elevator.engageRatchet();
     	Robot.drive.ptoEngage();
     	Robot.elevator.setElevatorAbsolute(RobotMap.climbHeight);
     }

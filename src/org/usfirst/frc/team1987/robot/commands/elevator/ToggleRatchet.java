@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class ToggleRatchet extends InstantCommand {
 
-    public ToggleRatchet() {
-        super();
-        requires(Robot.elevator);
-    }
-
-    // Called once when the command executes
-    protected void initialize() {
-        Robot.elevator.toggleRatchet();
-    }
+//    public ToggleRatchet() {
+//        super();
+//        requires(Robot.elevator);
+//    }
+//
+//    // Called once when the command executes
+//    protected void initialize() {
+//        Robot.elevator.toggleRatchet();
+//    }
 
 }

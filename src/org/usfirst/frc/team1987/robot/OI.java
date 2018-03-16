@@ -184,7 +184,7 @@ public class OI {
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
-		goToHome.whenPressed(new SetElevatorHeight(0));		
+		goToHome.whenPressed(new SetElevatorHeight(0.0));		
 		toggleDropDownOmniFront.whenPressed(new ToggleDropDownOmniFront());
 		toggleDropDownOmniBack.whenPressed(new ToggleDropDownOmniBack());
 		myClimb.whenPressed(new MyClimb());

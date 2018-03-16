@@ -23,7 +23,7 @@ public class Elevator extends Subsystem {
 
 	private final WPI_TalonSRX winchMotor;
 	private final DigitalInput homeSensor;
-	private final Solenoid ratchet;
+//	private final Solenoid ratchet;
 	private final double minInches = -2.5;
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
 	private final double maxInches = 30.875;
@@ -33,7 +33,7 @@ public class Elevator extends Subsystem {
 	public Elevator() {
     	winchMotor = new WPI_TalonSRX(RobotMap.elevatorID); 
     	homeSensor = new DigitalInput(RobotMap.elevatorHomeID);
-    	ratchet = new Solenoid(RobotMap.pcmOther, RobotMap.elevatorRatchet);
+//    	ratchet = new Solenoid(RobotMap.pcmOther, RobotMap.elevatorRatchet);
     	
 //    	winchMotor.configForwardSoftLimitEnable(true, RobotMap.drivePIDIDX);
 //    	winchMotor.configReverseSoftLimitEnable(true, RobotMap.drivePIDIDX);
@@ -134,17 +134,17 @@ public class Elevator extends Subsystem {
 		winchMotor.setNeutralMode(NeutralMode.Brake);
 	}
 	
-	public void disengageRatchet() {
-		ratchet.set(false);
-	}
-	
-	public void engageRatchet() {
-		ratchet.set(true);
-	}
-	
-	public void toggleRatchet() {
-		ratchet.set(!ratchet.get());
-	}
+//	public void disengageRatchet() {
+//		ratchet.set(false);
+//	}
+//	
+//	public void engageRatchet() {
+//		ratchet.set(true);
+//	}
+//	
+//	public void toggleRatchet() {
+//		ratchet.set(!ratchet.get());
+//	}
 	
     public void initDefaultCommand() {
        
