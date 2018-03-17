@@ -155,6 +155,7 @@ public class Elevator extends Subsystem {
 //    	SmartDashboard.putNumber("Current inches", getDistance());
     	SmartDashboard.putNumber("Elevator - Inches", Util.rotationsToDistance(Util.getCtreEncoderRotations(getTicks()), RobotMap.winchDiameter));
     	SmartDashboard.putBoolean("Elevator - Home", isAtHome());
+    	SmartDashboard.putNumber("Elevator - Percent", winchMotor.get());
 //    	SmartDashboard.putNumber("closed loop error", winchMotor.getClosedLoopError(RobotMap.drivePIDIDX));
 //    	SmartDashboard.putNumber("POV Status", Robot.oi.getDriver().getPOV());
     	

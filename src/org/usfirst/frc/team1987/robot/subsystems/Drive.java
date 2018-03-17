@@ -66,6 +66,7 @@ public class Drive extends Subsystem {
 		dropDownOmniBack = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniBack);
 		dropDownOmniFront = new Solenoid(RobotMap.pcmDrive, RobotMap.driveDropDownOmniFront);
 		platforms = new Solenoid(RobotMap.pcmOther, RobotMap.platforms);
+		retractPlatforms();
 		
 		leftMaster.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, RobotMap.defaultTimeout);
 		final ErrorCode leftEncoderErrorCode = leftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);

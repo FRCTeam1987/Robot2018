@@ -146,19 +146,19 @@ public class RobotMap {
 	public static int setWeakEjectButton = 9;				//left stick press down
 	
 	//Elevator 
-	public static int elevatorID = 7;	///was 7
+	public static int elevatorID = 7;	
 	public static int elevatorRatchet = 4;
 	public static int ticksPerInch = 554;
 	public static int elevatorHomeID = 2;
 	public static double winchDiameter = 2.2;
-	public static int disownedScaleHeight = 28;
-	public static int neutralScaleHeight = 23;
-	public static int ownedScaleHeight = 15;
+	public static int disownedScaleHeight = 29;	//was 28
+	public static int neutralScaleHeight = 25;	//was 23
+	public static int ownedScaleHeight = 17;	//was 15
 	public static double rungHeight = 26.75;
-	public static double climbHeight = 55555.0; //find out climb height
-	public static double disownedWorstScaleHeight = 30.0;
+	public static double climbHeight = 55555.0; 
+	public static double disownedWorstScaleHeight = 31.0;	//was 30
 	public static double elevatorTopCubePyramidHeight = 10.5;
-	public static double elevatorMiddleCubePyramidHeight = 4.75;	//5.25
+	public static double elevatorMiddleCubePyramidHeight = 6.75;	//was 4.75
 	public static double elevatorHoldCubeHeight = 4.0;
 	public static double elevatorFloorCubePyramidHeight = 0;
 	public static int elevatorToleranceInTicks = 500;

@@ -43,6 +43,8 @@ import org.usfirst.frc.team1987.robot.commands.drive.ToggleDropDownOmniFront;
 //import org.usfirst.frc.team1987.robot.commands.drive.TogglePto;
 import org.usfirst.frc.team1987.robot.commands.drive.ToggleShifter;
 import org.usfirst.frc.team1987.robot.commands.elevator.AdjustElevatorHeight;
+import org.usfirst.frc.team1987.robot.commands.elevator.ElevatorManual;
+import org.usfirst.frc.team1987.robot.commands.elevator.GoToCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 //import org.usfirst.frc.team1987.robot.commands.elevator.ToggleRatchet;
@@ -83,10 +85,13 @@ public class OI {
 	private final Button setWeakEject;
 	private final Button myClimb;
 	private final Button prepClimb;
+	private final XboxDPad elevatorManualUp;
+	private final XboxDPad elevatorManualDown;
 	private final XboxDPad setScaleDisownedWorst;
 	private final XboxDPad setScaleDisowned;
 	private final XboxDPad setScaleNeutral;
 	private final XboxDPad setScaleOwned;
+	private final XboxDPad goToCollectHeight;
 	
 	public OI()
 	{
@@ -159,6 +164,9 @@ public class OI {
 		toggleDropDownOmniBack = new JoystickButton(driver, RobotMap.toggleDropDownOmniBackButton);
 		myClimb = new JoystickButton(driver, RobotMap.myClimbButton);
 		prepClimb = new JoystickButton(driver, RobotMap.prepClimbButton);
+		elevatorManualUp = new XboxDPad(driver, XboxDPad.Direction.Up);
+		elevatorManualDown = new XboxDPad(driver, XboxDPad.Direction.Down);
+		goToCollectHeight = new XboxDPad(driver, XboxDPad.Direction.Right);
 		
 //		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
 //		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
@@ -188,6 +196,8 @@ public class OI {
 		toggleDropDownOmniBack.whenPressed(new ToggleDropDownOmniBack());
 		myClimb.whenPressed(new MyClimb());
 		prepClimb.whenPressed(new PrepClimb());
+		elevatorManualUp.whileHeld(new ElevatorManual(0.4));
+		elevatorManualDown.whileHeld(new ElevatorManual(-0.4));
 		
 		//Co-driver
 //		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
@@ -207,6 +217,7 @@ public class OI {
 		setScaleDisowned.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		setScaleNeutral.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
 		setScaleOwned.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
+		goToCollectHeight.whenPressed(new GoToCollectorHeight());
 	}
 	
 	public XboxController getDriver() {

@@ -46,141 +46,474 @@ public class AutonomousChooser {
 		modeChooser.addObject("Scale", AutonomousMode.Scale);
 		modeChooser.addObject("Switch", AutonomousMode.Switch);
 		
-		autonomousCommandList.add(
-			new AutonomousContainer.Builder("Left To Left Scale")
-				.withStartingPosition(StartingPosition.Left)
-				.withMode(AutonomousMode.Scale)
-				.withSwitchPosition(OwnedSide.UNKNOWN)
-				.withScalePosition(OwnedSide.LEFT)
-				.withCommand(new LeftToLeftScale())
-				.build());
+///////////////////////////// Right Switch ///////////////////////////////////////////
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Left Switch")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Switch)
-					.withSwitchPosition(OwnedSide.LEFT)
-					.withScalePosition(OwnedSide.UNKNOWN)
-					.withCommand(new LeftToLeftSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right Straight (1,4)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new DriveDistance(80))
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Right Straight (2,4)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new DriveDistance(80))
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Left Switch - Ignore Right Scale")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.LEFT)
-					.withScalePosition(OwnedSide.RIGHT)
-					.withCommand(new LeftToLeftSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right to Right Switch (3,4)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToRightSwitch())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Left Scale Left Switch")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.LEFT)
-					.withScalePosition(OwnedSide.LEFT)
-					.withCommand(new LeftToLeftScaleLeftSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right to Right Switch (4,4)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightSwitch())
+			.build());
+		
+/////////////////////////// Right Scale ///////////////////////////////////////////////////////
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Left Scale Right Switch")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.LEFT)
-					.withCommand(new LeftToLeftScaleRightSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right to Left Scale (1,3)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToLeftScale())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Right to Right Scale (2,3)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScale())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Right Scale")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Scale)
-					.withSwitchPosition(OwnedSide.UNKNOWN)
-					.withScalePosition(OwnedSide.RIGHT)
-					.withCommand(new LeftToRightScale())
-					.build());
+		new AutonomousContainer.Builder("Right to Left Scale (3,3)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToLeftScale())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Left To Right Scale To Right Switch")
-					.withStartingPosition(StartingPosition.Left)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.RIGHT)
-					.withCommand(new LeftToRightScaleRightSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right to Right Scale 2X (4,3)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScale2x())
+			.build());		
+		
+///////////////////////////////////// Right Both /////////////////////////////////////////////////		
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Middle To Left Switch")
-					.withStartingPosition(StartingPosition.Middle)
-					.withMode(AutonomousMode.Switch)
-					.withSwitchPosition(OwnedSide.LEFT)
-					.withScalePosition(OwnedSide.UNKNOWN)
-					.withCommand(new MiddleToLeftSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right To Left Scale To Left Switch (1,2)")	//good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToLeftScaleLeftSwitch())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Middle To Right Switch")
-					.withStartingPosition(StartingPosition.Middle)
-					.withMode(AutonomousMode.Switch)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.UNKNOWN)
-					.withCommand(new MiddleToRightSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right to Right Scale (2,2)")	//good
+			.withStartingPosition(StartingPosition.Right)		
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScale())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Left Scale")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Scale)
-					.withSwitchPosition(OwnedSide.UNKNOWN)
-					.withScalePosition(OwnedSide.LEFT)
-					.withCommand(new RightToLeftScale())
-					.build());
+		new AutonomousContainer.Builder("Right To Right Switch (3,2)")	//good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToRightSwitch())
+			.build());
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Left Scale To Left Switch")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.LEFT)
-					.withScalePosition(OwnedSide.LEFT)
-					.withCommand(new RightToLeftScaleLeftSwitch())
-					.build());
+		new AutonomousContainer.Builder("Right To Right Scale Right Switch (4,2)")	//good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScaleRightSwitch())
+			.build());		
+		
+///////////////////////////////////// Right Near ///////////////////////////////////////////////		
 		
 		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Right Scale")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Scale)
-					.withSwitchPosition(OwnedSide.UNKNOWN)
-					.withScalePosition(OwnedSide.RIGHT)
-					.withCommand(new RightToRightScale2x())
+		new AutonomousContainer.Builder("Right Straight (1,1)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new DriveDistance(80))
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Right to Right Scale (2,1)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Right to Right Switch (3,1)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new RightToRightSwitch())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Right to Right Scale Right Switch (4,1)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new RightToRightScaleRightSwitch())
+			.build());		
+		
+/////////////////////////////////////// Middle /////////////////////////////////////////////////////		
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Middle To Left Switch")	//good
+			.withStartingPosition(StartingPosition.Middle)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.UNKNOWN)
+			.withCommand(new MiddleToLeftSwitch())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Middle To Right Switch")	//good
+			.withStartingPosition(StartingPosition.Middle)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.UNKNOWN)
+			.withCommand(new MiddleToRightSwitch())
+			.build());
+
+///////////////////////////////////// Left Switch ////////////////////////////////////////////////		
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale (1,4)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left Left Scale (2,4)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left Straight (3,4)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new DriveDistance(80))
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left Straight (4,4)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new DriveDistance(80))
+			.build());
+		
+/////////////////////////// Left Scale ///////////////////////////////////////////////////////
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale (1,3)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Right Scale (2,3)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToRightScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale (3,3)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Right Scale (4,3)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Scale)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToRightScale())
+			.build());		
+		
+///////////////////////////////////// Left Both /////////////////////////////////////////////////		
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale Left Switch (1,2)")	//good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScaleLeftSwitch())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Switch (2,2)")	//good
+			.withStartingPosition(StartingPosition.Left)		
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToLeftSwitch())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale (3,2)")	//good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Right Scale Right Switch (4,2)")	//good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Both)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToRightScaleRightSwitch())
+			.build());		
+		
+///////////////////////////////////// Left Near ///////////////////////////////////////////////		
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale Left Switch (1,1)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScaleLeftSwitch())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Switch (2,1)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new LeftToLeftSwitch())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left to Left Scale (3,1)")	// good
+			.withStartingPosition(StartingPosition.Left)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.LEFT)
+			.withCommand(new LeftToLeftScale())
+			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Left Straight (4,1)")	// good
+			.withStartingPosition(StartingPosition.Right)
+			.withMode(AutonomousMode.Near)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new DriveDistance(80))
+			.build());		
+
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right to Right Scale")	//good
+//					.withStartingPosition(StartingPosition.Right)		
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.RIGHT)
 //					.withCommand(new RightToRightScale())
-					.build());
-		
-		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Right Switch")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Switch)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.UNKNOWN)
-					.withCommand(new RightToRightSwitch())
-					.build());
-		
-		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Right Switch - Ignore Left Scale")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.LEFT)
-					.withCommand(new RightToRightSwitch())
-					.build());
-		
-		autonomousCommandList.add(
-				new AutonomousContainer.Builder("Right To Right Scale Right Switch")
-					.withStartingPosition(StartingPosition.Right)
-					.withMode(AutonomousMode.Both)
-					.withSwitchPosition(OwnedSide.RIGHT)
-					.withScalePosition(OwnedSide.RIGHT)
-					.withCommand(new RightToRightScaleRightSwitch())
-					.build());
+//					.build());
+//		
+//		autonomousCommandList.add(
+//			new AutonomousContainer.Builder("Left To Left Scale")
+//				.withStartingPosition(StartingPosition.Left)
+//				.withMode(AutonomousMode.Scale)
+//				.withSwitchPosition(OwnedSide.UNKNOWN)
+//				.withScalePosition(OwnedSide.LEFT)
+//				.withCommand(new LeftToLeftScale())
+//				.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Left Switch")
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Switch)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.UNKNOWN)
+//					.withCommand(new LeftToLeftSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Left Switch - Ignore Right Scale")	
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.RIGHT)
+//					.withCommand(new LeftToLeftSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Left Scale Left Switch")	
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new LeftToLeftScaleLeftSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Left Scale Right Switch")
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new LeftToLeftScaleRightSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Right Scale")
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Scale)
+//					.withSwitchPosition(OwnedSide.UNKNOWN)
+//					.withScalePosition(OwnedSide.RIGHT)
+//					.withCommand(new LeftToRightScale())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Left To Right Scale To Right Switch")
+//					.withStartingPosition(StartingPosition.Left)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.RIGHT)
+//					.withCommand(new LeftToRightScaleRightSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Middle To Left Switch")	//good
+//					.withStartingPosition(StartingPosition.Middle)
+//					.withMode(AutonomousMode.Switch)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.UNKNOWN)
+//					.withCommand(new MiddleToLeftSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Middle To Right Switch")	//good
+//					.withStartingPosition(StartingPosition.Middle)
+//					.withMode(AutonomousMode.Switch)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.UNKNOWN)
+//					.withCommand(new MiddleToRightSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Left Scale")
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Scale)
+//					.withSwitchPosition(OwnedSide.UNKNOWN)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new RightToLeftScale())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Left Scale To Left Switch")	//good
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.LEFT)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new RightToLeftScaleLeftSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Right Scale")
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Scale)
+//					.withSwitchPosition(OwnedSide.UNKNOWN)
+//					.withScalePosition(OwnedSide.RIGHT)
+//					.withCommand(new RightToRightScale2x())
+//					.withCommand(new RightToRightScale())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Right Switch")
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Switch)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.UNKNOWN)
+//					.withCommand(new RightToRightSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Right Switch - Ignore Left Scale")	//good
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new RightToRightSwitch())
+//					.build());
+//		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right To Right Scale Right Switch")	//good
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Both)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.RIGHT)
+//					.withCommand(new RightToRightScaleRightSwitch())
+//					.build());
 	}
 	
 	public Command get() {
@@ -222,7 +555,7 @@ public class AutonomousChooser {
 			possibleAutos = autonomousCommandList.stream()
 				.filter(auto -> startingPositionChooser.getSelected().equals(auto.getStartingPosition()))
 				.filter(auto -> modeChooser.getSelected().equals(auto.getMode()))
-				.filter(auto -> auto.getSwitchPosition() == ourSwitch || auto.getSwitchPosition() == MatchData.OwnedSide.UNKNOWN)
+				.filter(auto -> auto.getSwitchPosition() == ourSwitch)
 				.filter(auto -> auto.getScalePosition() == scale || auto.getScalePosition() == MatchData.OwnedSide.UNKNOWN)
 				.collect(Collectors.toList());
 		}

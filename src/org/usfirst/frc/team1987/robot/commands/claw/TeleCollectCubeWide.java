@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class TeleCollectCubeWide extends CommandGroup {
 
     public TeleCollectCubeWide() {
-        addSequential(new GoToCollectorHeight());
+//        addSequential(new GoToCollectorHeight());
     	addSequential(new WristDeploy());
         addSequential(new AdjustCubeInClaw(5.0, -0.8, -0.8));
         addSequential(new SetRumble(1.0));
