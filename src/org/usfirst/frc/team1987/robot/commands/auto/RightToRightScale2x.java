@@ -35,12 +35,12 @@ public class RightToRightScale2x extends CommandGroup {
         addParallel(new AutoCollectCubeWide());
     	System.out.println("straightForMeterAndASkosh");
         addSequential(new DrivePath(AutoPaths.straightForMeterAndASkosh, DriveMode.DRIVEPATHSTRAIGHT));	//changed this
-        addSequential(new WaitCommand(0.075));
+        addSequential(new WaitCommand(0.1));
         addSequential(new DriveDistance(-3));
         addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));
         addSequential(new WristStow());
         addSequential(new DrivePivot(130));
-        addSequential(new DriveDistance(24));	// was 24
+        addSequential(new DriveDistance(22));	// was 24
         addSequential(new GoToScaleHeight());
         addSequential(new EjectAndJiggle());
         addSequential(new SetElevatorHeight(0));

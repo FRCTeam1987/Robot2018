@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
 import org.usfirst.frc.team1987.robot.DriveMode;
+import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.LogMessage;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
@@ -30,12 +31,12 @@ public class RightToRightScaleRightSwitch extends CommandGroup {
         addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));	
         addSequential(new LogMessage("Begin drive distance back"));
         addSequential(new WaitCommand(0.1));
-        addSequential(new SetElevatorHeightInstant(12.0));
+        addSequential(new SetElevatorHeightInstant(16.0));
         addSequential(new DriveDistance(-2));						//check this
         addSequential(new LogMessage("End drive distance back"));
         addSequential(new WaitCommand(0.1));
         addSequential(new DriveDistance(5));						//check this
         addSequential(new WaitCommand(0.1));
-        addSequential(new EjectCube());
+        addSequential(new EjectCube(RobotMap.weakEject));
     }
 }

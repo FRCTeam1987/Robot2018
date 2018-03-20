@@ -112,7 +112,7 @@ public class RobotMap {
 	public static int clawLeftLimitSwitch = 3;
 	public static int clawRightLimitSwitch = 4;
 	public static double debounceTime = 0.15;
-	public static double strongEject = 0.9;
+	public static double strongEject = 1.0;		//was 0.9
 	public static double weakEject = 0.6;
 		
 	//Xbox
@@ -156,7 +156,7 @@ public class RobotMap {
 	public static int ownedScaleHeight = 17;	//was 15
 	public static double rungHeight = 26.75;
 	public static double climbHeight = 55555.0; 
-	public static double disownedWorstScaleHeight = 31.0;	//was 30
+	public static double disownedWorstScaleHeight = 32.0;	//was 31
 	public static double elevatorTopCubePyramidHeight = 10.5;
 	public static double elevatorMiddleCubePyramidHeight = 6.75;	//was 4.75
 	public static double elevatorHoldCubeHeight = 4.0;

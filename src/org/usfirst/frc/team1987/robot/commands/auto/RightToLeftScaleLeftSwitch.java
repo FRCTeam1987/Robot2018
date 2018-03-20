@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1987.robot.commands.auto;
 
 import org.usfirst.frc.team1987.robot.DriveMode;
+import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
@@ -27,8 +28,8 @@ public class RightToLeftScaleLeftSwitch extends CommandGroup {
     	System.out.println("straightForMeterAndSomeMore");
         addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));
         addParallel(new DriveDistance(-2));				//needs tuning				
-        addSequential(new SetElevatorHeight(12.0));
+        addSequential(new SetElevatorHeight(16.0));
         addSequential(new DriveDistance(5));			//needs tuning
-        addSequential(new EjectCube());
+        addSequential(new EjectCube(RobotMap.weakEject));
     }
 }

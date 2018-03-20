@@ -26,7 +26,7 @@ public class Elevator extends Subsystem {
 //	private final Solenoid ratchet;
 	private final double minInches = -2.5;
 	private final int minTicks = Util.distanceToTicks(minInches, RobotMap.winchDiameter);	
-	private final double maxInches = 30.875;
+	private final double maxInches = 32.25;	//30.875
 	private final int maxTicks = Util.distanceToTicks(maxInches, RobotMap.winchDiameter);
 	private int m_ticksAbsolute;
    

@@ -87,22 +87,31 @@ public class AutonomousChooser {
 /////////////////////////// Right Scale ///////////////////////////////////////////////////////
 		
 		autonomousCommandList.add(
-		new AutonomousContainer.Builder("Right to Left Scale (1,3)")	// good
+		new AutonomousContainer.Builder("Right to Left Scale to Left Switch (1,3)")	// good
 			.withStartingPosition(StartingPosition.Right)
 			.withMode(AutonomousMode.Scale)
 			.withSwitchPosition(OwnedSide.LEFT)
 			.withScalePosition(OwnedSide.LEFT)
-			.withCommand(new RightToLeftScale())
+			.withCommand(new RightToLeftScaleLeftSwitch())
 			.build());
 
 		autonomousCommandList.add(
-		new AutonomousContainer.Builder("Right to Right Scale (2,3)")	// good
+		new AutonomousContainer.Builder("Right to Right Scale 2X(2,3)")	// good
 			.withStartingPosition(StartingPosition.Right)
 			.withMode(AutonomousMode.Scale)
 			.withSwitchPosition(OwnedSide.LEFT)
 			.withScalePosition(OwnedSide.RIGHT)
-			.withCommand(new RightToRightScale())
+			.withCommand(new RightToRightScale2x())
 			.build());
+		
+//		autonomousCommandList.add(
+//				new AutonomousContainer.Builder("Right to Right Switch (3,3)")	// good
+//					.withStartingPosition(StartingPosition.Right)
+//					.withMode(AutonomousMode.Scale)
+//					.withSwitchPosition(OwnedSide.RIGHT)
+//					.withScalePosition(OwnedSide.LEFT)
+//					.withCommand(new RightToRightSwitch())
+//					.build());
 		
 		autonomousCommandList.add(
 		new AutonomousContainer.Builder("Right to Left Scale (3,3)")	// good
@@ -205,7 +214,7 @@ public class AutonomousChooser {
 			.withStartingPosition(StartingPosition.Middle)
 			.withMode(AutonomousMode.Switch)
 			.withSwitchPosition(OwnedSide.LEFT)
-			.withScalePosition(OwnedSide.UNKNOWN)
+			.withScalePosition(OwnedSide.LEFT)
 			.withCommand(new MiddleToLeftSwitch())
 			.build());
 
@@ -214,9 +223,29 @@ public class AutonomousChooser {
 			.withStartingPosition(StartingPosition.Middle)
 			.withMode(AutonomousMode.Switch)
 			.withSwitchPosition(OwnedSide.RIGHT)
-			.withScalePosition(OwnedSide.UNKNOWN)
+			.withScalePosition(OwnedSide.LEFT)
 			.withCommand(new MiddleToRightSwitch())
 			.build());
+		
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Middle To Left Switch")	//good
+			.withStartingPosition(StartingPosition.Middle)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.LEFT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new MiddleToLeftSwitch())
+			.build());
+
+		autonomousCommandList.add(
+		new AutonomousContainer.Builder("Middle To Right Switch")	//good
+			.withStartingPosition(StartingPosition.Middle)
+			.withMode(AutonomousMode.Switch)
+			.withSwitchPosition(OwnedSide.RIGHT)
+			.withScalePosition(OwnedSide.RIGHT)
+			.withCommand(new MiddleToRightSwitch())
+			.build());
+		
+		
 
 ///////////////////////////////////// Left Switch ////////////////////////////////////////////////		
 		
@@ -526,39 +555,39 @@ public class AutonomousChooser {
 		
 		List<AutonomousContainer> possibleAutos;
 		
-		if(modeChooser.getSelected().equals(AutonomousMode.Near)) { // TODO: This logic is borked, lets duplicates of other side in...
-			possibleAutos = autonomousCommandList.stream()
-				.filter(auto -> startingPositionChooser.getSelected().equals(auto.getStartingPosition()) &&
-					startingPositionChooser.getSelected().equals(StartingPosition.Middle) == false)
-				.filter(auto -> (
-					auto.getSwitchPosition() == MatchData.OwnedSide.LEFT &&
-					auto.getStartingPosition() == StartingPosition.Left
-				) || (
-					auto.getSwitchPosition() == MatchData.OwnedSide.RIGHT &&
-					auto.getStartingPosition() == StartingPosition.Right
-				) || (
-					(auto.getStartingPosition() == StartingPosition.Left && auto.getSwitchPosition() != MatchData.OwnedSide.RIGHT) ||
-					(auto.getStartingPosition() == StartingPosition.Right && auto.getSwitchPosition() != MatchData.OwnedSide.LEFT)
-				))
-				.filter(auto -> (
-					auto.getScalePosition() == MatchData.OwnedSide.LEFT &&
-					auto.getStartingPosition() == StartingPosition.Left
-				) || (
-					auto.getScalePosition() == MatchData.OwnedSide.RIGHT &&
-					auto.getStartingPosition() == StartingPosition.Right
-				) || (
-					(auto.getStartingPosition() == StartingPosition.Left && auto.getScalePosition() != MatchData.OwnedSide.RIGHT) ||
-					(auto.getStartingPosition() == StartingPosition.Right && auto.getScalePosition() != MatchData.OwnedSide.LEFT)
-				))
-				.collect(Collectors.toList());
-		} else {
+//		if(modeChooser.getSelected().equals(AutonomousMode.Near)) { // TODO: This logic is borked, lets duplicates of other side in...
+//			possibleAutos = autonomousCommandList.stream()
+//				.filter(auto -> startingPositionChooser.getSelected().equals(auto.getStartingPosition()) &&
+//					startingPositionChooser.getSelected().equals(StartingPosition.Middle) == false)
+//				.filter(auto -> (
+//					auto.getSwitchPosition() == MatchData.OwnedSide.LEFT &&
+//					auto.getStartingPosition() == StartingPosition.Left
+//				) || (
+//					auto.getSwitchPosition() == MatchData.OwnedSide.RIGHT &&
+//					auto.getStartingPosition() == StartingPosition.Right
+//				) || (
+//					(auto.getStartingPosition() == StartingPosition.Left && auto.getSwitchPosition() != MatchData.OwnedSide.RIGHT) ||
+//					(auto.getStartingPosition() == StartingPosition.Right && auto.getSwitchPosition() != MatchData.OwnedSide.LEFT)
+//				))
+//				.filter(auto -> (
+//					auto.getScalePosition() == MatchData.OwnedSide.LEFT &&
+//					auto.getStartingPosition() == StartingPosition.Left
+//				) || (
+//					auto.getScalePosition() == MatchData.OwnedSide.RIGHT &&
+//					auto.getStartingPosition() == StartingPosition.Right
+//				) || (
+//					(auto.getStartingPosition() == StartingPosition.Left && auto.getScalePosition() != MatchData.OwnedSide.RIGHT) ||
+//					(auto.getStartingPosition() == StartingPosition.Right && auto.getScalePosition() != MatchData.OwnedSide.LEFT)
+//				))
+//				.collect(Collectors.toList());
+//		} else {
 			possibleAutos = autonomousCommandList.stream()
 				.filter(auto -> startingPositionChooser.getSelected().equals(auto.getStartingPosition()))
 				.filter(auto -> modeChooser.getSelected().equals(auto.getMode()))
-				.filter(auto -> auto.getSwitchPosition() == ourSwitch)
-				.filter(auto -> auto.getScalePosition() == scale || auto.getScalePosition() == MatchData.OwnedSide.UNKNOWN)
+				.filter(auto -> auto.getSwitchPosition() == ourSwitch /*|| auto.getSwitchPosition() == MatchData.OwnedSide.UNKNOWN*/)
+				.filter(auto -> auto.getScalePosition() == scale /*|| auto.getScalePosition() == MatchData.OwnedSide.UNKNOWN */)
 				.collect(Collectors.toList());
-		}
+//		}
 		
 		if(possibleAutos.size() == 0) {
 			SmartDashboard.putString("Selected Auto", "Line Cross");
