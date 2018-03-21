@@ -27,13 +27,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 //import org.usfirst.frc.team1987.robot.commands.claw.TeleEjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleopEjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
-//import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
-//import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
-//import org.usfirst.frc.team1987.robot.commands.claw.stuff;
-//import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
-//import org.usfirst.frc.team1987.robot.commands.drive.DriveAScosh;
-import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
-import org.usfirst.frc.team1987.robot.commands.drive.DrivePivot;
+import org.usfirst.frc.team1987.robot.commands.drive.DisengagePto;
 //import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -92,6 +86,7 @@ public class OI {
 	private final XboxDPad setScaleNeutral;
 	private final XboxDPad setScaleOwned;
 	private final XboxDPad goToCollectHeight;
+	private final XboxDPad disengagePto;
 	
 	public OI()
 	{
@@ -167,6 +162,7 @@ public class OI {
 		elevatorManualUp = new XboxDPad(driver, XboxDPad.Direction.Up);
 		elevatorManualDown = new XboxDPad(driver, XboxDPad.Direction.Down);
 		goToCollectHeight = new XboxDPad(driver, XboxDPad.Direction.Right);
+		disengagePto = new XboxDPad(driver, XboxDPad.Direction.Left);
 		
 //		disownedButton = new JoystickButton(coDriver, RobotMap.disownedScaleButton);
 //		neutralButton = new JoystickButton(coDriver, RobotMap.neutralScaleButton);
@@ -198,6 +194,7 @@ public class OI {
 		prepClimb.whenPressed(new PrepClimb());
 		elevatorManualUp.whileHeld(new ElevatorManual(0.4));
 		elevatorManualDown.whileHeld(new ElevatorManual(-0.4));
+		disengagePto.whenPressed(new DisengagePto());
 		
 		//Co-driver
 //		disownedButton.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
