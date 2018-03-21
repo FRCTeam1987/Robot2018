@@ -22,11 +22,12 @@ public class RightToLeftScaleLeftSwitch extends CommandGroup {
     public RightToLeftScaleLeftSwitch() {
         addSequential(new RightToLeftScale());		
         addSequential(new ShiftLow());
-        addSequential(new DrivePivot(132));
+        addSequential(new DrivePivot(144));		//was 132
         addSequential(new ShiftHigh());
         addParallel(new AutoCollectCubeWide());
-    	System.out.println("straightForMeterAndSomeMore");
-        addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));
+//    	System.out.println("straightForMeterAndSomeMore");
+//        addSequential(new DrivePath(AutoPaths.straightForMeterAndSomeMore, DriveMode.DRIVEPATHSTRAIGHT));
+    	addSequential(new DriveDistance(50));
         addParallel(new DriveDistance(-2));				//needs tuning				
         addSequential(new SetElevatorHeight(16.0));
         addSequential(new DriveDistance(5));			//needs tuning

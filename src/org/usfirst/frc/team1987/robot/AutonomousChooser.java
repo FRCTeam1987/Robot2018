@@ -104,15 +104,6 @@ public class AutonomousChooser {
 			.withCommand(new RightToRightScale2x())
 			.build());
 		
-//		autonomousCommandList.add(
-//				new AutonomousContainer.Builder("Right to Right Switch (3,3)")	// good
-//					.withStartingPosition(StartingPosition.Right)
-//					.withMode(AutonomousMode.Scale)
-//					.withSwitchPosition(OwnedSide.RIGHT)
-//					.withScalePosition(OwnedSide.LEFT)
-//					.withCommand(new RightToRightSwitch())
-//					.build());
-		
 		autonomousCommandList.add(
 		new AutonomousContainer.Builder("Right to Left Scale (3,3)")	// good
 			.withStartingPosition(StartingPosition.Right)

@@ -92,9 +92,9 @@ public class AutoPaths {
     public static Waypoint[] rightToLeftScale = new Waypoint[] { // this path is the inverse of toFarScale	//was rightStartToLeftScale
     		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
 			new Waypoint(2.9, 0.0, Pathfinder.d2r(0.0)),	
-			new Waypoint(5.25, -3.6, Pathfinder.d2r(-90.0)),	
-			new Waypoint(5.2, -5.3, Pathfinder.d2r(-90.0)),
-			new Waypoint(5.62, -5.8, Pathfinder.d2r(25.0)),		//
+			new Waypoint(5.3, -3.6, Pathfinder.d2r(-90.0)),			// x was 5.25
+			new Waypoint(5.25, -5.20, Pathfinder.d2r(-90.0)),	
+			new Waypoint(5.85, -5.675, Pathfinder.d2r(25.0)),		// x was 5.7
     };
     
     public static Waypoint[] straightForMeterAndSome = new Waypoint[] {
