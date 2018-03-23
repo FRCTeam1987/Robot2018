@@ -112,12 +112,13 @@ public class RobotMap {
 	public static int clawLeftLimitSwitch = 3;
 	public static int clawRightLimitSwitch = 4;
 	public static double debounceTime = 0.15;
-	public static double strongEject = 1.0;		//was 0.9
-	public static double weakEject = 0.6;
+	public static double strongEject = 0.7;		//was 0.9
+	public static double weakEject = 0.7;
 		
-	//Xbox
+	//Xbox / joysticks
 	public static int driverID = 0;
 	public static int coDriverID = 1;
+	public static int coDriverBoxID = 2;
 	
 	//Driver buttons
 	public static int collectWideButton = 3;		//x
@@ -136,6 +137,7 @@ public class RobotMap {
 //	public static int ownedScaleButton = ;
 //	public static int disownedWorstButton = ;
 	public static int wristToggleButton = 8; 				//start
+	public static int portalCollectButton = 7;
 	public static int stopCollectButton = 2;				//b
 	public static int elevatorTopCubePyramidButton = 4;		//y
 	public static int elevatorMiddleCubePyramidButton = 3;	//x
@@ -144,6 +146,23 @@ public class RobotMap {
 	public static int adjustElevatorDownButton = 5;			//left bumper
 	public static int setStrongEjectButton = 10;			//right stick press down
 	public static int setWeakEjectButton = 9;				//left stick press down
+	
+	
+	//Co-Driver Box Buttons
+	public static int wristSwitch = 13;
+	public static int climb = 17;
+	public static int stopCollect = 11;
+	public static int elevatorTopPyramidCube = 5;
+	public static int elevatorMiddlePyramidCube = 18;
+	public static int elevatorBottomPyramidCube = 20;
+	public static int openFingers = 19;
+	public static int spitSpeed = 12;
+	public static int elevatorAdjustUp = 14;
+	public static int elevatorAdjustDown = 8;
+	public static int elevatorMaxHeight = 10;
+	public static int disownedScale = 16;
+	public static int neutralScale = 15;
+	public static int ownedScale = 9;
 	
 	//Elevator 
 	public static int elevatorID = 7;	
@@ -158,7 +177,7 @@ public class RobotMap {
 	public static double climbHeight = 55555.0; 
 	public static double disownedWorstScaleHeight = 32.0;	//was 31
 	public static double elevatorTopCubePyramidHeight = 10.5;
-	public static double elevatorMiddleCubePyramidHeight = 6.75;	//was 4.75
+	public static double elevatorMiddleCubePyramidHeight = 5.75;	//was 4.75 // also was 6.75
 	public static double elevatorHoldCubeHeight = 4.0;
 	public static double elevatorFloorCubePyramidHeight = 0;
 	public static int elevatorToleranceInTicks = 500;

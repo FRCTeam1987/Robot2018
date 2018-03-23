@@ -32,6 +32,15 @@ public class AutoPaths {
 			new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
 			new Waypoint(1.0, 1.0, Pathfinder.d2r(0.0)),
     };
+    
+    public static Waypoint[] leftSwitchSwoop = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(0.2, 0.0, Pathfinder.d2r(0.0)), //-0.2
+    		new Waypoint(1.25, 1, Pathfinder.d2r(90)),
+    		new Waypoint(0.2, 1.8, Pathfinder.d2r(180)),
+    		new Waypoint(-1.8, 1.8, Pathfinder.d2r(180)),
+    		new Waypoint(-2.5, 1.8, Pathfinder.d2r(145)),
+    };
 
     public static Waypoint[] toScale = new Waypoint[] {
 			new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),

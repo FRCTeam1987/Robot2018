@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.Climb;
 import org.usfirst.frc.team1987.robot.commands.DropPlatforms;
 import org.usfirst.frc.team1987.robot.commands.MyClimb;
 import org.usfirst.frc.team1987.robot.commands.PrepClimb;
@@ -15,7 +16,9 @@ import org.usfirst.frc.team1987.robot.commands.PrepClimb;
 //import org.usfirst.frc.team1987.robot.commands.EnableCompressor;
 import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
+import org.usfirst.frc.team1987.robot.commands.auto.LeftSwitchSwoop;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
 //import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 //import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
 //import org.usfirst.frc.team1987.robot.commands.claw.EjectCube;
@@ -24,9 +27,10 @@ import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.SetEjectStrength;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
-//import org.usfirst.frc.team1987.robot.commands.claw.TeleEjectCube;
-import org.usfirst.frc.team1987.robot.commands.claw.TeleopEjectCube;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectStowed;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
+import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
+import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DisengagePto;
 //import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
@@ -44,6 +48,7 @@ import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
 //import org.usfirst.frc.team1987.robot.commands.elevator.ToggleRatchet;
 import org.usfirst.frc.team1987.util.XboxDPad;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -57,8 +62,22 @@ public class OI {
 
 	private final XboxController driver;
 	private final XboxController coDriver;
-	private final Button eject;
+	private final Joystick buttonBox;
+	private final Button wristSwitch;
+	private final Button climb;
 	private final Button stopCollect;
+	private final Button elevatorTopPyramidCube;
+	private final Button elevatorMiddlePyramidCube;
+	private final Button elevatorBottomPyramidCube;
+	private final Button openFingers;
+	private final Button spitSpeed;
+	private final Button elevatorAdjustUp;
+	private final Button elevatorAdjustDown;
+	private final Button elevatorMaxHeight;
+	private final Button disownedScale;
+	private final Button neutralScale;
+	private final Button ownedScale;
+//	private final Button eject;
 	private final Button collectWide;
 	private final Button adjustUp;
 	private final Button adjustDown;
@@ -69,6 +88,7 @@ public class OI {
 //	private final Button neutralButton;
 //	private final Button ownedButton;
 //	private final Button disownedWorstButton;
+	
 	private final Button goToHome;
 	private final Button elevatorMiddleCubeHeight;
 	private final Button elevatorTopCubeHeight;
@@ -79,6 +99,7 @@ public class OI {
 	private final Button setWeakEject;
 	private final Button myClimb;
 	private final Button prepClimb;
+	private final Button portalCollect;
 	private final XboxDPad elevatorManualUp;
 	private final XboxDPad elevatorManualDown;
 	private final XboxDPad setScaleDisownedWorst;
@@ -92,6 +113,7 @@ public class OI {
 	{
 		driver = new XboxController(RobotMap.driverID);
 		coDriver = new XboxController(RobotMap.coDriverID);
+		buttonBox = new Joystick(RobotMap.coDriverBoxID);
 		
 //		SmartDashboard.putData("Drive straight 10", new DriveStraightForDistance(10));
 //		SmartDashboard.putData("Drive straight -10", new DriveStraightForDistance(-10));
@@ -148,9 +170,11 @@ public class OI {
 		SmartDashboard.putData("toggle shifter", new ToggleShifter());
 		SmartDashboard.putData("drop platforms", new DropPlatforms());
 		SmartDashboard.putData("tele collect", new TeleCollectCubeWide());
+		SmartDashboard.putData("Left Switch Swoop", new LeftSwitchSwoop());
 		
 		
-		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
+		
+//		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
@@ -173,6 +197,7 @@ public class OI {
 		elevatorTopCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorTopCubePyramidButton);
 		elevatorFloorCubeHeight = new JoystickButton(coDriver, RobotMap.elevatorFloorCubePyramidButton);
 		wristToggle = new JoystickButton(coDriver, RobotMap.wristToggleButton);		
+		portalCollect = new JoystickButton(coDriver, RobotMap.portalCollectButton);
 		adjustUp = new JoystickButton(coDriver, RobotMap.adjustElevatorUpButton);
 		adjustDown = new JoystickButton(coDriver, RobotMap.adjustElevatorDownButton);
 		setStrongEject = new JoystickButton(coDriver, RobotMap.setStrongEjectButton);
@@ -181,9 +206,23 @@ public class OI {
 		setScaleNeutral = new XboxDPad(coDriver, XboxDPad.Direction.Right);
 		setScaleDisownedWorst = new XboxDPad(coDriver, XboxDPad.Direction.Left);
 		setScaleOwned = new XboxDPad(coDriver, XboxDPad.Direction.Down);
+		wristSwitch = new JoystickButton(buttonBox, RobotMap.wristSwitch);
+		climb = new JoystickButton(buttonBox, RobotMap.climb);
+		elevatorTopPyramidCube = new JoystickButton(buttonBox, RobotMap.elevatorTopPyramidCube);
+		elevatorMiddlePyramidCube = new JoystickButton(buttonBox, RobotMap.elevatorMiddlePyramidCube);
+		elevatorBottomPyramidCube = new JoystickButton(buttonBox, RobotMap.elevatorBottomPyramidCube);
+		openFingers = new JoystickButton(buttonBox, RobotMap.openFingers);
+		spitSpeed = new JoystickButton(buttonBox, RobotMap.spitSpeed);
+		elevatorAdjustUp = new JoystickButton(buttonBox, RobotMap.elevatorAdjustUp);
+		elevatorAdjustDown = new JoystickButton(buttonBox, RobotMap.elevatorAdjustDown);
+		elevatorMaxHeight = new JoystickButton(buttonBox, RobotMap.elevatorMaxHeight);
+		disownedScale = new JoystickButton(buttonBox, RobotMap.disownedScale);
+		neutralScale = new JoystickButton(buttonBox, RobotMap.neutralScale);
+		ownedScale = new JoystickButton(buttonBox, RobotMap.ownedScale);
+		
 		
 		//Driver
-		eject.whenPressed(new TeleopEjectCube());
+//		eject.whenPressed(new TeleopEjectCube());
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
@@ -206,6 +245,7 @@ public class OI {
 		elevatorTopCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
 		elevatorFloorCubeHeight.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
 		wristToggle.whenPressed(new ToggleWrist());
+		portalCollect.whenPressed(new TeleCollectStowed());
 		adjustUp.whenPressed(new AdjustElevatorHeight(5));
 		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
 		setStrongEject.whenPressed(new SetEjectStrength(true));
@@ -215,6 +255,24 @@ public class OI {
 		setScaleNeutral.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
 		setScaleOwned.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));
 		goToCollectHeight.whenPressed(new GoToCollectorHeight());
+		
+		//Co-driver box
+		wristSwitch.whenPressed(new WristDeploy());
+		wristSwitch.whenReleased(new WristStow());
+		climb.whenPressed(new Climb());
+		stopCollect.whenPressed(new StopCollect());
+		elevatorTopPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
+		elevatorMiddlePyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
+		elevatorBottomPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
+		openFingers.whenPressed(new OpenClaw());
+		spitSpeed.whenPressed(new SetEjectStrength(true));
+		spitSpeed.whenReleased(new SetEjectStrength(false));
+		elevatorAdjustUp.whileHeld(new AdjustElevatorHeight(5));
+		elevatorAdjustDown.whileHeld(new AdjustElevatorHeight(-5));
+		elevatorMaxHeight.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
+		disownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+		neutralScale.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+		ownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));		
 	}
 	
 	public XboxController getDriver() {

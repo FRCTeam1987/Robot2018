@@ -57,10 +57,12 @@ public class Elevator extends Subsystem {
     	winchMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotMap.drivePIDIDX, RobotMap.defaultTimeout);
     	
     	winchMotor.selectProfileSlot(0, 0);	//param 1 = "profile slot to select" - Example used 0 - why?
-		winchMotor.config_kF(0, 0.0, 10);	//was .05
-		winchMotor.config_kP(0, 0.2, 10);
-		winchMotor.config_kI(0, 0.0, 10);
-		winchMotor.config_kD(0, 0.2, 10);
+    	winchMotor.configMotionCruiseVelocity(3500, 0);
+    	winchMotor.configMotionAcceleration(13000, 0);
+//		winchMotor.config_kF(0, 0.0, 10);	//was .05
+//		winchMotor.config_kP(0, 0.2, 10);
+//		winchMotor.config_kI(0, 0.0, 10);
+//		winchMotor.config_kD(0, 0.2, 10);
 //		winchMotor.configMotionAcceleration(40, 10); 	//param 1 = sensorUnitsPer100msPerSec - need to calc?
 //		winchMotor.configMotionCruiseVelocity(20, 10);	//param 1 = sensorUnitsPer10ms - need to calc?
 //		winchMotor.configAllowableClosedloopError(0, Util.distanceToTicks(0.25, 43.0), 10);
@@ -113,7 +115,26 @@ public class Elevator extends Subsystem {
 		
 		SmartDashboard.putNumber("inches absolute", Util.ticksToDistance(ticksAbsolute, RobotMap.winchDiameter));
 		m_ticksAbsolute = ticksAbsolute;
-		winchMotor.set(ControlMode.Position, ticksAbsolute);
+		if (Util.isWithinTolerance(getTicks(), ticksAbsolute, 4096)) {
+			winchMotor.config_kF(0, 0.9, 0);
+			winchMotor.config_kP(0, 0.8, 0);
+			winchMotor.config_kI(0, 0.0, 0);
+			winchMotor.config_kD(0, 0.0, 0);
+		}
+		else if (ticksAbsolute > getTicks()) {
+			winchMotor.config_kF(0, 0.4, 0);	//was .05
+			winchMotor.config_kP(0, 0.18, 0);
+			winchMotor.config_kI(0, 0.0, 0);
+			winchMotor.config_kD(0, 0.0, 0);
+		}
+		else {
+			winchMotor.config_kF(0, 0.3, 0);	//was .05
+			winchMotor.config_kP(0, 0.1, 0);
+			winchMotor.config_kI(0, 0.0, 0);
+			winchMotor.config_kD(0, 0.0, 0);
+		}
+		winchMotor.set(ControlMode.MotionMagic, ticksAbsolute);
+		setBrake();
 	}
 	
 	public void setElevatorRelative(final double inchesRelative) {

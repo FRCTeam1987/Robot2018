@@ -32,12 +32,14 @@ public class DrivePath extends Command {
 	private boolean isHighGear;
 	private DriveProfile driveProfile;
 	private final DriveMode driveMode;
+	private boolean isReversed;
 	
 	public DrivePath(final Waypoint[] path, final DriveMode driveMode) {
         requires(Robot.drive);
 
         isBrake = false;
-        isHighGear = true;       
+        isHighGear = true;
+        isReversed = false;
         
 		this.driveMode = driveMode;
 		System.out.println("=======================");
@@ -51,6 +53,11 @@ public class DrivePath extends Command {
 		EncoderFollower[] followers = Robot.drive.pathSetup(makeTrajectory(path));
 		this.leftFollower = followers[0];
 		this.rightFollower = followers[1];
+	}
+	
+	public DrivePath(final Waypoint[] path, final DriveMode driveMode, final boolean isReversed) {
+		this(path, driveMode);
+		this.isReversed = isReversed;
 	}
 	
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
@@ -128,11 +135,11 @@ public class DrivePath extends Command {
     	leftFollower.reset();
     	rightFollower.reset();
 
-        Robot.drive.pathFollow(leftFollower, rightFollower, false);
+        Robot.drive.pathFollow(leftFollower, rightFollower, isReversed); //false for forward
     }
 
     protected void execute() {
-        Robot.drive.pathFollow(leftFollower, rightFollower, false);
+        Robot.drive.pathFollow(leftFollower, rightFollower, isReversed); //false for forward
     }
 
     protected boolean isFinished() {
