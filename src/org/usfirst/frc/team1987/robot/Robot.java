@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.auto.RightToRightScale2x;
 //import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScaleRightSwitch;
 //import org.usfirst.frc.team1987.robot.commands.auto.MiddleToLeftSwitch;
 //import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
@@ -121,7 +122,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = autonomousChooser.get();
+//		m_autonomousCommand = autonomousChooser.get();
+		
+		m_autonomousCommand = new RightToRightScale2x();;
+
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -138,6 +142,7 @@ public class Robot extends TimedRobot {
 		}
 		compressor.setClosedLoopControl(false);
 		compressor.stop();
+		
 		
 //		ToggleDropDownOmniBack();
 	}

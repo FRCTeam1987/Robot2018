@@ -17,7 +17,11 @@ import org.usfirst.frc.team1987.robot.commands.PrepClimb;
 import org.usfirst.frc.team1987.robot.commands.SetPotentialCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.auto.LeftSwitchSwoop;
+import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
+import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchLeftSwitch;
+import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchSwoop;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
 //import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 //import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
@@ -28,6 +32,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.SetEjectStrength;
 import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectStowed;
+import org.usfirst.frc.team1987.robot.commands.claw.TeleopEjectCube;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
@@ -77,7 +82,7 @@ public class OI {
 	private final Button disownedScale;
 	private final Button neutralScale;
 	private final Button ownedScale;
-//	private final Button eject;
+	private final Button eject;
 	private final Button collectWide;
 	private final Button adjustUp;
 	private final Button adjustDown;
@@ -166,15 +171,17 @@ public class OI {
 //		SmartDashboard.putData("drive distance 6", new DriveDistance(6));
 //		SmartDashboard.putData("drive distance -10", new DriveDistance(-10));
 //		SmartDashboard.putData("drive distance 24", new DriveDistance(24));		
-		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
-		SmartDashboard.putData("toggle shifter", new ToggleShifter());
-		SmartDashboard.putData("drop platforms", new DropPlatforms());
-		SmartDashboard.putData("tele collect", new TeleCollectCubeWide());
-		SmartDashboard.putData("Left Switch Swoop", new LeftSwitchSwoop());
+//		SmartDashboard.putData("auto collect", new AutoCollectCubeWide());
+//		SmartDashboard.putData("toggle shifter", new ToggleShifter());
+//		SmartDashboard.putData("drop platforms", new DropPlatforms());
+//		SmartDashboard.putData("tele collect", new TeleCollectCubeWide());
+//		SmartDashboard.putData("Left Switch Swoop", new LeftSwitchSwoop());
+//		SmartDashboard.putData("right switch from middle", new MiddleToRightSwitchSwoop());
+//		SmartDashboard.putData("middle to right switch", new MiddleToRightSwitch());
+		SmartDashboard.putData("middle to right switch left switch", new MiddleToRightSwitchLeftSwitch());
 		
 		
-		
-//		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
+		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
 		collectWide = new JoystickButton(driver, RobotMap.collectWideButton);	
 		toggleShifter = new JoystickButton(driver, RobotMap.toggleShifterButton);
 		goToScaleHeight = new JoystickButton(driver, RobotMap.goToScaleHeightButton);
@@ -222,7 +229,7 @@ public class OI {
 		
 		
 		//Driver
-//		eject.whenPressed(new TeleopEjectCube());
+		eject.whenPressed(new TeleopEjectCube());
 		collectWide.whenPressed(new TeleCollectCubeWide());
 		toggleShifter.whenPressed(new ToggleShifter());
 		goToScaleHeight.whenPressed(new GoToScaleHeight());
@@ -265,6 +272,7 @@ public class OI {
 		elevatorMiddlePyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
 		elevatorBottomPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
 		openFingers.whenPressed(new OpenClaw());
+		openFingers.whenReleased(new CloseClaw());
 		spitSpeed.whenPressed(new SetEjectStrength(true));
 		spitSpeed.whenReleased(new SetEjectStrength(false));
 		elevatorAdjustUp.whileHeld(new AdjustElevatorHeight(5));

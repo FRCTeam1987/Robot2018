@@ -35,11 +35,26 @@ public class AutoPaths {
     
     public static Waypoint[] leftSwitchSwoop = new Waypoint[] {
     		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
-    		new Waypoint(0.2, 0.0, Pathfinder.d2r(0.0)), //-0.2
-    		new Waypoint(1.25, 1, Pathfinder.d2r(90)),
-    		new Waypoint(0.2, 1.8, Pathfinder.d2r(180)),
-    		new Waypoint(-1.8, 1.8, Pathfinder.d2r(180)),
-    		new Waypoint(-2.5, 1.8, Pathfinder.d2r(145)),
+    		new Waypoint(1.25, .8, Pathfinder.d2r(90)),
+    		new Waypoint(0.2, 2, Pathfinder.d2r(180)), //1.9
+    		new Waypoint(-1.8, 2, Pathfinder.d2r(180)),
+    		new Waypoint(-3.1, 1.5, Pathfinder.d2r(180)), //-2.7, 1.75
+    };
+    
+    public static Waypoint[] rightSwitchSwoop = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(1.25, -0.8, Pathfinder.d2r(-90)),
+    		new Waypoint(0.2, -2.0, Pathfinder.d2r(-180)), 
+    		new Waypoint(-1.7, -2.0, Pathfinder.d2r(-180)),	//-1.8
+    		new Waypoint(-3.0, -1.5, Pathfinder.d2r(-180)), //-3.1
+    };
+    
+    public static Waypoint[] rightSwitchToLeftSwitchCube = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(1.4, 1.6, Pathfinder.d2r(90.0)),
+    		new Waypoint(1.4, 1.85, Pathfinder.d2r(90)),		//1.8
+    		new Waypoint(0.0, 3.55, Pathfinder.d2r(180.0)),	//3.6
+			new Waypoint(-3.2, 3.55, Pathfinder.d2r(180.0))	//3.6
     };
 
     public static Waypoint[] toScale = new Waypoint[] {

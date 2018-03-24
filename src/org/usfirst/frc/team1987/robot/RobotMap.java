@@ -112,7 +112,7 @@ public class RobotMap {
 	public static int clawLeftLimitSwitch = 3;
 	public static int clawRightLimitSwitch = 4;
 	public static double debounceTime = 0.15;
-	public static double strongEject = 0.7;		//was 0.9
+	public static double strongEject = 0.9;		//was 0.9
 	public static double weakEject = 0.7;
 		
 	//Xbox / joysticks
