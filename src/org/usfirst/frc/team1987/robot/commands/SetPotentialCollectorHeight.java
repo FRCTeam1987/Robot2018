@@ -19,5 +19,6 @@ public class SetPotentialCollectorHeight extends InstantCommand {
 
     protected void initialize() {
     	Robot.setCollectorHeight(m_collectorHeight);
+    	System.out.println("Set collector height");
     }
 }

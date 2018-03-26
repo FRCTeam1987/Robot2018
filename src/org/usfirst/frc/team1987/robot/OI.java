@@ -20,6 +20,7 @@ import org.usfirst.frc.team1987.robot.commands.auto.LeftSwitchSwoop;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchLeftSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchSwoop;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleExtraSketch;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
@@ -37,6 +38,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DisengagePto;
+import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
 //import org.usfirst.frc.team1987.robot.commands.drive.PIDDrivePivot;
 //import org.usfirst.frc.team1987.robot.commands.drive.ShiftHigh;
@@ -50,6 +52,7 @@ import org.usfirst.frc.team1987.robot.commands.elevator.ElevatorManual;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToCollectorHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.GoToScaleHeight;
 import org.usfirst.frc.team1987.robot.commands.elevator.SetElevatorHeight;
+import org.usfirst.frc.team1987.util.AutoPaths;
 //import org.usfirst.frc.team1987.robot.commands.elevator.ToggleRatchet;
 import org.usfirst.frc.team1987.util.XboxDPad;
 
@@ -135,14 +138,14 @@ public class OI {
 //		SmartDashboard.putData("Wrist Deploy", new WristDeploy());
 //		SmartDashboard.putData("Shift high", new ShiftHigh());
 //		SmartDashboard.putData("Shift low", new ShiftLow());
-		SmartDashboard.putData("Adjust elevator +5", new AdjustElevatorHeight(5));
-		SmartDashboard.putData("Adjust elevator -5", new AdjustElevatorHeight(-5));
-		SmartDashboard.putData("Set max: 29.5", new SetElevatorHeight(29.5));
+//		SmartDashboard.putData("Adjust elevator +5", new AdjustElevatorHeight(5));
+//		SmartDashboard.putData("Adjust elevator -5", new AdjustElevatorHeight(-5));
+//		SmartDashboard.putData("Set max: 29.5", new SetElevatorHeight(29.5));
 //		SmartDashboard.putData("Set 35", new SetElevatorHeight(35));
 //		SmartDashboard.putData("Set 2", new SetElevatorHeight(2));
-		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
+//		SmartDashboard.putData("Set home: 0", new SetElevatorHeight(0));
 //		SmartDashboard.putData("Set 24.72", new SetElevatorHeight(24.72));
-		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
+//		SmartDashboard.putData("Set 10", new SetElevatorHeight(10));
 //		SmartDashboard.putData("Set 20", new SetElevatorHeight(20));
 //		SmartDashboard.putData("Set to rung height", new SetElevatorHeight(RobotMap.rungHeight));
 //		SmartDashboard.putData("Climb", new Climb());
@@ -178,7 +181,9 @@ public class OI {
 //		SmartDashboard.putData("Left Switch Swoop", new LeftSwitchSwoop());
 //		SmartDashboard.putData("right switch from middle", new MiddleToRightSwitchSwoop());
 //		SmartDashboard.putData("middle to right switch", new MiddleToRightSwitch());
-		SmartDashboard.putData("middle to right switch left switch", new MiddleToRightSwitchLeftSwitch());
+//		SmartDashboard.putData("middle to right switch left switch", new MiddleToRightSwitchLeftSwitch());
+//		SmartDashboard.putData("right switch to scale swoop", new Auto());
+		SmartDashboard.putData("super sketch path", new RightToLeftScaleExtraSketch());
 		
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
@@ -264,23 +269,23 @@ public class OI {
 		goToCollectHeight.whenPressed(new GoToCollectorHeight());
 		
 		//Co-driver box
-		wristSwitch.whenPressed(new WristDeploy());
-		wristSwitch.whenReleased(new WristStow());
-		climb.whenPressed(new Climb());
-		stopCollect.whenPressed(new StopCollect());
-		elevatorTopPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
-		elevatorMiddlePyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
-		elevatorBottomPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
-		openFingers.whenPressed(new OpenClaw());
-		openFingers.whenReleased(new CloseClaw());
-		spitSpeed.whenPressed(new SetEjectStrength(true));
-		spitSpeed.whenReleased(new SetEjectStrength(false));
-		elevatorAdjustUp.whileHeld(new AdjustElevatorHeight(5));
-		elevatorAdjustDown.whileHeld(new AdjustElevatorHeight(-5));
-		elevatorMaxHeight.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
-		disownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
-		neutralScale.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
-		ownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));		
+//		wristSwitch.whenPressed(new WristDeploy());
+//		wristSwitch.whenReleased(new WristStow());
+//		climb.whenPressed(new Climb());
+//		stopCollect.whenPressed(new StopCollect());
+//		elevatorTopPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.TOP));
+//		elevatorMiddlePyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.MIDDLE));
+//		elevatorBottomPyramidCube.whenPressed(new SetPotentialCollectorHeight(CollectorHeight.FLOOR));
+//		openFingers.whenPressed(new OpenClaw());
+//		openFingers.whenReleased(new CloseClaw());
+//		spitSpeed.whenPressed(new SetEjectStrength(true));
+//		spitSpeed.whenReleased(new SetEjectStrength(false));
+//		elevatorAdjustUp.whileHeld(new AdjustElevatorHeight(5));
+//		elevatorAdjustDown.whileHeld(new AdjustElevatorHeight(-5));
+//		elevatorMaxHeight.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
+//		disownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+//		neutralScale.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+//		ownedScale.whenPressed(new SetScaleOwnership(ScaleOwnership.OWNED));		
 	}
 	
 	public XboxController getDriver() {

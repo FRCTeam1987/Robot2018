@@ -4,8 +4,12 @@ import org.usfirst.frc.team1987.robot.DriveMode;
 import org.usfirst.frc.team1987.robot.RobotMap;
 import org.usfirst.frc.team1987.robot.ScaleOwnership;
 import org.usfirst.frc.team1987.robot.commands.SetScaleOwnership;
+import org.usfirst.frc.team1987.robot.commands.claw.AdjustCubeInClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
+import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.EjectAndJiggle;
+import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
+import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
 import org.usfirst.frc.team1987.robot.commands.drive.DriveDistance;
 import org.usfirst.frc.team1987.robot.commands.drive.DrivePath;
@@ -27,21 +31,12 @@ public class RightToRightScaleAndBackup extends CommandGroup {
 
     public RightToRightScaleAndBackup() {
     	addSequential(new RightToRightScale());
-        addSequential(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
+    	addParallel(new SetElevatorHeightInstant(0));
         addSequential(new ShiftLow());
-        addSequential(new DrivePivot(-112));
-        addSequential(new ShiftHigh());
-        addParallel(new AutoCollectCubeWide());
-    	System.out.println("straightForMeterAndASkosh");
-        addSequential(new DrivePath(AutoPaths.straightForMeterAndASkosh, DriveMode.DRIVEPATHSTRAIGHT));	//changed this
-        addSequential(new WaitCommand(0.1));
-        addSequential(new DriveDistance(-3));
-        addSequential(new SetElevatorHeightInstant(RobotMap.elevatorHoldCubeHeight));
-        addSequential(new WristStow());
-        addSequential(new DrivePivot(130));
-        addSequential(new DriveDistance(22));	// was 24
-        addSequential(new GoToScaleHeight());
-        addSequential(new EjectAndJiggle());
-        addSequential(new SetElevatorHeight(0));
-    }
+        addSequential(new DriveDistance(-28));
+        addSequential(new DrivePivot(-80));	//-84
+        addSequential(new WristDeploy());
+        addParallel(new AdjustCubeInClaw(5.0, -.9, -.9));
+        addSequential(new DriveDistance(35));
+        }
 }

@@ -7,7 +7,12 @@
 
 package org.usfirst.frc.team1987.robot;
 
+import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
+import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchSwoop;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScale;
 import org.usfirst.frc.team1987.robot.commands.auto.RightToRightScale2x;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToRightScale2xWithBackup;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToRightScaleAndBackup;
 //import org.usfirst.frc.team1987.robot.commands.auto.LeftToRightScaleRightSwitch;
 //import org.usfirst.frc.team1987.robot.commands.auto.MiddleToLeftSwitch;
 //import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
@@ -31,6 +36,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -102,6 +108,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		compressor.setClosedLoopControl(true);
+		drive.setHighGear();
+		
+		SmartDashboard.putString("borked", "disabled");
 	}
 
 	@Override
@@ -123,8 +132,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 //		m_autonomousCommand = autonomousChooser.get();
-		
-		m_autonomousCommand = new RightToRightScale2x();;
+		SmartDashboard.putString("borked", "auto");
+
+		m_autonomousCommand = new RightToLeftScale();
+//		m_autonomousCommand = new MiddleToRightSwitchSwoop();
+
 
 
 		/*
@@ -172,6 +184,8 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+		
+		SmartDashboard.putString("borked", "teleop");
 		
 		drive.setCoast();
 	}

@@ -82,9 +82,9 @@ public class RobotMap {
 	public static double drivePathStraightDT = RobotMap.period;
 	public static double drivePathStraightGP = 0.039;
 	public static double drivePathStraightGD = 0.0;
-	public static double drivePathStraightMaxVelocity = 3.4;
+	public static double drivePathStraightMaxVelocity = 3.8;		//3.4
 	public static double drivePathStraightKV = 1.0 / drivePathStraightMaxVelocity;
-	public static double drivePathStraightMaxAcceleration = 1.4;
+	public static double drivePathStraightMaxAcceleration = 1.8;	//1.4
 	public static double drivePathStraightKA = 0.0;
 	public static double drivePathStraightMaxJerk = 7.62;
 	

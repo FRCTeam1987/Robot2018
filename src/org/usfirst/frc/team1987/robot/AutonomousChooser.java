@@ -534,6 +534,7 @@ public class AutonomousChooser {
 //					.withScalePosition(OwnedSide.RIGHT)
 //					.withCommand(new RightToRightScaleRightSwitch())
 //					.build());
+ 
 	}
 	
 	public Command get() {

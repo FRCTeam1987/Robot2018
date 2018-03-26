@@ -57,6 +57,12 @@ public class AutoPaths {
 			new Waypoint(-3.2, 3.55, Pathfinder.d2r(180.0))	//3.6
     };
 
+    public static Waypoint[] rightSwitchToRightScale = new Waypoint[] {
+    		new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(0.5, 0.0, Pathfinder.d2r(0.0)),
+    		new Waypoint(2.65, -1.55, Pathfinder.d2r(-70)),	
+    };
+    
     public static Waypoint[] toScale = new Waypoint[] {
 			new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
 			new Waypoint(3.0, 0.0, Pathfinder.d2r(0.0)),
@@ -119,6 +125,18 @@ public class AutoPaths {
 			new Waypoint(5.3, -3.6, Pathfinder.d2r(-90.0)),			// x was 5.25
 			new Waypoint(5.25, -5.20, Pathfinder.d2r(-90.0)),	
 			new Waypoint(5.85, -5.675, Pathfinder.d2r(25.0)),		// x was 5.7
+    };
+    
+    public static Waypoint[] rightToLeftScaleExtraSketch = new Waypoint[] { 
+    		new Waypoint(0.0,0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(0.25, 0.0, Pathfinder.d2r(0.0)),	
+			new Waypoint(1.25, -1.0, Pathfinder.d2r(-90.0)),			
+			new Waypoint(1.25, -3.5, Pathfinder.d2r(-90.0)),	
+			new Waypoint(3.5, -6.65, Pathfinder.d2r(0.0)),
+			new Waypoint(4.5, -6.65, Pathfinder.d2r(0.0)),
+			new Waypoint(5.5, -6.65, Pathfinder.d2r(0.0)),
+			new Waypoint(6.5, -6.65, Pathfinder.d2r(0.0)),
+			new Waypoint(7.05, -6.20, Pathfinder.d2r(80.0)),
     };
     
     public static Waypoint[] straightForMeterAndSome = new Waypoint[] {

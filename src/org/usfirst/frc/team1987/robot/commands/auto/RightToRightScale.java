@@ -20,14 +20,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightToRightScale extends CommandGroup { // UNTESTED
 
     public RightToRightScale() {
-    	addSequential(new ShiftHigh());
-        addSequential(new SetScaleOwnership(ScaleOwnership.DISOWNED));
+    	addParallel(new ShiftHigh());
+        addSequential(new SetScaleOwnership(ScaleOwnership.NEUTRAL));
     	System.out.println("right to right scale");
         addParallel(new DrivePath(AutoPaths.rightToRightScale, DriveMode.DRIVEPATHSTRAIGHT));
-        addSequential(new DelayGoToScaleHeight(3.1));
+        addSequential(new DelayGoToScaleHeight(2.3));
      // Experimenting... change parallel back to sequential and use regular go to scale height if you want
 //        addSequential(new GoToScaleHeight());
         addSequential(new EjectAndJiggle());
-        addSequential(new SetElevatorHeightInstant(0));
+//        addSequential(new SetElevatorHeightInstant(0));
     }
 }

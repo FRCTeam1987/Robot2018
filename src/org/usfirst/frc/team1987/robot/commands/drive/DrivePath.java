@@ -62,6 +62,7 @@ public class DrivePath extends Command {
 	
 	protected Trajectory makeTrajectory(final Waypoint[] path) {
 		String hash = WaypointsHash(path);
+		System.out.println(hash);
 		File cacheFile = new File(cacheFilename(hash));
 		if(cacheFile.exists()) {
 			// load the trajectory from the cache
@@ -92,6 +93,7 @@ public class DrivePath extends Command {
 				System.out.println("=======================");
 			}
 			
+//			Drive.DrivetrainProfiling.setProfile(Drive.straight);
 			System.out.println("profile max acceleration: " + Drive.DrivetrainProfiling.max_acceleration);
 			
 	        Trajectory.Config cfg = new Trajectory.Config(Trajectory.FitMethod.HERMITE_QUINTIC, Trajectory.Config.SAMPLES_HIGH,
