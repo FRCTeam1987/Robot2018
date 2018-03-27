@@ -20,7 +20,10 @@ import org.usfirst.frc.team1987.robot.commands.auto.LeftSwitchSwoop;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchLeftSwitch;
 import org.usfirst.frc.team1987.robot.commands.auto.MiddleToRightSwitchSwoop;
+import org.usfirst.frc.team1987.robot.commands.auto.RightSwitchSwoop;
 import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftScaleExtraSketch;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToLeftSwitch;
+import org.usfirst.frc.team1987.robot.commands.auto.RightToRightSwitch;
 import org.usfirst.frc.team1987.robot.commands.claw.AutoCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.CloseClaw;
 import org.usfirst.frc.team1987.robot.commands.claw.OpenClaw;
@@ -34,6 +37,7 @@ import org.usfirst.frc.team1987.robot.commands.claw.StopCollect;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectCubeWide;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleCollectStowed;
 import org.usfirst.frc.team1987.robot.commands.claw.TeleopEjectCube;
+import org.usfirst.frc.team1987.robot.commands.claw.ToggleEjectSpeed;
 import org.usfirst.frc.team1987.robot.commands.claw.ToggleWrist;
 import org.usfirst.frc.team1987.robot.commands.claw.WristDeploy;
 import org.usfirst.frc.team1987.robot.commands.claw.WristStow;
@@ -103,8 +107,9 @@ public class OI {
 	private final Button elevatorFloorCubeHeight;
 	private final Button toggleDropDownOmniBack;
 	private final Button toggleDropDownOmniFront;	
-	private final Button setStrongEject;
-	private final Button setWeakEject;
+	private final Button toggleEjectSpeed;
+//	private final Button setStrongEject;
+//	private final Button setWeakEject;
 	private final Button myClimb;
 	private final Button prepClimb;
 	private final Button portalCollect;
@@ -183,7 +188,10 @@ public class OI {
 //		SmartDashboard.putData("middle to right switch", new MiddleToRightSwitch());
 //		SmartDashboard.putData("middle to right switch left switch", new MiddleToRightSwitchLeftSwitch());
 //		SmartDashboard.putData("right switch to scale swoop", new Auto());
-		SmartDashboard.putData("super sketch path", new RightToLeftScaleExtraSketch());
+//		SmartDashboard.putData("super sketch path", new RightToLeftScaleExtraSketch());
+//		SmartDashboard.putData("Right to right Switch", new RightToRightSwitch());
+//		SmartDashboard.putData("Right switch swoop", new RightSwitchSwoop());
+		SmartDashboard.putData("Right to Left Switch", new RightToLeftSwitch());
 		
 		
 		eject = new JoystickButton(driver, RobotMap.ejectCubeButton);			//y
@@ -212,12 +220,14 @@ public class OI {
 		portalCollect = new JoystickButton(coDriver, RobotMap.portalCollectButton);
 		adjustUp = new JoystickButton(coDriver, RobotMap.adjustElevatorUpButton);
 		adjustDown = new JoystickButton(coDriver, RobotMap.adjustElevatorDownButton);
-		setStrongEject = new JoystickButton(coDriver, RobotMap.setStrongEjectButton);
-		setWeakEject = new JoystickButton(coDriver, RobotMap.setWeakEjectButton);
+//		setStrongEject = new JoystickButton(coDriver, RobotMap.setStrongEjectButton);
+//		setWeakEject = new JoystickButton(coDriver, RobotMap.setWeakEjectButton);
+		toggleEjectSpeed = new JoystickButton(coDriver, RobotMap.toggleEjectSpeedButton);
 		setScaleDisowned = new XboxDPad(coDriver, XboxDPad.Direction.Up);
 		setScaleNeutral = new XboxDPad(coDriver, XboxDPad.Direction.Right);
 		setScaleDisownedWorst = new XboxDPad(coDriver, XboxDPad.Direction.Left);
 		setScaleOwned = new XboxDPad(coDriver, XboxDPad.Direction.Down);
+		
 		wristSwitch = new JoystickButton(buttonBox, RobotMap.wristSwitch);
 		climb = new JoystickButton(buttonBox, RobotMap.climb);
 		elevatorTopPyramidCube = new JoystickButton(buttonBox, RobotMap.elevatorTopPyramidCube);
@@ -260,8 +270,9 @@ public class OI {
 		portalCollect.whenPressed(new TeleCollectStowed());
 		adjustUp.whenPressed(new AdjustElevatorHeight(5));
 		adjustDown.whenPressed(new AdjustElevatorHeight(-5));
-		setStrongEject.whenPressed(new SetEjectStrength(true));
-		setWeakEject.whenPressed(new SetEjectStrength(false));
+//		setStrongEject.whenPressed(new SetEjectStrength(true));
+//		setWeakEject.whenPressed(new SetEjectStrength(false));
+		toggleEjectSpeed.whenPressed(new ToggleEjectSpeed());
 		setScaleDisownedWorst.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED_WORST));
 		setScaleDisowned.whenPressed(new SetScaleOwnership(ScaleOwnership.DISOWNED));
 		setScaleNeutral.whenPressed(new SetScaleOwnership(ScaleOwnership.NEUTRAL));

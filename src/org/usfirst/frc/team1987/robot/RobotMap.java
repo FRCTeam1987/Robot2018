@@ -144,8 +144,9 @@ public class RobotMap {
 	public static int elevatorFloorCubePyramidButton = 1;	//a
 	public static int adjustElevatorUpButton = 6;			//right bumper
 	public static int adjustElevatorDownButton = 5;			//left bumper
-	public static int setStrongEjectButton = 10;			//right stick press down
-	public static int setWeakEjectButton = 9;				//left stick press down
+//	public static int setStrongEjectButton = 10;			//right stick press down
+//	public static int setWeakEjectButton = 9;				//left stick press down
+	public static int toggleEjectSpeedButton = 9;
 	
 	
 	//Co-Driver Box Buttons

@@ -179,6 +179,15 @@ public class AutoPaths {
 			new Waypoint(3.1, -1.5, Pathfinder.d2r(0.0))	//was 2.6
     };
     
+    public static Waypoint[] rightToLeftSwitch = new Waypoint[] {
+			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(0.25, 0.0, Pathfinder.d2r(0.0)),
+			new Waypoint(1.0, -0.8, Pathfinder.d2r(-90)),
+			new Waypoint(1.0, -2.5, Pathfinder.d2r(-90)),
+			new Waypoint(1.9, -4.5, Pathfinder.d2r(0.0)),
+			new Waypoint(2.6, -4.5, Pathfinder.d2r(0.0))	
+    };
+    
     public static Waypoint[] rightToRightSwitch = new Waypoint[] {
 			new Waypoint(0.0, 0.0, Pathfinder.d2r(0.0)),
 			new Waypoint(2.0, 0.0, Pathfinder.d2r(0.0)),
