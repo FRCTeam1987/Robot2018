@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
 	public static final Claw claw = new Claw();
 	public static final Elevator elevator = new Elevator();
 	public static OI oi;
-	public static final AutonomousChooser autonomousChooser = new AutonomousChooser();
+	public static final MyAutonomousChooser autonomousChooser = new MyAutonomousChooser();
 	
 	private static ScaleOwnership scaleOwnership;
 	private static CollectorHeight collectorHeight;
@@ -131,10 +131,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-//		m_autonomousCommand = autonomousChooser.get();
-		SmartDashboard.putString("borked", "auto");
+		m_autonomousCommand = autonomousChooser.get();
+//		SmartDashboard.putString("borked", "auto");
 
-		m_autonomousCommand = new RightToLeftScale();
+//		m_autonomousCommand = new RightToLeftScale();
 //		m_autonomousCommand = new MiddleToRightSwitchSwoop();
 
 

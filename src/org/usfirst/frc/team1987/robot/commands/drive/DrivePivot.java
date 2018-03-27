@@ -65,8 +65,8 @@ public class DrivePivot extends Command {
     }
 
     protected boolean isFinished() {
-    	return Util.isWithinTolerance(Robot.drive.getAngle(), targetAngle, tolerance) ||//&& 
-//    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1) || 
+    	return Util.isWithinTolerance(Robot.drive.getAngle(), targetAngle, tolerance) && 
+    		   Util.isWithinTolerance(Robot.drive.getGyroRate(), 0, 0.1) || 
     		   isTimedOut();
     }
 

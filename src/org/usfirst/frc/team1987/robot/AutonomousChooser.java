@@ -596,7 +596,7 @@ public class AutonomousChooser {
 	}
 	
 	public void onRobotInit() {
-		SmartDashboard.putData("Starting Position", startingPositionChooser);
-		SmartDashboard.putData("Auto Mode", modeChooser);
+//		SmartDashboard.putData("Starting Position", startingPositionChooser);
+//		SmartDashboard.putData("Auto Mode", modeChooser);
 	}
 }
